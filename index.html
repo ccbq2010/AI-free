@@ -7,7 +7,7 @@
 
   <!-- WeChat Share Preview -->
   <meta property="og:title" content="AI 新用户福利 · 免费领额度">
-  <meta property="og:description" content="智谱 GLM-5.2 送 2000万 Tokens · 小米 MiMo 各得 ¥10 · WorkBuddy 送 2000 积分，点击查看详情 👉">
+  <meta property="og:description" content="QoderWork首月Pro免费 · WorkBuddy送2000积分 · 智谱GLM送2000万Tokens · ZCode每天500万Tokens · 小米MiMo各得¥10 · TRAE报名领¥99月卡 · MiMo Code限免，点击查看详情 👉">
   <meta property="og:image" content="https://your-cdn.com/share-cover.png">
   <meta property="og:type" content="website">
 
@@ -33,6 +33,32 @@
       color: var(--text);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      display: flex;
+      justify-content: center;
+    }
+
+    .page-wrap {
+      width: 100%;
+      max-width: 480px;
+    }
+
+    @media (min-width: 768px) {
+      body {
+        padding: 40px 16px;
+        background: #E8E8E8;
+      }
+      .page-wrap {
+        max-width: 480px;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+      }
+      .header::after {
+        display: none;
+      }
+      .header {
+        border-radius: 24px 24px 0 0;
+      }
     }
 
     /* ===== Header ===== */
@@ -126,9 +152,13 @@
       font-size: 22px;
       flex-shrink: 0;
     }
-    .logo-glm { background: linear-gradient(135deg, #6366F1, #8B5CF6); color: white; }
-    .logo-mimo { background: linear-gradient(135deg, #FF6900, #FF9500); color: white; }
+    .logo-qoder { background: linear-gradient(135deg, #FF6A00, #FF4D4F); color: white; font-weight: 700; font-size: 13px; }
     .logo-wb { background: linear-gradient(135deg, #07C160, #00D4AA); color: white; }
+    .logo-glm { background: linear-gradient(135deg, #6366F1, #8B5CF6); color: white; }
+    .logo-zcode { background: linear-gradient(135deg, #FFB800, #FF8C00); color: white; font-weight: 700; font-size: 11px; }
+    .logo-mimo { background: linear-gradient(135deg, #FF6900, #FF9500); color: white; }
+    .logo-trae { background: linear-gradient(135deg, #8B5CF6, #06B6D4); color: white; font-weight: 700; font-size: 14px; }
+    .logo-mimocode { background: linear-gradient(135deg, #1A1A2E, #16213E); color: white; font-family: 'Courier New', monospace; letter-spacing: 2px; }
 
     .card-title-area { flex: 1; min-width: 0; }
     .card-name {
@@ -277,154 +307,279 @@
     }
 
     /* ===== WeChat-specific ===== */
-    /* Hide address bar on iOS */
     html { height: 100%; }
     body { min-height: 100%; }
   </style>
 </head>
 <body>
+  <div class="page-wrap">
 
-  <!-- Share Hint (shown when user tries to share) -->
-  <div class="share-hint" id="shareHint">
-    <span class="share-hint-arrow">↗️</span>
-    点击右上角 · 分享给朋友或朋友圈
-  </div>
-
-  <!-- Toast -->
-  <div class="toast" id="toast"></div>
-
-  <!-- Header -->
-  <div class="header">
-    <div class="header-badge">🎁 限时福利</div>
-    <h1>AI 新用户福利合集</h1>
-    <p>免费领额度 · 注册即享</p>
-  </div>
-
-  <!-- Stats -->
-  <div class="stats-bar">
-    <div class="stat-item">
-      <div class="stat-num">3</div>
-      <div class="stat-label">优质平台</div>
+    <!-- Share Hint -->
+    <div class="share-hint" id="shareHint">
+      <span class="share-hint-arrow">↗️</span>
+      点击右上角 · 分享给朋友或朋友圈
     </div>
-    <div class="stat-item">
-      <div class="stat-num">¥0</div>
-      <div class="stat-label">全部免费</div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Header -->
+    <div class="header">
+      <div class="header-badge">🎁 限时福利</div>
+      <h1>AI 新用户福利合集</h1>
+      <p>免费领额度 · 注册即享 · 支持 GLM-5.2</p>
     </div>
-    <div class="stat-item">
-      <div class="stat-num">∞</div>
-      <div class="stat-label">长期有效</div>
-    </div>
-  </div>
 
-  <!-- Deadline Notice -->
-  <div class="deadline-notice" id="deadlineNotice">
-    <span class="deadline-icon">⏰</span>
-    <span>WorkBuddy 2000积分福利 <strong>6月30日截止</strong>，欲领从速！</span>
-  </div>
-
-  <!-- Resource Cards -->
-  <div class="resources">
-
-    <!-- Card 1: GLM -->
-    <div class="resource-card">
-      <div class="card-header">
-        <div class="card-logo logo-glm">🧠</div>
-        <div class="card-title-area">
-          <div class="card-name">智谱 GLM</div>
-          <div class="card-provider">Zhipu AI · 国内领先大模型</div>
-        </div>
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-num">7</div>
+        <div class="stat-label">优质平台</div>
       </div>
-      <div class="card-benefit">
-        <span class="emoji">🎁</span> 新用户注册即送 <span class="benefit-highlight">2000万 Tokens 大礼包</span>，GLM-5.2 旗舰模型免费用
+      <div class="stat-item">
+        <div class="stat-num">¥0</div>
+        <div class="stat-label">全部免费</div>
       </div>
-      <div class="card-steps">
-        <div class="step-item">
-          <span class="step-num">1</span>
-          <span>点击按钮进入注册页（自动填入邀请码）</span>
-        </div>
-        <div class="step-item">
-          <span class="step-num">2</span>
-          <span>手机号或微信扫码快速注册</span>
-        </div>
-        <div class="step-item">
-          <span class="step-num">3</span>
-          <span>进入控制台获取 API Key，即刻调用</span>
-        </div>
-      </div>
-      <div class="card-action">
-        <a class="btn-primary" href="https://www.bigmodel.cn/invite?icode=MGeIswTxCik0L%2FYvFLn7HZmwcr074zMJTpgMb8zZZvg%3D" target="_blank" rel="noopener">立即领取 2000万 Tokens →</a>
+      <div class="stat-item">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">长期有效</div>
       </div>
     </div>
 
-    <!-- Card 2: Xiaomi MiMo -->
-    <div class="resource-card">
-      <div class="card-header">
-        <div class="card-logo logo-mimo">🔥</div>
-        <div class="card-title-area">
-          <div class="card-name">小米 MiMo</div>
-          <div class="card-provider">Xiaomi AI · MiMo V2.5 顶尖模型</div>
-        </div>
-      </div>
-      <div class="card-benefit">
-        <span class="emoji">🎁</span> 双方各得 <span class="benefit-highlight">¥10 API 体验金</span> + 首单 <span class="benefit-highlight">9折</span>（体验金40天有效·限前30人）
-      </div>
-      <div class="card-steps">
-        <div class="step-item">
-          <span class="step-num">1</span>
-          <span>点击按钮进入平台（自动填入邀请码 C2PLQR）</span>
-        </div>
-        <div class="step-item">
-          <span class="step-num">2</span>
-          <span>完成手机号注册，¥10 体验金自动到账</span>
-        </div>
-        <div class="step-item">
-          <span class="step-num">3</span>
-          <span>创建 API Key，开始调用 MiMo V2.5</span>
-        </div>
-      </div>
-      <div class="card-action">
-        <a class="btn-primary" href="https://platform.xiaomimimo.com?ref=C2PLQR" target="_blank" rel="noopener">领 ¥10 体验金 + 首单9折 →</a>
-      </div>
+    <!-- Deadline Notice -->
+    <div class="deadline-notice" id="deadlineNotice">
+      <span class="deadline-icon">⏰</span>
+      <span>WorkBuddy 2000积分福利 <strong>6月30日截止</strong>，欲领从速！</span>
     </div>
 
-    <!-- Card 3: WorkBuddy -->
-    <div class="resource-card">
-      <div class="card-header">
-        <div class="card-logo logo-wb">🤖</div>
-        <div class="card-title-area">
-          <div class="card-name">WorkBuddy</div>
-          <div class="card-provider">腾讯 · 中国最受欢迎 AI 效率工具</div>
+    <!-- Resource Cards -->
+    <div class="resources">
+
+      <!-- Card 1: QoderWork CN -->
+      <div class="resource-card">
+        <div class="card-header">
+          <div class="card-logo logo-qoder">Qo</div>
+          <div class="card-title-area">
+            <div class="card-name">QoderWork CN</div>
+            <div class="card-provider">阿里云 · 通义灵码系列 · AI 编程桌面 IDE · GLM-5.2</div>
+          </div>
+        </div>
+        <div class="card-benefit">
+          <span class="emoji">🎁</span> 新用户 <span class="benefit-highlight">首月 Pro 免费（2000 Credits）</span> · 邀请1人得 <span class="benefit-highlight">200 Credits</span>（上限200人·共40000 Credits）
+        </div>
+        <div class="card-steps">
+          <div class="step-item">
+            <span class="step-num">1</span>
+            <span>点击按钮进入注册页（自动填入邀请码）</span>
+          </div>
+          <div class="step-item">
+            <span class="step-num">2</span>
+            <span>下载 QoderWork CN 桌面端，手机号或阿里云账号登录</span>
+          </div>
+          <div class="step-item">
+            <span class="step-num">3</span>
+            <span>端内点击领取，Pro 身份生效（2000 Credits，有效期1个月）</span>
+          </div>
+        </div>
+        <div class="card-action">
+          <a class="btn-primary" href="https://qoder.com.cn/referral?referral_code=bvMQpFKC0B3ZSlLZl38Xz6XHkVyGe734" target="_blank" rel="noopener" style="background: linear-gradient(135deg, #FF6A00, #FF4D4F); box-shadow: 0 4px 14px rgba(255,106,0,0.3);">首月 Pro 免费领 →</a>
         </div>
       </div>
-      <div class="card-benefit">
-        <span class="emoji">🎁</span> 受邀好友注册即享 <span class="benefit-highlight">2,000 积分</span> · 邀请人每邀请1人得 <span class="benefit-highlight">50积分</span> + 排行榜实物大奖
-      </div>
-      <div class="card-steps">
-        <div class="step-item">
-          <span class="step-num">1</span>
-          <span>点击按钮进入注册页（⏰ 6月30日截止）</span>
+
+      <!-- Card 2: WorkBuddy -->
+      <div class="resource-card">
+        <div class="card-header">
+          <div class="card-logo logo-wb">🤖</div>
+          <div class="card-title-area">
+            <div class="card-name">WorkBuddy</div>
+            <div class="card-provider">腾讯 · 中国最受欢迎 AI 效率工具 · GLM-5.2</div>
+          </div>
         </div>
-        <div class="step-item">
-          <span class="step-num">2</span>
-          <span>手机号或微信完成注册，2000积分自动到账</span>
+        <div class="card-benefit">
+          <span class="emoji">🎁</span> 受邀好友注册即享 <span class="benefit-highlight">2,000 积分</span> · 邀请人每邀请1人得 <span class="benefit-highlight">50积分</span> + 好友连续用3天额外100积分 + 排行榜实物大奖
         </div>
-        <div class="step-item">
-          <span class="step-num">3</span>
-          <span>使用 AI 代码/文档/数据分析，邀请好友再赚积分</span>
+        <div class="card-steps">
+          <div class="step-item">
+            <span class="step-num">1</span>
+            <span>点击按钮进入注册页（⏰ 6月30日截止）</span>
+          </div>
+          <div class="step-item">
+            <span class="step-num">2</span>
+            <span>手机号或微信完成注册，2000积分自动到账</span>
+          </div>
+          <div class="step-item">
+            <span class="step-num">3</span>
+            <span>使用 AI 代码/文档/数据分析，邀请好友再赚积分</span>
+          </div>
+        </div>
+        <div class="card-action">
+          <a class="btn-primary" href="https://www.codebuddy.cn/events/invite?inviteCode=xwdhgx8ucuss" target="_blank" rel="noopener">领 2000 积分 →</a>
         </div>
       </div>
-      <div class="card-action">
-        <a class="btn-primary" href="https://www.codebuddy.cn/events/invite?inviteCode=xwdhgx8ucuss" target="_blank" rel="noopener">领 2000 积分 →</a>
+
+      <!-- Card 3: GLM (智谱) -->
+      <div class="resource-card">
+        <div class="card-header">
+          <div class="card-logo logo-glm">🧠</div>
+          <div class="card-title-area">
+            <div class="card-name">智谱 GLM</div>
+            <div class="card-provider">Zhipu AI · 国内领先大模型 · GLM-5.2 原厂</div>
+          </div>
+        </div>
+        <div class="card-benefit">
+          <span class="emoji">🎁</span> 新用户注册即送 <span class="benefit-highlight">2000万 Tokens 大礼包</span>，GLM-5.2 旗舰模型免费用
+        </div>
+        <div class="card-steps">
+          <div class="step-item">
+            <span class="step-num">1</span>
+            <span>点击按钮进入注册页（自动填入邀请码）</span>
+          </div>
+          <div class="step-item">
+            <span class="step-num">2</span>
+            <span>手机号或微信扫码快速注册</span>
+          </div>
+          <div class="step-item">
+            <span class="step-num">3</span>
+            <span>进入控制台获取 API Key，即刻调用 GLM-5.2</span>
+          </div>
+        </div>
+        <div class="card-action">
+          <a class="btn-primary" href="https://www.bigmodel.cn/invite?icode=MGeIswTxCik0L%2FYvFLn7HZmwcr074zMJTpgMb8zZZvg%3D" target="_blank" rel="noopener" style="background: linear-gradient(135deg, #6366F1, #8B5CF6); box-shadow: 0 4px 14px rgba(99,102,241,0.3);">立即领取 2000万 Tokens →</a>
+        </div>
       </div>
+
+      <!-- Card 4: ZCode -->
+      <div class="resource-card">
+        <div class="card-header">
+          <div class="card-logo logo-zcode">ZC</div>
+          <div class="card-title-area">
+            <div class="card-name">ZCode（智谱海外版）</div>
+            <div class="card-provider">Z.AI · 智谱海外品牌 · AI 编程 Agent · GLM-5.2</div>
+          </div>
+        </div>
+        <div class="card-benefit">
+          <span class="emoji">🎁</span> 新用户连续 <span class="benefit-highlight">5 天每天 500 万 Tokens 免费</span>（300万 GLM-5.2 + 200万 Turbo）· 无需付费
+        </div>
+        <div class="card-steps">
+          <div class="step-item">
+            <span class="step-num">1</span>
+            <span>打开 zcode.z.ai/cn，了解 ZCode 3.0 功能介绍</span>
+          </div>
+          <div class="step-item">
+            <span class="step-num">2</span>
+            <span>下载 Mac/Windows 桌面端，首次打开自动激活5天免费</span>
+          </div>
+          <div class="step-item">
+            <span class="step-num">3</span>
+            <span>每日500万Tokens（零点清零不累计），建议错峰使用</span>
+          </div>
+        </div>
+        <div class="card-action">
+          <a class="btn-primary" href="https://zcode.z.ai/cn" target="_blank" rel="noopener" style="background: linear-gradient(135deg, #FFB800, #FF8C00); box-shadow: 0 4px 14px rgba(255,184,0,0.3);">5天免费体验 →</a>
+        </div>
+      </div>
+
+      <!-- Card 5: 小米 MiMo -->
+      <div class="resource-card">
+        <div class="card-header">
+          <div class="card-logo logo-mimo">🔥</div>
+          <div class="card-title-area">
+            <div class="card-name">小米 MiMo</div>
+            <div class="card-provider">Xiaomi AI · MiMo V2.5 顶尖模型</div>
+          </div>
+        </div>
+        <div class="card-benefit">
+          <span class="emoji">🎁</span> 双方各得 <span class="benefit-highlight">¥10 API 体验金</span> + 首单 <span class="benefit-highlight">9折</span>（体验金40天有效·限前30人）
+        </div>
+        <div class="card-steps">
+          <div class="step-item">
+            <span class="step-num">1</span>
+            <span>点击按钮进入平台（自动填入邀请码 C2PLQR）</span>
+          </div>
+          <div class="step-item">
+            <span class="step-num">2</span>
+            <span>完成手机号注册，¥10 体验金自动到账</span>
+          </div>
+          <div class="step-item">
+            <span class="step-num">3</span>
+            <span>创建 API Key，开始调用 MiMo V2.5</span>
+          </div>
+        </div>
+        <div class="card-action">
+          <a class="btn-primary" href="https://platform.xiaomimimo.com?ref=C2PLQR" target="_blank" rel="noopener" style="background: linear-gradient(135deg, #FF6900, #FF9500); box-shadow: 0 4px 14px rgba(255,105,0,0.3);">领 ¥10 体验金 + 首单9折 →</a>
+        </div>
+      </div>
+
+      <!-- Card 6: TRAE -->
+      <div class="resource-card">
+        <div class="card-header">
+          <div class="card-logo logo-trae">TR</div>
+          <div class="card-title-area">
+            <div class="card-name">TRAE</div>
+            <div class="card-provider">ByteDance · AI 编程 IDE · 报名领 ¥99 速通 Pro 月卡</div>
+          </div>
+        </div>
+        <div class="card-benefit">
+          <span class="emoji">🎁</span> <span class="benefit-highlight">报名即领 ¥99 速通 Pro 月卡 + 决赛门票</span> · 所有功能免费使用 · 内置多款免费模型
+          <br><span style="font-size:12px;color:#C0392B;">⏰ 7月15日截止报名</span>
+        </div>
+        <div class="card-steps">
+          <div class="step-item">
+            <span class="step-num">1</span>
+            <span>访问活动页，在社区发帖提交创意提案即完成报名</span>
+          </div>
+          <div class="step-item">
+            <span class="step-num">2</span>
+            <span>报名通过后登录 trae.cn 领取 ¥99 速通 Pro 月卡</span>
+          </div>
+          <div class="step-item">
+            <span class="step-num">3</span>
+            <span>下载 TRAE 桌面端，用速通次数调用高级模型</span>
+          </div>
+        </div>
+        <div class="card-action">
+          <a class="btn-primary" href="https://www.trae.cn/ai-creativity" target="_blank" rel="noopener" style="background: linear-gradient(135deg, #8B5CF6, #06B6D4); box-shadow: 0 4px 14px rgba(139,92,246,0.3);">报名领 ¥99 速通月卡 →</a>
+        </div>
+      </div>
+
+      <!-- Card 7: MiMo Code -->
+      <div class="resource-card">
+        <div class="card-header">
+          <div class="card-logo logo-mimocode">MC</div>
+          <div class="card-title-area">
+            <div class="card-name">MiMO CODE</div>
+            <div class="card-provider">小米 · AI 编程助手 · MiMo-V2.5 限免中</div>
+          </div>
+        </div>
+        <div class="card-benefit">
+          <span class="emoji">🔥</span> <span class="benefit-highlight">MiMo-V2.5 模型限免！完全免费</span> · 无需邀请码，直接下载安装
+        </div>
+        <div class="card-steps">
+          <div class="step-item">
+            <span class="step-num">1</span>
+            <span>访问 mimo.xiaomi.com/coder 查看功能演示</span>
+          </div>
+          <div class="step-item">
+            <span class="step-num">2</span>
+            <span>下载 VS Code / JetBrains / iTerm 插件</span>
+          </div>
+          <div class="step-item">
+            <span class="step-num">3</span>
+            <span>安装后登录小米账号激活（MiMo-V2.5 当前限免）</span>
+          </div>
+        </div>
+        <div class="card-action">
+          <a class="btn-primary" href="https://mimo.xiaomi.com/coder" target="_blank" rel="noopener" style="background: linear-gradient(135deg, #1A1A2E, #16213E); box-shadow: 0 4px 14px rgba(26,26,46,0.3);">免费使用 MiMo-V2.5 →</a>
+        </div>
+      </div>
+
     </div>
 
-  </div>
-
-  <!-- Footer -->
-  <div class="footer">
-    资源持续更新中 · 点击右上角分享给朋友<br>
-    <a href="javascript:void(0)" onclick="showShareHint()">如何分享到朋友圈？</a>
-  </div>
+    <!-- Footer -->
+    <div class="footer">
+      资源持续更新中 · 点击右上角分享给朋友<br>
+      <a href="javascript:void(0)" onclick="showShareHint()">如何分享到朋友圈？</a>
+    </div>
 
   <script>
     // ===== Toast =====
@@ -443,22 +598,16 @@
     }
 
     // ===== WeChat Share Config =====
-    // Inject WeChat JS-SDK config for custom share content
-    // NOTE: You need a WeChat Official Account and backend to sign the config.
-    // For pure static pages, the OG meta tags above are the fallback.
     if (/MicroMessenger/i.test(navigator.userAgent)) {
-      // Detect WeChat environment
       document.addEventListener('WeixinJSBridgeReady', function() {
-        // Custom share to friends
         WeixinJSBridge.on('menu:share:appmessage', function() {
           WeixinJSBridge.invoke('sendAppMessage', {
             title: 'AI 新用户福利 · 免费领额度',
-            desc: '智谱 GLM 送2000万Tokens · 小米MiMo各得¥10 · WorkBuddy送2000积分，点击查看详情',
+            desc: 'QoderWork首月Pro免费 · WorkBuddy送2000积分 · 智谱GLM送2000万Tokens · ZCode每天500万Tokens · 小米MiMo各得¥10 · TRAE报名领¥99月卡 · MiMo Code限免',
             link: window.location.href,
-            img_url: 'https://your-cdn.com/share-icon.png',  // replace with your icon URL
+            img_url: 'https://your-cdn.com/share-icon.png',
           });
         });
-        // Custom share to Moments
         WeixinJSBridge.on('menu:share:timeline', function() {
           WeixinJSBridge.invoke('shareTimeline', {
             title: 'AI 新用户福利 · 免费领额度 🎁',
@@ -469,19 +618,20 @@
       });
     }
 
-    // ===== Copy link on long press (mobile UX) =====
+    // ===== Deadline check =====
     document.addEventListener('DOMContentLoaded', function() {
       const deadlineEl = document.getElementById('deadlineNotice');
       const now = new Date();
-      // June 30, 2026 23:59:59 CST
       const deadline = new Date('2026-06-30T23:59:59+08:00');
       if (now > deadline) {
-        deadlineEl.innerHTML = '<span class="deadline-icon">⚠️</span><span>WorkBuddy 2000积分福利已截止，GLM 和小米 MiMo 福利仍有效！</span>';
+        deadlineEl.innerHTML = '<span class="deadline-icon">⚠️</span><span>WorkBuddy 2000积分福利已截止，其他平台福利仍有效！</span>';
         deadlineEl.style.background = 'linear-gradient(135deg, #FFF5F5, #FFF0F0)';
         deadlineEl.style.borderColor = '#FFD6D6';
         deadlineEl.style.color = '#C0392B';
       }
     });
   </script>
+
+  </div><!-- /page-wrap -->
 </body>
 </html>
