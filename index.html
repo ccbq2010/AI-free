@@ -42,23 +42,76 @@
       max-width: 480px;
     }
 
+    /* ---- Desktop (>=768px) ---- */
     @media (min-width: 768px) {
       body {
-        padding: 40px 16px;
-        background: #E8E8E8;
+        padding: 24px;
+        background: #E4E6EB;
       }
       .page-wrap {
-        max-width: 480px;
-        border-radius: 24px;
-        overflow: hidden;
-        box-shadow: 0 8px 40px rgba(0,0,0,0.12);
-      }
-      .header::after {
-        display: none;
+        max-width: 960px;
       }
       .header {
-        border-radius: 24px 24px 0 0;
+        padding: 40px 32px 32px;
       }
+      .header::after { display: none; }
+      .header h1 { font-size: 32px; }
+      .stats-bar {
+        padding: 24px 32px 12px;
+        gap: 48px;
+      }
+      .stat-num { font-size: 28px; }
+      .stat-label { font-size: 13px; }
+
+      /* 2-column card grid */
+      .resources {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        padding: 20px 24px 40px;
+      }
+      .resource-card { height: 100%; }
+
+      .deadline-notice { margin: 0 24px 8px; }
+      .footer { padding: 32px 24px 48px; font-size: 14px; }
+    }
+
+    /* ---- Wide Desktop (>=1100px) ---- */
+    @media (min-width: 1100px) {
+      body { padding: 40px; }
+      .page-wrap {
+        max-width: 1200px;
+      }
+      .header {
+        padding: 56px 48px 40px;
+      }
+      .header h1 { font-size: 36px; }
+      .header p { font-size: 16px; }
+      .header-badge { font-size: 14px; padding: 6px 18px; }
+
+      .stats-bar {
+        padding: 28px 48px 16px;
+        gap: 64px;
+      }
+      .stat-num { font-size: 34px; }
+      .stat-label { font-size: 14px; }
+
+      /* 3-column card grid */
+      .resources {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 24px;
+        padding: 24px 32px 48px;
+      }
+
+      .card-name { font-size: 19px; }
+      .card-header { padding: 24px 24px 18px; }
+      .card-benefit { margin: 0 24px 16px; font-size: 14px; }
+      .card-steps { padding: 0 24px 20px; }
+      .card-action { margin: 0 24px 24px; }
+      .btn-primary { font-size: 16px; padding: 15px; }
+
+      .deadline-notice { margin: 0 32px 10px; font-size: 15px; }
+      .footer { padding: 40px 32px 56px; }
     }
 
     /* ===== Header ===== */
