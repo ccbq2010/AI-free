@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>AI 新用户福利 · 免费领额度</title>
+
+  <!-- WeChat Share Preview -->
+  <meta property="og:title" content="AI 新用户福利 · 免费领额度">
+  <meta property="og:description" content="智谱 GLM-5.2 送 2000万 Tokens · 小米 MiMo 各得 ¥10 · WorkBuddy 送 2000 积分，点击查看详情 👉">
+  <meta property="og:image" content="https://your-cdn.com/share-cover.png">
+  <meta property="og:type" content="website">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --primary: #07C160;
+      --primary-dark: #06AD56;
+      --accent: #FF6B35;
+      --bg: #F6F6F6;
+      --card: #FFFFFF;
+      --text: #1A1A1A;
+      --text-secondary: #666666;
+      --border: #E8E8E8;
+      --tag-bg: #E8F8EE;
+      --tag-text: #07C160;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== Header ===== */
+    .header {
+      background: linear-gradient(135deg, #07C160 0%, #06AD56 100%);
+      color: white;
+      padding: 48px 24px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0; right: 0;
+      height: 24px;
+      background: var(--bg);
+      border-radius: 24px 24px 0 0;
+    }
+    .header-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      margin-bottom: 12px;
+      backdrop-filter: blur(4px);
+    }
+    .header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+    .header p {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    /* ===== Stats Bar ===== */
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      padding: 20px 24px 8px;
+      background: var(--bg);
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-num {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    /* ===== Resource Cards ===== */
+    .resources {
+      padding: 16px 16px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .resource-card {
+      background: var(--card);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .card-header {
+      padding: 20px 20px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .card-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .logo-glm { background: linear-gradient(135deg, #6366F1, #8B5CF6); color: white; }
+    .logo-mimo { background: linear-gradient(135deg, #FF6900, #FF9500); color: white; }
+    .logo-wb { background: linear-gradient(135deg, #07C160, #00D4AA); color: white; }
+
+    .card-title-area { flex: 1; min-width: 0; }
+    .card-name {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .card-provider {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .card-benefit {
+      margin: 0 20px 14px;
+      background: linear-gradient(135deg, #FFF9F0, #FFF3E0);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      padding: 10px 14px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .card-benefit .emoji { font-size: 15px; }
+    .benefit-highlight {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .card-steps {
+      padding: 0 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .step-num {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--tag-bg);
+      color: var(--primary);
+      font-size: 11px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .card-action {
+      margin: 0 20px 20px;
+    }
+    .btn-primary {
+      display: block;
+      width: 100%;
+      padding: 13px;
+      border-radius: 12px;
+      border: none;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 14px rgba(7,193,96,0.3);
+    }
+    .btn-primary:active {
+      transform: scale(0.98);
+      box-shadow: 0 2px 8px rgba(7,193,96,0.3);
+    }
+
+    /* ===== Deadline Notice ===== */
+    .deadline-notice {
+      margin: 0 16px 16px;
+      background: linear-gradient(135deg, #FFF5F5, #FFF0F0);
+      border: 1px solid #FFD6D6;
+      border-radius: 12px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: #C0392B;
+    }
+    .deadline-icon { font-size: 18px; flex-shrink: 0; }
+
+    /* ===== Footer ===== */
+    .footer {
+      text-align: center;
+      padding: 24px 16px 48px;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    .footer a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    /* ===== Share Hint (WeChat) ===== */
+    .share-hint {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(0,0,0,0.75);
+      color: white;
+      padding: 16px 20px;
+      font-size: 14px;
+      text-align: center;
+      z-index: 999;
+      display: none;
+    }
+    .share-hint.show { display: block; }
+    .share-hint-arrow {
+      position: absolute;
+      top: 12px;
+      right: 20px;
+      font-size: 28px;
+    }
+
+    /* ===== Copy Toast ===== */
+    .toast {
+      position: fixed;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(0,0,0,0.78);
+      color: white;
+      padding: 10px 24px;
+      border-radius: 20px;
+      font-size: 14px;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
+      pointer-events: none;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ===== WeChat-specific ===== */
+    /* Hide address bar on iOS */
+    html { height: 100%; }
+    body { min-height: 100%; }
+  </style>
+</head>
+<body>
+
+  <!-- Share Hint (shown when user tries to share) -->
+  <div class="share-hint" id="shareHint">
+    <span class="share-hint-arrow">↗️</span>
+    点击右上角 · 分享给朋友或朋友圈
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-badge">🎁 限时福利</div>
+    <h1>AI 新用户福利合集</h1>
+    <p>免费领额度 · 注册即享</p>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-num">3</div>
+      <div class="stat-label">优质平台</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">¥0</div>
+      <div class="stat-label">全部免费</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">长期有效</div>
+    </div>
+  </div>
+
+  <!-- Deadline Notice -->
+  <div class="deadline-notice" id="deadlineNotice">
+    <span class="deadline-icon">⏰</span>
+    <span>WorkBuddy 2000积分福利 <strong>6月30日截止</strong>，欲领从速！</span>
+  </div>
+
+  <!-- Resource Cards -->
+  <div class="resources">
+
+    <!-- Card 1: GLM -->
+    <div class="resource-card">
+      <div class="card-header">
+        <div class="card-logo logo-glm">🧠</div>
+        <div class="card-title-area">
+          <div class="card-name">智谱 GLM</div>
+          <div class="card-provider">Zhipu AI · 国内领先大模型</div>
+        </div>
+      </div>
+      <div class="card-benefit">
+        <span class="emoji">🎁</span> 新用户注册即送 <span class="benefit-highlight">2000万 Tokens 大礼包</span>，GLM-5.2 旗舰模型免费用
+      </div>
+      <div class="card-steps">
+        <div class="step-item">
+          <span class="step-num">1</span>
+          <span>点击按钮进入注册页（自动填入邀请码）</span>
+        </div>
+        <div class="step-item">
+          <span class="step-num">2</span>
+          <span>手机号或微信扫码快速注册</span>
+        </div>
+        <div class="step-item">
+          <span class="step-num">3</span>
+          <span>进入控制台获取 API Key，即刻调用</span>
+        </div>
+      </div>
+      <div class="card-action">
+        <a class="btn-primary" href="https://www.bigmodel.cn/invite?icode=MGeIswTxCik0L%2FYvFLn7HZmwcr074zMJTpgMb8zZZvg%3D" target="_blank" rel="noopener">立即领取 2000万 Tokens →</a>
+      </div>
+    </div>
+
+    <!-- Card 2: Xiaomi MiMo -->
+    <div class="resource-card">
+      <div class="card-header">
+        <div class="card-logo logo-mimo">🔥</div>
+        <div class="card-title-area">
+          <div class="card-name">小米 MiMo</div>
+          <div class="card-provider">Xiaomi AI · MiMo V2.5 顶尖模型</div>
+        </div>
+      </div>
+      <div class="card-benefit">
+        <span class="emoji">🎁</span> 双方各得 <span class="benefit-highlight">¥10 API 体验金</span> + 首单 <span class="benefit-highlight">9折</span>（体验金40天有效·限前30人）
+      </div>
+      <div class="card-steps">
+        <div class="step-item">
+          <span class="step-num">1</span>
+          <span>点击按钮进入平台（自动填入邀请码 C2PLQR）</span>
+        </div>
+        <div class="step-item">
+          <span class="step-num">2</span>
+          <span>完成手机号注册，¥10 体验金自动到账</span>
+        </div>
+        <div class="step-item">
+          <span class="step-num">3</span>
+          <span>创建 API Key，开始调用 MiMo V2.5</span>
+        </div>
+      </div>
+      <div class="card-action">
+        <a class="btn-primary" href="https://platform.xiaomimimo.com?ref=C2PLQR" target="_blank" rel="noopener">领 ¥10 体验金 + 首单9折 →</a>
+      </div>
+    </div>
+
+    <!-- Card 3: WorkBuddy -->
+    <div class="resource-card">
+      <div class="card-header">
+        <div class="card-logo logo-wb">🤖</div>
+        <div class="card-title-area">
+          <div class="card-name">WorkBuddy</div>
+          <div class="card-provider">腾讯 · 中国最受欢迎 AI 效率工具</div>
+        </div>
+      </div>
+      <div class="card-benefit">
+        <span class="emoji">🎁</span> 受邀好友注册即享 <span class="benefit-highlight">2,000 积分</span> · 邀请人每邀请1人得 <span class="benefit-highlight">50积分</span> + 排行榜实物大奖
+      </div>
+      <div class="card-steps">
+        <div class="step-item">
+          <span class="step-num">1</span>
+          <span>点击按钮进入注册页（⏰ 6月30日截止）</span>
+        </div>
+        <div class="step-item">
+          <span class="step-num">2</span>
+          <span>手机号或微信完成注册，2000积分自动到账</span>
+        </div>
+        <div class="step-item">
+          <span class="step-num">3</span>
+          <span>使用 AI 代码/文档/数据分析，邀请好友再赚积分</span>
+        </div>
+      </div>
+      <div class="card-action">
+        <a class="btn-primary" href="https://www.codebuddy.cn/events/invite?inviteCode=xwdhgx8ucuss" target="_blank" rel="noopener">领 2000 积分 →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    资源持续更新中 · 点击右上角分享给朋友<br>
+    <a href="javascript:void(0)" onclick="showShareHint()">如何分享到朋友圈？</a>
+  </div>
+
+  <script>
+    // ===== Toast =====
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2000);
+    }
+
+    // ===== Share Hint =====
+    function showShareHint() {
+      const h = document.getElementById('shareHint');
+      h.classList.add('show');
+      setTimeout(() => h.classList.remove('show'), 3000);
+    }
+
+    // ===== WeChat Share Config =====
+    // Inject WeChat JS-SDK config for custom share content
+    // NOTE: You need a WeChat Official Account and backend to sign the config.
+    // For pure static pages, the OG meta tags above are the fallback.
+    if (/MicroMessenger/i.test(navigator.userAgent)) {
+      // Detect WeChat environment
+      document.addEventListener('WeixinJSBridgeReady', function() {
+        // Custom share to friends
+        WeixinJSBridge.on('menu:share:appmessage', function() {
+          WeixinJSBridge.invoke('sendAppMessage', {
+            title: 'AI 新用户福利 · 免费领额度',
+            desc: '智谱 GLM 送2000万Tokens · 小米MiMo各得¥10 · WorkBuddy送2000积分，点击查看详情',
+            link: window.location.href,
+            img_url: 'https://your-cdn.com/share-icon.png',  // replace with your icon URL
+          });
+        });
+        // Custom share to Moments
+        WeixinJSBridge.on('menu:share:timeline', function() {
+          WeixinJSBridge.invoke('shareTimeline', {
+            title: 'AI 新用户福利 · 免费领额度 🎁',
+            link: window.location.href,
+            img_url: 'https://your-cdn.com/share-icon.png',
+          });
+        });
+      });
+    }
+
+    // ===== Copy link on long press (mobile UX) =====
+    document.addEventListener('DOMContentLoaded', function() {
+      const deadlineEl = document.getElementById('deadlineNotice');
+      const now = new Date();
+      // June 30, 2026 23:59:59 CST
+      const deadline = new Date('2026-06-30T23:59:59+08:00');
+      if (now > deadline) {
+        deadlineEl.innerHTML = '<span class="deadline-icon">⚠️</span><span>WorkBuddy 2000积分福利已截止，GLM 和小米 MiMo 福利仍有效！</span>';
+        deadlineEl.style.background = 'linear-gradient(135deg, #FFF5F5, #FFF0F0)';
+        deadlineEl.style.borderColor = '#FFD6D6';
+        deadlineEl.style.color = '#C0392B';
+      }
+    });
+  </script>
+</body>
+</html>
