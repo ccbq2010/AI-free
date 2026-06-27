@@ -2,689 +2,385 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI 新用户福利 · 免费领额度</title>
-
-  <!-- WeChat Share Preview -->
   <meta property="og:title" content="AI 新用户福利 · 免费领额度">
-  <meta property="og:description" content="QoderWork首月Pro免费 · WorkBuddy送2000积分 · 智谱GLM送2000万Tokens · ZCode每天500万Tokens · 小米MiMo各得¥10 · TRAE报名领¥99月卡 · MiMo Code限免，5平台支持GLM-5.2 👉">
+  <meta property="og:description" content="QoderWork首月Pro免费 · WorkBuddy送2000积分 · 智谱GLM送2000万Tokens · ZCode每天500万Tokens · TRAE报名领¥99月卡 · 5平台支持GLM-5.2 👉">
   <meta property="og:image" content="https://your-cdn.com/share-cover.png">
   <meta property="og:type" content="website">
-
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
     :root {
-      --primary: #07C160;
-      --primary-dark: #06AD56;
-      --accent: #FF6B35;
-      --bg: #F6F6F6;
-      --card: #FFFFFF;
-      --text: #1A1A1A;
-      --text-secondary: #666666;
-      --border: #E8E8E8;
-      --tag-bg: #E8F8EE;
-      --tag-text: #07C160;
+      --bg: oklch(97.5% 0.002 250);
+      --surface: oklch(99.5% 0 0);
+      --text: oklch(12% 0.01 250);
+      --text-mid: oklch(38% 0.01 250);
+      --text-dim: oklch(55% 0.01 250);
+      --border: oklch(88% 0.008 250);
+      --border-strong: oklch(75% 0.01 250);
+      --accent: oklch(52% 0.18 250);
+      --accent-dim: oklch(85% 0.05 250);
+      --warn: oklch(55% 0.18 35);
+      --warn-bg: oklch(95% 0.03 35);
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', 'Noto Sans SC', system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      display: flex;
-      justify-content: center;
+      line-height: 1.5;
+      font-size: 1rem;
     }
 
-    .page-wrap {
-      width: 100%;
-      max-width: 480px;
+    .grid {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: clamp(32px, 6vw, 64px) clamp(20px, 4vw, 40px);
     }
 
-    /* ---- Desktop (>=768px) ---- */
-    @media (min-width: 768px) {
-      body {
-        padding: 24px;
-        background: #E4E6EB;
-      }
-      .page-wrap {
-        max-width: 960px;
-      }
-      .header {
-        padding: 40px 32px 32px;
-      }
-      .header::after { display: none; }
-      .header h1 { font-size: 32px; }
-      .stats-bar {
-        padding: 24px 32px 12px;
-        gap: 48px;
-      }
-      .stat-num { font-size: 28px; }
-      .stat-label { font-size: 13px; }
-
-      /* 2-column card grid */
-      .resources {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-        padding: 20px 24px 40px;
-      }
-      .resource-card { height: 100%; }
-
-      .deadline-notice { margin: 0 24px 8px; }
-      .footer { padding: 32px 24px 48px; font-size: 14px; }
+    /* ---- Header ---- */
+    .masthead {
+      padding-bottom: clamp(32px, 5vw, 56px);
+      border-bottom: 1px solid var(--border-strong);
+      margin-bottom: clamp(24px, 4vw, 40px);
     }
-
-    /* ---- Wide Desktop (>=1100px) ---- */
-    @media (min-width: 1100px) {
-      body { padding: 40px; }
-      .page-wrap {
-        max-width: 1200px;
-      }
-      .header {
-        padding: 56px 48px 40px;
-      }
-      .header h1 { font-size: 36px; }
-      .header p { font-size: 16px; }
-      .header-badge { font-size: 14px; padding: 6px 18px; }
-
-      .stats-bar {
-        padding: 28px 48px 16px;
-        gap: 64px;
-      }
-      .stat-num { font-size: 34px; }
-      .stat-label { font-size: 14px; }
-
-      /* 3-column card grid */
-      .resources {
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 24px;
-        padding: 24px 32px 48px;
-      }
-
-      .card-name { font-size: 19px; }
-      .card-header { padding: 24px 24px 18px; }
-      .card-benefit { margin: 0 24px 16px; font-size: 14px; }
-      .card-steps { padding: 0 24px 20px; }
-      .card-action { margin: 0 24px 24px; }
-      .btn-primary { font-size: 16px; padding: 15px; }
-
-      .deadline-notice { margin: 0 32px 10px; font-size: 15px; }
-      .footer { padding: 40px 32px 56px; }
-    }
-
-    /* ===== Header ===== */
-    .header {
-      background: linear-gradient(135deg, #07C160 0%, #06AD56 100%);
-      color: white;
-      padding: 48px 24px 40px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .header::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0; right: 0;
-      height: 24px;
-      background: var(--bg);
-      border-radius: 24px 24px 0 0;
-    }
-    .header-badge {
-      display: inline-block;
-      background: rgba(255,255,255,0.2);
-      border-radius: 20px;
-      padding: 4px 14px;
-      font-size: 12px;
+    .masthead-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
       margin-bottom: 12px;
-      backdrop-filter: blur(4px);
     }
-    .header h1 {
-      font-size: 26px;
+    .masthead h1 {
+      font-size: clamp(28px, 5vw, 44px);
       font-weight: 700;
-      margin-bottom: 8px;
-      letter-spacing: -0.5px;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      max-width: 20ch;
     }
-    .header p {
-      font-size: 14px;
-      opacity: 0.9;
+    .masthead-sub {
+      font-size: 1rem;
+      color: var(--text-mid);
+      margin-top: 12px;
+      letter-spacing: -0.01em;
     }
 
-    /* ===== Stats Bar ===== */
-    .stats-bar {
+    /* ---- Stat row ---- */
+    .stat-row {
       display: flex;
-      justify-content: center;
-      gap: 32px;
-      padding: 20px 24px 8px;
-      background: var(--bg);
+      gap: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
     }
-    .stat-item {
-      text-align: center;
-    }
-    .stat-num {
-      font-size: 22px;
+    .stat-row .num {
+      font-size: 1.75rem;
       font-weight: 700;
-      color: var(--primary);
+      letter-spacing: -0.02em;
+      color: var(--accent);
+      line-height: 1;
     }
-    .stat-label {
-      font-size: 11px;
-      color: var(--text-secondary);
-      margin-top: 2px;
+    .stat-row .lbl {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 4px;
     }
 
-    /* ===== Resource Cards ===== */
-    .resources {
-      padding: 16px 16px 32px;
+    /* ---- Platform list ---- */
+    .platforms {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 1px;
+      background: var(--border);
     }
 
-    .resource-card {
-      background: var(--card);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    .platform {
+      background: var(--surface);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
     }
 
-    .card-header {
-      padding: 20px 20px 16px;
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
+    .platform-inner {
+      padding: clamp(18px, 3vw, 28px) clamp(16px, 3vw, 32px);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: start;
+      gap: 20px;
+      cursor: pointer;
+      transition: background 0.15s ease;
     }
-    .card-logo {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      flex-shrink: 0;
-    }
-    .logo-qoder { background: linear-gradient(135deg, #FF6A00, #FF4D4F); color: white; font-weight: 700; font-size: 13px; }
-    .logo-wb { background: linear-gradient(135deg, #07C160, #00D4AA); color: white; }
-    .logo-glm { background: linear-gradient(135deg, #6366F1, #8B5CF6); color: white; }
-    .logo-zcode { background: linear-gradient(135deg, #FFB800, #FF8C00); color: white; font-weight: 700; font-size: 11px; }
-    .logo-mimo { background: linear-gradient(135deg, #FF6900, #FF9500); color: white; }
-    .logo-trae { background: linear-gradient(135deg, #8B5CF6, #06B6D4); color: white; font-weight: 700; font-size: 14px; }
-    .logo-mimocode { background: linear-gradient(135deg, #1A1A2E, #16213E); color: white; font-family: 'Courier New', monospace; letter-spacing: 2px; }
+    .platform-inner:hover { background: oklch(97% 0.005 250); }
 
-    .card-title-area { flex: 1; min-width: 0; }
-    .card-name {
-      font-size: 17px;
+    .pf-index {
+      font-size: 0.7rem;
       font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      padding-top: 2px;
+      min-width: 20px;
+    }
+
+    .pf-body { min-width: 0; }
+    .pf-name {
+      font-size: 1.05rem;
+      font-weight: 650;
+      letter-spacing: -0.01em;
       margin-bottom: 4px;
     }
-    .card-provider {
-      font-size: 12px;
-      color: var(--text-secondary);
+    .pf-provider {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-bottom: 6px;
     }
-
-    .card-benefit {
-      margin: 0 20px 14px;
-      background: linear-gradient(135deg, #FFF9F0, #FFF3E0);
-      border-left: 3px solid var(--accent);
-      border-radius: 0 10px 10px 0;
-      padding: 10px 14px;
-      font-size: 13px;
+    .pf-benefit {
+      font-size: 0.875rem;
+      color: var(--text-mid);
       line-height: 1.5;
     }
-    .card-benefit .emoji { font-size: 15px; }
-    .benefit-highlight {
+    .pf-benefit .hi { color: var(--accent); font-weight: 600; }
+    .pf-tag {
+      display: inline-block;
+      font-size: 0.675rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border: 1px solid var(--accent);
       color: var(--accent);
-      font-weight: 600;
+      margin-left: 6px;
+      vertical-align: middle;
     }
 
-    .card-steps {
-      padding: 0 20px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    .pf-action {
+      align-self: center;
+      white-space: nowrap;
     }
-    .step-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 13px;
-      color: var(--text-secondary);
-    }
-    .step-num {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: var(--tag-bg);
-      color: var(--primary);
-      font-size: 11px;
+    .pf-link {
+      display: inline-block;
+      padding: 8px 18px;
+      background: var(--text);
+      color: var(--surface);
+      font-size: 0.8rem;
       font-weight: 600;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-
-    .card-action {
-      margin: 0 20px 20px;
-    }
-    .btn-primary {
-      display: block;
-      width: 100%;
-      padding: 13px;
-      border-radius: 12px;
-      border: none;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      font-size: 15px;
-      font-weight: 600;
-      text-align: center;
+      letter-spacing: -0.01em;
       text-decoration: none;
-      cursor: pointer;
-      transition: transform 0.15s, box-shadow 0.15s;
-      box-shadow: 0 4px 14px rgba(7,193,96,0.3);
+      transition: background 0.15s ease, transform 0.15s ease;
     }
-    .btn-primary:active {
-      transform: scale(0.98);
-      box-shadow: 0 2px 8px rgba(7,193,96,0.3);
-    }
+    .pf-link:hover { background: var(--accent); transform: translateX(3px); }
 
-    /* ===== Deadline Notice ===== */
-    .deadline-notice {
-      margin: 0 16px 16px;
-      background: linear-gradient(135deg, #FFF5F5, #FFF0F0);
-      border: 1px solid #FFD6D6;
-      border-radius: 12px;
-      padding: 14px 18px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13px;
-      color: #C0392B;
-    }
-    .deadline-icon { font-size: 18px; flex-shrink: 0; }
-
-    /* ===== Footer ===== */
-    .footer {
+    /* ---- Deadline banner ---- */
+    .deadline {
+      background: var(--warn-bg);
+      color: var(--warn);
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 10px 20px;
+      margin-bottom: 0;
       text-align: center;
-      padding: 24px 16px 48px;
-      font-size: 12px;
-      color: var(--text-secondary);
-    }
-    .footer a {
-      color: var(--primary);
-      text-decoration: none;
     }
 
-    /* ===== Share Hint (WeChat) ===== */
+    /* ---- Footer ---- */
+    .foot {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-strong);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* ---- Responsive ---- */
+    @media (min-width: 700px) {
+      .platform-inner {
+        grid-template-columns: 30px 1fr auto;
+        gap: 28px;
+      }
+    }
+    /* ---- Share Hint & Toast ---- */
     .share-hint {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      background: rgba(0,0,0,0.75);
-      color: white;
-      padding: 16px 20px;
-      font-size: 14px;
-      text-align: center;
-      z-index: 999;
-      display: none;
+      position: fixed; top: 0; left: 0; right: 0;
+      background: rgba(0,0,0,0.78); color: white;
+      padding: 16px 20px; font-size: 14px; text-align: center;
+      z-index: 999; display: none;
     }
     .share-hint.show { display: block; }
-    .share-hint-arrow {
-      position: absolute;
-      top: 12px;
-      right: 20px;
-      font-size: 28px;
-    }
-
-    /* ===== Copy Toast ===== */
     .toast {
-      position: fixed;
-      bottom: 80px;
-      left: 50%;
+      position: fixed; bottom: 80px; left: 50%;
       transform: translateX(-50%) translateY(20px);
-      background: rgba(0,0,0,0.78);
-      color: white;
-      padding: 10px 24px;
-      border-radius: 20px;
-      font-size: 14px;
-      z-index: 1000;
-      opacity: 0;
-      transition: opacity 0.3s, transform 0.3s;
+      background: rgba(0,0,0,0.78); color: white;
+      padding: 10px 24px; border-radius: 20px;
+      font-size: 14px; z-index: 1000;
+      opacity: 0; transition: opacity 0.3s, transform 0.3s;
       pointer-events: none;
     }
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    /* ===== WeChat-specific ===== */
-    html { height: 100%; }
-    body { min-height: 100%; }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   </style>
 </head>
 <body>
-  <div class="page-wrap">
 
-    <!-- Share Hint -->
-    <div class="share-hint" id="shareHint">
-      <span class="share-hint-arrow">↗️</span>
-      点击右上角 · 分享给朋友或朋友圈
+<div class="grid">
+  <header class="masthead">
+    <div class="masthead-label">AI Platform Free Credits</div>
+    <h1>AI 新用户福利合集</h1>
+    <p class="masthead-sub">QoderWork · WorkBuddy · GLM · ZCode · TRAE 均已支持 GLM-5.2 旗舰模型</p>
+  </header>
+
+  <div class="stat-row">
+    <div><div class="num">7</div><div class="lbl">优质平台</div></div>
+    <div><div class="num">¥0</div><div class="lbl">全部免费</div></div>
+    <div><div class="num">5</div><div class="lbl">GLM-5.2</div></div>
+  </div>
+
+  <div class="deadline">⏰ WorkBuddy 2000积分福利 6月30日截止</div>
+
+  <div class="platforms">
+    <!-- 1. QoderWork -->
+    <div class="platform">
+      <a class="platform-inner" href="https://qoder.com.cn/referral?referral_code=bvMQpFKC0B3ZSlLZl38Xz6XHkVyGe734" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+        <span class="pf-index">01</span>
+        <div class="pf-body">
+          <div class="pf-name">QoderWork CN <span class="pf-tag">GLM-5.2</span></div>
+          <div class="pf-provider">阿里云通义灵码系列 · AI 编程桌面 IDE</div>
+          <div class="pf-benefit">🎁 新用户 <span class="hi">首月 Pro 免费（2000 Credits）</span> · 邀请1人得 <span class="hi">200 Credits</span>（上限200人）</div>
+        </div>
+        <span class="pf-action pf-link">前往 →</span>
+      </a>
     </div>
 
-    <!-- Toast -->
-    <div class="toast" id="toast"></div>
-
-    <!-- Header -->
-    <div class="header">
-      <div class="header-badge">🎁 限时福利</div>
-      <h1>AI 新用户福利合集</h1>
-      <p>QoderWork · WorkBuddy · GLM · ZCode · TRAE 均已支持 GLM-5.2 旗舰模型</p>
+    <!-- 2. WorkBuddy -->
+    <div class="platform">
+      <a class="platform-inner" href="https://www.codebuddy.cn/events/invite?inviteCode=xwdhgx8ucuss" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+        <span class="pf-index">02</span>
+        <div class="pf-body">
+          <div class="pf-name">WorkBuddy <span class="pf-tag">GLM-5.2</span></div>
+          <div class="pf-provider">腾讯 · 中国最受欢迎 AI 效率工具</div>
+          <div class="pf-benefit">🎁 受邀立享 <span class="hi">2,000 积分</span> · 邀请人得 <span class="hi">50积分/人</span> + 排行榜实物奖品</div>
+        </div>
+        <span class="pf-action pf-link">前往 →</span>
+      </a>
     </div>
 
-    <!-- Stats -->
-    <div class="stats-bar">
-      <div class="stat-item">
-        <div class="stat-num">7</div>
-        <div class="stat-label">优质平台</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">¥0</div>
-        <div class="stat-label">全部免费</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">∞</div>
-        <div class="stat-label">长期有效</div>
-      </div>
+    <!-- 3. GLM -->
+    <div class="platform">
+      <a class="platform-inner" href="https://www.bigmodel.cn/invite?icode=MGeIswTxCik0L%2FYvFLn7HZmwcr074zMJTpgMb8zZZvg%3D" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+        <span class="pf-index">03</span>
+        <div class="pf-body">
+          <div class="pf-name">智谱 GLM <span class="pf-tag">GLM-5.2 原厂</span></div>
+          <div class="pf-provider">Zhipu AI · 国内领先大模型</div>
+          <div class="pf-benefit">🎁 新用户注册即送 <span class="hi">2000万 Tokens 大礼包</span></div>
+        </div>
+        <span class="pf-action pf-link">前往 →</span>
+      </a>
     </div>
 
-    <!-- Deadline Notice -->
-    <div class="deadline-notice" id="deadlineNotice">
-      <span class="deadline-icon">⏰</span>
-      <span>WorkBuddy 2000积分福利 <strong>6月30日截止</strong>，欲领从速！</span>
+    <!-- 4. ZCode -->
+    <div class="platform">
+      <a class="platform-inner" href="https://zcode.z.ai/cn" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+        <span class="pf-index">04</span>
+        <div class="pf-body">
+          <div class="pf-name">ZCode <span class="pf-tag">GLM-5.2</span></div>
+          <div class="pf-provider">Z.AI · 智谱海外品牌 · AI 编程 Agent</div>
+          <div class="pf-benefit">🎁 新用户 <span class="hi">连续5天每天500万Tokens 免费</span>（300万 GLM-5.2 + 200万 Turbo）</div>
+        </div>
+        <span class="pf-action pf-link">前往 →</span>
+      </a>
     </div>
 
-    <!-- Resource Cards -->
-    <div class="resources">
-
-      <!-- Card 1: QoderWork CN -->
-      <div class="resource-card">
-        <div class="card-header">
-          <div class="card-logo logo-qoder">Qo</div>
-          <div class="card-title-area">
-            <div class="card-name">QoderWork CN</div>
-            <div class="card-provider">阿里云 · 通义灵码系列 · AI 编程桌面 IDE · GLM-5.2</div>
-          </div>
+    <!-- 5. MiMo -->
+    <div class="platform">
+      <a class="platform-inner" href="https://platform.xiaomimimo.com?ref=C2PLQR" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+        <span class="pf-index">05</span>
+        <div class="pf-body">
+          <div class="pf-name">小米 MiMo</div>
+          <div class="pf-provider">Xiaomi AI · MiMo V2.5 顶尖模型</div>
+          <div class="pf-benefit">🎁 双方各得 <span class="hi">¥10 API 体验金</span> + 首单9折（40天有效·限前30人）</div>
         </div>
-        <div class="card-benefit">
-          <span class="emoji">✅</span> <span class="benefit-highlight" style="color:#07C160;">支持 GLM-5.2</span> · <span class="emoji">🎁</span> 新用户 <span class="benefit-highlight">首月 Pro 免费（2000 Credits）</span> · 邀请1人得 <span class="benefit-highlight">200 Credits</span>（上限200人·共40000 Credits）
-        </div>
-        <div class="card-steps">
-          <div class="step-item">
-            <span class="step-num">1</span>
-            <span>点击按钮进入注册页（自动填入邀请码）</span>
-          </div>
-          <div class="step-item">
-            <span class="step-num">2</span>
-            <span>下载 QoderWork CN 桌面端，手机号或阿里云账号登录</span>
-          </div>
-          <div class="step-item">
-            <span class="step-num">3</span>
-            <span>端内点击领取，Pro 身份生效（2000 Credits，有效期1个月）</span>
-          </div>
-        </div>
-        <div class="card-action">
-          <a class="btn-primary" href="https://qoder.com.cn/referral?referral_code=bvMQpFKC0B3ZSlLZl38Xz6XHkVyGe734" target="_blank" rel="noopener" style="background: linear-gradient(135deg, #FF6A00, #FF4D4F); box-shadow: 0 4px 14px rgba(255,106,0,0.3);">首月 Pro 免费领 →</a>
-        </div>
-      </div>
-
-      <!-- Card 2: WorkBuddy -->
-      <div class="resource-card">
-        <div class="card-header">
-          <div class="card-logo logo-wb">🤖</div>
-          <div class="card-title-area">
-            <div class="card-name">WorkBuddy</div>
-            <div class="card-provider">腾讯 · 中国最受欢迎 AI 效率工具 · GLM-5.2</div>
-          </div>
-        </div>
-        <div class="card-benefit">
-          <span class="emoji">✅</span> <span class="benefit-highlight" style="color:#07C160;">支持 GLM-5.2</span> · <span class="emoji">🎁</span> 受邀好友注册即享 <span class="benefit-highlight">2,000 积分</span> · 邀请人每邀请1人得 <span class="benefit-highlight">50积分</span> + 好友连续用3天额外100积分 + 排行榜实物大奖
-        </div>
-        <div class="card-steps">
-          <div class="step-item">
-            <span class="step-num">1</span>
-            <span>点击按钮进入注册页（⏰ 6月30日截止）</span>
-          </div>
-          <div class="step-item">
-            <span class="step-num">2</span>
-            <span>手机号或微信完成注册，2000积分自动到账</span>
-          </div>
-          <div class="step-item">
-            <span class="step-num">3</span>
-            <span>使用 AI 代码/文档/数据分析，邀请好友再赚积分</span>
-          </div>
-        </div>
-        <div class="card-action">
-          <a class="btn-primary" href="https://www.codebuddy.cn/events/invite?inviteCode=xwdhgx8ucuss" target="_blank" rel="noopener">领 2000 积分 →</a>
-        </div>
-      </div>
-
-      <!-- Card 3: GLM (智谱) -->
-      <div class="resource-card">
-        <div class="card-header">
-          <div class="card-logo logo-glm">🧠</div>
-          <div class="card-title-area">
-            <div class="card-name">智谱 GLM</div>
-            <div class="card-provider">Zhipu AI · 国内领先大模型 · GLM-5.2 原厂</div>
-          </div>
-        </div>
-        <div class="card-benefit">
-          <span class="emoji">🎁</span> 新用户注册即送 <span class="benefit-highlight">2000万 Tokens 大礼包</span>，GLM-5.2 旗舰模型免费用
-        </div>
-        <div class="card-steps">
-          <div class="step-item">
-            <span class="step-num">1</span>
-            <span>点击按钮进入注册页（自动填入邀请码）</span>
-          </div>
-          <div class="step-item">
-            <span class="step-num">2</span>
-            <span>手机号或微信扫码快速注册</span>
-          </div>
-          <div class="step-item">
-            <span class="step-num">3</span>
-            <span>进入控制台获取 API Key，即刻调用 GLM-5.2</span>
-          </div>
-        </div>
-        <div class="card-action">
-          <a class="btn-primary" href="https://www.bigmodel.cn/invite?icode=MGeIswTxCik0L%2FYvFLn7HZmwcr074zMJTpgMb8zZZvg%3D" target="_blank" rel="noopener" style="background: linear-gradient(135deg, #6366F1, #8B5CF6); box-shadow: 0 4px 14px rgba(99,102,241,0.3);">立即领取 2000万 Tokens →</a>
-        </div>
-      </div>
-
-      <!-- Card 4: ZCode -->
-      <div class="resource-card">
-        <div class="card-header">
-          <div class="card-logo logo-zcode">ZC</div>
-          <div class="card-title-area">
-            <div class="card-name">ZCode（智谱海外版）</div>
-            <div class="card-provider">Z.AI · 智谱海外品牌 · AI 编程 Agent · GLM-5.2</div>
-          </div>
-        </div>
-        <div class="card-benefit">
-          <span class="emoji">🎁</span> 新用户连续 <span class="benefit-highlight">5 天每天 500 万 Tokens 免费</span>（300万 GLM-5.2 + 200万 Turbo）· 无需付费
-        </div>
-        <div class="card-steps">
-          <div class="step-item">
-            <span class="step-num">1</span>
-            <span>打开 zcode.z.ai/cn，了解 ZCode 3.0 功能介绍</span>
-          </div>
-          <div class="step-item">
-            <span class="step-num">2</span>
-            <span>下载 Mac/Windows 桌面端，首次打开自动激活5天免费</span>
-          </div>
-          <div class="step-item">
-            <span class="step-num">3</span>
-            <span>每日500万Tokens（零点清零不累计），建议错峰使用</span>
-          </div>
-        </div>
-        <div class="card-action">
-          <a class="btn-primary" href="https://zcode.z.ai/cn" target="_blank" rel="noopener" style="background: linear-gradient(135deg, #FFB800, #FF8C00); box-shadow: 0 4px 14px rgba(255,184,0,0.3);">5天免费体验 →</a>
-        </div>
-      </div>
-
-      <!-- Card 5: 小米 MiMo -->
-      <div class="resource-card">
-        <div class="card-header">
-          <div class="card-logo logo-mimo">🔥</div>
-          <div class="card-title-area">
-            <div class="card-name">小米 MiMo</div>
-            <div class="card-provider">Xiaomi AI · MiMo V2.5 顶尖模型</div>
-          </div>
-        </div>
-        <div class="card-benefit">
-          <span class="emoji">🎁</span> 双方各得 <span class="benefit-highlight">¥10 API 体验金</span> + 首单 <span class="benefit-highlight">9折</span>（体验金40天有效·限前30人）
-        </div>
-        <div class="card-steps">
-          <div class="step-item">
-            <span class="step-num">1</span>
-            <span>点击按钮进入平台（自动填入邀请码 C2PLQR）</span>
-          </div>
-          <div class="step-item">
-            <span class="step-num">2</span>
-            <span>完成手机号注册，¥10 体验金自动到账</span>
-          </div>
-          <div class="step-item">
-            <span class="step-num">3</span>
-            <span>创建 API Key，开始调用 MiMo V2.5</span>
-          </div>
-        </div>
-        <div class="card-action">
-          <a class="btn-primary" href="https://platform.xiaomimimo.com?ref=C2PLQR" target="_blank" rel="noopener" style="background: linear-gradient(135deg, #FF6900, #FF9500); box-shadow: 0 4px 14px rgba(255,105,0,0.3);">领 ¥10 体验金 + 首单9折 →</a>
-        </div>
-      </div>
-
-      <!-- Card 6: TRAE -->
-      <div class="resource-card">
-        <div class="card-header">
-          <div class="card-logo logo-trae">TR</div>
-          <div class="card-title-area">
-            <div class="card-name">TRAE</div>
-            <div class="card-provider">ByteDance · AI 编程 IDE · 报名领 ¥99 速通 Pro 月卡 · GLM-5.2</div>
-          </div>
-        </div>
-        <div class="card-benefit">
-          <span class="emoji">✅</span> <span class="benefit-highlight" style="color:#07C160;">支持 GLM-5.2</span> · <span class="emoji">🎁</span> <span class="benefit-highlight">报名即领 ¥99 速通 Pro 月卡 + 决赛门票</span> · 所有功能免费使用 · 内置多款免费模型
-          <br><span style="font-size:12px;color:#C0392B;">⏰ 7月15日截止报名</span>
-        </div>
-        <div class="card-steps">
-          <div class="step-item">
-            <span class="step-num">1</span>
-            <span>访问活动页，在社区发帖提交创意提案即完成报名</span>
-          </div>
-          <div class="step-item">
-            <span class="step-num">2</span>
-            <span>报名通过后登录 trae.cn 领取 ¥99 速通 Pro 月卡</span>
-          </div>
-          <div class="step-item">
-            <span class="step-num">3</span>
-            <span>下载 TRAE 桌面端，用速通次数调用高级模型</span>
-          </div>
-        </div>
-        <div class="card-action">
-          <a class="btn-primary" href="https://www.trae.cn/ai-creativity" target="_blank" rel="noopener" style="background: linear-gradient(135deg, #8B5CF6, #06B6D4); box-shadow: 0 4px 14px rgba(139,92,246,0.3);">报名领 ¥99 速通月卡 →</a>
-        </div>
-      </div>
-
-      <!-- Card 7: MiMo Code -->
-      <div class="resource-card">
-        <div class="card-header">
-          <div class="card-logo logo-mimocode">MC</div>
-          <div class="card-title-area">
-            <div class="card-name">MiMO CODE</div>
-            <div class="card-provider">小米 · AI 编程助手 · MiMo-V2.5 限免中</div>
-          </div>
-        </div>
-        <div class="card-benefit">
-          <span class="emoji">🔥</span> <span class="benefit-highlight">MiMo-V2.5 模型限免！完全免费</span> · 无需邀请码，直接下载安装
-        </div>
-        <div class="card-steps">
-          <div class="step-item">
-            <span class="step-num">1</span>
-            <span>访问 mimo.xiaomi.com/coder 查看功能演示</span>
-          </div>
-          <div class="step-item">
-            <span class="step-num">2</span>
-            <span>下载 VS Code / JetBrains / iTerm 插件</span>
-          </div>
-          <div class="step-item">
-            <span class="step-num">3</span>
-            <span>安装后登录小米账号激活（MiMo-V2.5 当前限免）</span>
-          </div>
-        </div>
-        <div class="card-action">
-          <a class="btn-primary" href="https://mimo.xiaomi.com/coder" target="_blank" rel="noopener" style="background: linear-gradient(135deg, #1A1A2E, #16213E); box-shadow: 0 4px 14px rgba(26,26,46,0.3);">免费使用 MiMo-V2.5 →</a>
-        </div>
-      </div>
-
+        <span class="pf-action pf-link">前往 →</span>
+      </a>
     </div>
 
-    <!-- Footer -->
-    <div class="footer">
-      资源持续更新中 · 点击右上角分享给朋友<br>
-      <a href="javascript:void(0)" onclick="showShareHint()">如何分享到朋友圈？</a>
+    <!-- 6. TRAE -->
+    <div class="platform">
+      <a class="platform-inner" href="https://www.trae.cn/ai-creativity" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+        <span class="pf-index">06</span>
+        <div class="pf-body">
+          <div class="pf-name">TRAE</div>
+          <div class="pf-provider">ByteDance · AI 编程 IDE · 报名领 ¥99 月卡 · 支持 GLM-5.2</div>
+          <div class="pf-benefit">🎁 <span class="hi">✅ 支持 GLM-5.2 · 报名即领 ¥99 速通 Pro 月卡 + 决赛门票</span>（7月15日截止）</div>
+        </div>
+        <span class="pf-action pf-link">前往 →</span>
+      </a>
     </div>
 
-  <script>
-    // ===== Toast =====
-    function showToast(msg) {
-      const t = document.getElementById('toast');
-      t.textContent = msg;
-      t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 2000);
-    }
+    <!-- 7. MiMo Code -->
+    <div class="platform">
+      <a class="platform-inner" href="https://mimo.xiaomi.com/coder" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+        <span class="pf-index">07</span>
+        <div class="pf-body">
+          <div class="pf-name">MiMO CODE</div>
+          <div class="pf-provider">小米 · AI 编程助手 · MiMo-V2.5 限免中</div>
+          <div class="pf-benefit">🔥 <span class="hi">完全免费使用</span> · 无需邀请码，直接下载安装</div>
+        </div>
+        <span class="pf-action pf-link">前往 →</span>
+      </a>
+    </div>
+  </div>
 
-    // ===== Share Hint =====
-    function showShareHint() {
-      const h = document.getElementById('shareHint');
-      h.classList.add('show');
-      setTimeout(() => h.classList.remove('show'), 3000);
-    }
+  <footer class="foot">
+    <span>资源持续更新中</span>
+    <span>点击右上角分享给朋友</span>
+  </footer>
+</div>
 
-    // ===== WeChat Share Config =====
-    if (/MicroMessenger/i.test(navigator.userAgent)) {
-      document.addEventListener('WeixinJSBridgeReady', function() {
-        WeixinJSBridge.on('menu:share:appmessage', function() {
-          WeixinJSBridge.invoke('sendAppMessage', {
-            title: 'AI 新用户福利 · 免费领额度',
-            desc: 'QoderWork首月Pro免费 · WorkBuddy送2000积分 · 智谱GLM送2000万Tokens · ZCode每天500万Tokens · 小米MiMo各得¥10 · TRAE报名领¥99月卡 · MiMo Code限免 · 5平台支持GLM-5.2',
-            link: window.location.href,
-            img_url: 'https://your-cdn.com/share-icon.png',
-          });
-        });
-        WeixinJSBridge.on('menu:share:timeline', function() {
-          WeixinJSBridge.invoke('shareTimeline', {
-            title: 'AI 新用户福利 · 免费领额度 🎁',
-            link: window.location.href,
-            img_url: 'https://your-cdn.com/share-icon.png',
-          });
-        });
+<!-- Share Hint -->
+<div class="share-hint" id="shareHint">
+  <span style="position:absolute;top:12px;right:20px;font-size:28px;">↗️</span>
+  点击右上角 · 分享给朋友或朋友圈
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+function showShareHint() {
+  const h = document.getElementById('shareHint');
+  h.classList.add('show');
+  setTimeout(() => h.classList.remove('show'), 3000);
+}
+if (/MicroMessenger/i.test(navigator.userAgent)) {
+  document.addEventListener('WeixinJSBridgeReady', function() {
+    WeixinJSBridge.on('menu:share:appmessage', function() {
+      WeixinJSBridge.invoke('sendAppMessage', {
+        title: 'AI 新用户福利 · 免费领额度',
+        desc: 'QoderWork首月Pro免费 · WorkBuddy送2000积分 · 智谱GLM送2000万Tokens · ZCode每天500万Tokens · TRAE报名领¥99月卡 · 5平台支持GLM-5.2',
+        link: window.location.href,
+        img_url: 'https://your-cdn.com/share-icon.png',
       });
-    }
-
-    // ===== Deadline check =====
-    document.addEventListener('DOMContentLoaded', function() {
-      const deadlineEl = document.getElementById('deadlineNotice');
-      const now = new Date();
-      const deadline = new Date('2026-06-30T23:59:59+08:00');
-      if (now > deadline) {
-        deadlineEl.innerHTML = '<span class="deadline-icon">⚠️</span><span>WorkBuddy 2000积分福利已截止，其他平台福利仍有效！</span>';
-        deadlineEl.style.background = 'linear-gradient(135deg, #FFF5F5, #FFF0F0)';
-        deadlineEl.style.borderColor = '#FFD6D6';
-        deadlineEl.style.color = '#C0392B';
-      }
     });
-  </script>
+    WeixinJSBridge.on('menu:share:timeline', function() {
+      WeixinJSBridge.invoke('shareTimeline', {
+        title: 'AI 新用户福利 · 免费领额度 🎁',
+        link: window.location.href,
+        img_url: 'https://your-cdn.com/share-icon.png',
+      });
+    });
+  });
+}
+</script>
 
-  </div><!-- /page-wrap -->
 </body>
 </html>
