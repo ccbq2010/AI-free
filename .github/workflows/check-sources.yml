@@ -1,0 +1,44 @@
+name: Check New Sources
+
+on:
+  schedule:
+    # Every Thursday at 10:00 CST (02:00 UTC)
+    - cron: '0 2 * * 4'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Check sources for new candidates
+        id: check
+        run: |
+          python scripts/check_sources.py 2>&1 | tee /tmp/check-output.txt
+          exit_code=${PIPESTATUS[0]}
+          echo "exit_code=$exit_code" >> "$GITHUB_OUTPUT"
+
+      - name: Create issue if new candidates
+        if: steps.check.outputs.exit_code != '0'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const output = fs.readFileSync('/tmp/check-output.txt', 'utf8');
+            const today = new Date().toISOString().slice(0, 10);
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '🤖 发现新的免费 AI 资源 (' + today + ')',
+              body: '自动巡检发现以下候选平台：\n\n```\n' + output + '\n```\n\n请确认后添加到 data/platforms.json。',
+              labels: ['bot', 'content-update']
+            });
