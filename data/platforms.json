@@ -139,46 +139,6 @@
     "status": "active"
   },
   {
-    "id": "lingma",
-    "name": "通义灵码 LINGMA",
-    "provider": "阿里云 · 智能编码助手",
-    "benefit": "⚠️ 限时免费即将截止 · 通义灵码 IDE 升级支持 Repowiki/Skills/Sub-agent",
-    "benefit_highlight": [
-      "限时免费（即将截止）",
-      "Skills/Sub-agent"
-    ],
-    "url": "https://lingma.aliyun.com",
-    "tags": [
-      "GLM-5.2"
-    ],
-    "deadline": null,
-    "referral": {
-      "type": "none"
-    },
-    "status": "active"
-  },
-  {
-    "id": "zcode",
-    "name": "ZCode",
-    "provider": "中信 · AI 编程助手",
-    "benefit": "新用户注册送 500 万 Tokens（待验证）⚠️ 定价页面 404",
-    "benefit_highlight": [
-      "5天 × 500万 Tokens",
-      "GLM-5.2 + Turbo"
-    ],
-    "url": "https://zcode.z.ai/cn",
-    "tags": [
-      "GLM-5.2"
-    ],
-    "deadline": null,
-    "referral": {
-      "type": "none",
-      "reward": "暂不开放邀请奖励"
-    },
-    "status": "active",
-    "note": "500万 Tokens 来源无法验证，定价页 404，待观察"
-  },
-  {
     "id": "xiaomi-mimo",
     "name": "小米 MiMo",
     "provider": "小米 · 开源大模型商业化",
