@@ -1,0 +1,242 @@
+[
+  {
+    "id": "workbuddy",
+    "name": "WorkBuddy",
+    "provider": "腾讯 · 中国最受欢迎 AI 效率工具",
+    "benefit": "受邀立享 2,000 积分（6/30已过期）· 邀请人得 50积分/人（可能仍有效）",
+    "benefit_highlight": [
+      "2,000 积分（已过期）",
+      "50积分/人"
+    ],
+    "url": "https://www.codebuddy.cn/events/invite?inviteCode=xwdhgx8ucuss",
+    "tags": [
+      "GLM-5.2"
+    ],
+    "deadline": "2026-06-30",
+    "referral": {
+      "type": "invite_code",
+      "code": "xwdhgx8ucuss",
+      "reward_invitee": "2000 积分（6/30已过期）",
+      "reward_inviter": "50 积分/人"
+    },
+    "status": "expired",
+    "verify_notes": "官网明确写6/30截止，但50积分/人基础奖励可能仍有效",
+    "access": "domestic"
+  },
+  {
+    "id": "nvidia-api",
+    "name": "NVIDIA API",
+    "provider": "NVIDIA · 200+ 大模型 API 平台",
+    "benefit": "注册即送 6 个月免费额度，涵盖 GLM-4.7、MiniMax、Claude 等 200+ 模型",
+    "benefit_highlight": [
+      "6个月免费",
+      "200+ 大模型"
+    ],
+    "url": "https://build.nvidia.com",
+    "tags": [],
+    "deadline": "注册起6个月",
+    "referral": {
+      "type": "none"
+    },
+    "status": "pending_verification",
+    "verify_notes": "B站49K/28K/18K播放视频确认，需注册验证额度及有效期",
+    "access": "domestic"
+  },
+  {
+    "id": "kiro-ide",
+    "name": "Kiro IDE",
+    "provider": "亚马逊 AWS · AI 编程 IDE（Spec-driven）",
+    "benefit": "免费每月 50 credits + Claude Sonnet 4.5；疑似有限时 $100 Pro Max 活动",
+    "benefit_highlight": [
+      "50 credits/月",
+      "Claude Sonnet 4.5",
+      "$100活动"
+    ],
+    "url": "https://kiro.dev",
+    "tags": [],
+    "deadline": "永久免费层；$100活动限期待确认",
+    "referral": {
+      "type": "event"
+    },
+    "status": "pending_verification",
+    "verify_notes": "B站'速来免费领取$100 kiro pro max'（6/25发布），需核实活动是否仍有效",
+    "access": "domestic"
+  },
+  {
+    "id": "windsurf",
+    "name": "Windsurf",
+    "provider": "Codeium · 主动式 AI 编程 IDE",
+    "benefit": "完全免费的 AI 编程 IDE，Claude Opus 4.7 快速模式，对标 Cursor",
+    "benefit_highlight": [
+      "完全免费",
+      "Claude Opus 4.7",
+      "对标Cursor"
+    ],
+    "url": "https://codeium.com/windsurf",
+    "tags": [],
+    "deadline": null,
+    "referral": {
+      "type": "none"
+    },
+    "status": "pending_verification",
+    "verify_notes": "B站20K+播放视频确认为完全免费，需确认当前是否仍免费",
+    "access": "needs-proxy"
+  },
+  {
+    "id": "volcengine-api",
+    "name": "火山引擎 API",
+    "provider": "字节跳动 · 大模型推理平台",
+    "benefit": "DeepSeek、豆包等多模型免费额度；Seedance视频400秒；2026 FORCE大会发布新政策",
+    "benefit_highlight": [
+      "多模型免费",
+      "Seedance 400秒",
+      "FORCE大会新政策"
+    ],
+    "url": "https://www.volcengine.com",
+    "tags": [],
+    "deadline": "各模型不同（已知Seedance每天90秒免费）",
+    "referral": {
+      "type": "none"
+    },
+    "status": "pending_verification",
+    "verify_notes": "B站有火山引擎FORCE大会(6/24-6/30)，需登录确认当前免费额度",
+    "access": "domestic"
+  },
+  {
+    "id": "grok-api",
+    "name": "Grok API",
+    "provider": "xAI（马斯克）· Grok 大模型 API",
+    "benefit": "每人每月 $25 免费额度，性能超 ChatGPT-4o，支持斜杠技能调用",
+    "benefit_highlight": [
+      "$25/月免费",
+      "超ChatGPT-4o"
+    ],
+    "url": "https://x.ai",
+    "tags": [],
+    "deadline": "当前有效（未声明截止）",
+    "referral": {
+      "type": "none"
+    },
+    "status": "pending_verification",
+    "verify_notes": "B站31K播放视频确认每月$25免费，需注册验证当前政策",
+    "access": "needs-proxy"
+  },
+  {
+    "id": "coze",
+    "name": "Coze 扣子",
+    "provider": "字节跳动 · AI Agent 构建平台",
+    "benefit": "免费使用 GPT-4 / Claude 构建智能体和工作流，支持微信集成",
+    "benefit_highlight": [
+      "免费GPT-4",
+      "工作流集成",
+      "微信集成"
+    ],
+    "url": "https://www.coze.cn",
+    "tags": [],
+    "deadline": null,
+    "referral": {
+      "type": "none"
+    },
+    "status": "pending_verification",
+    "verify_notes": "B站63K播放教程确认免费GPT-4，需确认当前限制",
+    "access": "domestic"
+  },
+  {
+    "id": "lingma",
+    "name": "通义灵码 LINGMA",
+    "provider": "阿里云 · 智能编码助手",
+    "benefit": "免费 AI 编程助手，阿里通义系列模型驱动",
+    "benefit_highlight": [
+      "免费AI编程",
+      "阿里通义"
+    ],
+    "url": "https://lingma.aliyun.com",
+    "tags": [
+      "GLM-5.2"
+    ],
+    "deadline": null,
+    "referral": {
+      "type": "none"
+    },
+    "status": "pending_verification",
+    "verify_notes": "B站25K播放确认免费，需确认当前邀请码政策",
+    "access": "domestic"
+  },
+  {
+    "id": "v0-dev",
+    "name": "v0.dev",
+    "provider": "Vercel · AI 前端生成器",
+    "benefit": "每月免费额度，React/Next.js UI 一键生成并部署到 Vercel",
+    "benefit_highlight": [
+      "免费前端生成",
+      "Vercel一键部署"
+    ],
+    "url": "https://v0.dev",
+    "tags": [],
+    "deadline": null,
+    "referral": {
+      "type": "none"
+    },
+    "status": "pending_verification",
+    "verify_notes": "B站25K播放确认免费，需注册确认每月免费次数",
+    "access": "needs-proxy"
+  },
+  {
+    "id": "dyad",
+    "name": "Dyad",
+    "provider": "开源 · 全栈 AI 应用构建器",
+    "benefit": "开源免费，Lovable / Bolt.new / Replit 替代品，本地全栈构建",
+    "benefit_highlight": [
+      "开源免费",
+      "Lovable替代",
+      "本地构建"
+    ],
+    "url": "https://github.com/dyad-sh/dyad",
+    "tags": [],
+    "deadline": "永久免费（开源）",
+    "referral": {
+      "type": "none"
+    },
+    "status": "pending_verification",
+    "verify_notes": "GitHub项目，B站多个视频确认为免费替代品",
+    "access": "open-source"
+  },
+  {
+    "id": "github-copilot",
+    "name": "GitHub Copilot",
+    "provider": "GitHub · AI 编程（学生免费）",
+    "benefit": "学生/教师免费 Pro（需验证），支持 Agent + MCP 协议",
+    "benefit_highlight": [
+      "学生免费Pro",
+      "Agent+MCP"
+    ],
+    "url": "https://education.github.com",
+    "tags": [],
+    "deadline": "学生身份有效期内",
+    "referral": {
+      "type": "none"
+    },
+    "status": "pending_verification",
+    "verify_notes": "B站28K播放确认学生免费，需确认是否仍开放",
+    "access": "needs-proxy"
+  },
+  {
+    "id": "cloudflare-workers-ai",
+    "name": "Cloudflare Workers AI 中转",
+    "provider": "Cloudflare · 自建 AI API 中转",
+    "benefit": "Cloudflare Workers 免费 tier（10万请求/天），自建 Gemini/Claude/GPT API 中转",
+    "benefit_highlight": [
+      "自建中转",
+      "10万请求/天免费"
+    ],
+    "url": "https://workers.cloudflare.com",
+    "tags": [],
+    "deadline": "Cloudflare 免费 tier 长期有效",
+    "referral": {
+      "type": "none"
+    },
+    "status": "pending_verification",
+    "verify_notes": "B站153K/92K/42K播放教程确认自建中转，需自己部署非直接注册",
+    "access": "domestic"
+  }
+]

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 新用户福利 · 免费领额度</title>
+  <meta property="og:title" content="AI 新用户福利 · 免费领额度">
+  <meta property="og:description" content="$total 个平台免费额度合集 · $glm_count 个已支持 GLM-5.2 旗舰模型">
+  <meta property="og:type" content="website">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { -webkit-font-smoothing: antialiased; }
+    :root {
+      --bg: oklch(97.5% 0.002 250); --surface: oklch(99.5% 0 0);
+      --text: oklch(12% 0.01 250); --text-mid: oklch(38% 0.01 250); --text-dim: oklch(55% 0.01 250);
+      --border: oklch(88% 0.008 250); --border-strong: oklch(75% 0.01 250);
+      --accent: oklch(52% 0.18 250); --warn: oklch(55% 0.18 35); --warn-bg: oklch(95% 0.03 35);
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+    .grid { max-width: 960px; margin: 0 auto; padding: clamp(32px, 6vw, 64px) clamp(20px, 4vw, 40px); }
+    .masthead { padding-bottom: clamp(32px, 5vw, 56px); border-bottom: 1px solid var(--border-strong); margin-bottom: clamp(24px, 4vw, 40px); }
+    .masthead-label { font-size: .75rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    .masthead h1 { font-size: clamp(28px, 5vw, 44px); font-weight: 700; letter-spacing: -.03em; line-height: 1.1; }
+    .masthead-sub { font-size: 1rem; color: var(--text-mid); margin-top: 12px; }
+    .stat-row { display: flex; gap: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--border); margin-bottom: 32px; }
+    .stat-row .num { font-size: 1.75rem; font-weight: 700; color: var(--accent); }
+    .stat-row .lbl { font-size: .75rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: .08em; }
+    .deadline-box { background: var(--warn-bg); border-left: 3px solid var(--warn); padding: 8px 0; margin-bottom: 24px; }
+    .deadline-item { color: var(--warn); font-size: .85rem; font-weight: 600; padding: 4px 16px; }
+    .platforms { display: flex; flex-direction: column; gap: 1px; background: var(--border); }
+    .platform { background: var(--surface); }
+    .platform-inner { padding: clamp(18px,3vw,28px) clamp(16px,3vw,32px); display: grid; grid-template-columns: auto 1fr auto; align-items: start; gap: 20px; cursor: pointer; transition: background .15s; text-decoration: none; color: inherit; }
+    .platform-inner:hover { background: oklch(97% .005 250); }
+    .pf-index { font-size: .7rem; font-weight: 600; letter-spacing: .06em; color: var(--text-dim); text-transform: uppercase; padding-top: 2px; min-width: 20px; }
+    .pf-body { min-width: 0; }
+    .pf-name { font-size: 1.05rem; font-weight: 650; margin-bottom: 4px; }
+    .pf-provider { font-size: .8rem; color: var(--text-dim); margin-bottom: 6px; }
+    .pf-benefit { font-size: .875rem; color: var(--text-mid); }
+    .pf-benefit .hi { color: var(--accent); font-weight: 600; }
+    .pf-tag { display: inline-block; font-size: .675rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; padding: 2px 8px; border: 1px solid var(--accent); color: var(--accent); margin-left: 6px; }
+    .pf-action { align-self: center; }
+    .pf-link { display: inline-block; padding: 8px 18px; background: var(--text); color: var(--surface); font-size: .8rem; font-weight: 600; text-decoration: none; transition: background .15s, transform .15s; }
+    .pf-link:hover { background: var(--accent); transform: translateX(3px); }
+    .foot { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border-strong); font-size: .75rem; color: var(--text-dim); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+    .share-hint { position: fixed; top: 0; left: 0; right: 0; background: rgba(0,0,0,.78); color: white; padding: 16px 20px; font-size: 14px; text-align: center; z-index: 999; display: none; }
+    .share-hint.show { display: block; }
+    .toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(20px); background: rgba(0,0,0,.78); color: white; padding: 10px 24px; border-radius: 20px; font-size: 14px; z-index: 1000; opacity: 0; transition: opacity .3s, transform .3s; pointer-events: none; }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+<div class="share-hint" id="shareHint">点击右上角 分享 → 截屏或复制链接给朋友 🎉</div>
+<div class="toast" id="toast"></div>
+<div class="grid">
+  <header class="masthead">
+    <div class="masthead-label">AI Platform Free Credits</div>
+    <h1>AI 新用户福利合集</h1>
+    <p class="masthead-sub" id="subtitle">——</p>
+  </header>
+  <div class="stat-row">
+    <div><div class="num">$total</div><div class="lbl">优质平台</div></div>
+    <div><div class="num">¥0</div><div class="lbl">全部免费</div></div>
+    <div><div class="num">$glm_count</div><div class="lbl">GLM-5.2</div></div>
+  </div>
+  $_deadlines
+  <div class="platforms" id="platformList"></div>
+  <footer class="foot">
+    <span>📌 本页更新于 $updated_at · PR 补充 via <a href="https://github.com/ccbq2010/AI-free" style="color:var(--accent)">GitHub</a></span>
+    <span>🔗 <a href="qr.html" style="color:var(--accent)">分享版 (带二维码)</a></span>
+  </footer>
+</div>
+<script>
+var PLATFORMS = $_platforms_json;
+
+function fmtDate(s) {
+  if (!s) return "";
+  var d = new Date(s);
+  return d.getFullYear() + "年" + String(d.getMonth()+1).padStart(2,'0') + "月" + String(d.getDate()).padStart(2,'0') + "日";
+}
+
+function esc(s) { return (s||"").replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+
+function render() {
+  var list = document.getElementById("platformList");
+  var names = PLATFORMS.map(p => p.name).filter((v,i,a) => a.indexOf(v) === i);
+  document.getElementById("subtitle").textContent = names.join(" · ") + " 均已支持";
+  var html = "";
+  PLATFORMS.forEach(function(p, i) {
+    var tags = (p.tags||[]).map(function(t){
+      return '<span class="pf-tag">'+esc(t)+'</span>';
+    }).join("");
+    var benefit = (p.benefit||"").replace(
+      p.benefit_highlight, function(m){ return '<span class="hi">'+m+'</span>'; }
+    );
+    html += '<div class="platform"><a class="platform-inner" href="'+esc(p.url)+'" target="_blank" rel="noopener">'
+      + '<span class="pf-index">'+String(i+1).padStart(2,'0')+'</span>'
+      + '<div class="pf-body"><div class="pf-name">'+esc(p.name)+' '+tags+'</div>'
+      + '<div class="pf-provider">'+esc(p.provider||"")+'</div>'
+      + '<div class="pf-benefit">🎁 '+benefit+'</div></div>'
+      + '<span class="pf-action pf-link">前往 →</span></a></div>';
+  });
+  list.innerHTML = html;
+}
+
+render();
+
+var toast = document.getElementById("toast");
+var toastTimer;
+function showToast(msg) {
+  toast.textContent = msg;
+  toast.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>toast.classList.remove("show"), 2000);
+}
+
+// Share hint for mobile
+if (/Mobile|Android|iPhone/i.test(navigator.userAgent)) {
+  document.addEventListener("scroll", function() {
+    if (window.scrollY > 200) {
+      document.getElementById("shareHint").classList.add("show");
+    }
+  }, { once: true });
+}
+
+// QR code support for quick copy
+document.addEventListener("click", function(e) {
+  var card = e.target.closest(".platform-inner");
+  if (card && e.shiftKey) {
+    var url = card.getAttribute("href");
+    navigator.clipboard.writeText(url).then(function(){
+      showToast("链接已复制: " + url);
+    });
+  }
+});
+</script>
+</body>
+</html>

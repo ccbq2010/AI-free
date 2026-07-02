@@ -1,0 +1,14 @@
+name = "cf-ai-gateway"
+main = "src/worker.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+AI_MODE = "siliconflow"
+API_GATEWAY_KEY = "sk-cf-gateway-ai-free-demo"
+SILICONFLOW_BASE_URL = "https://api.siliconflow.cn/v1"
+CF_ACCOUNT_ID = "1debd27e6c06e3255b316b8594686b36"
+SILICONFLOW_API_KEY = "sk-fynlyevblswhvhphmwhorwrwrsxfxvlgmuvsfveznnfghhvj"
+NOUS_AGENT_KEY = ""
+NOUS_API_URL = "https://api.nousresearch.com"
+TARGET_URL = ""
+TARGET_API_KEY = ""
