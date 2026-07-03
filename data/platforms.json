@@ -2,34 +2,35 @@
   {
     "id": "workbuddy",
     "name": "WorkBuddy",
-    "provider": "腾讯 · 中国最受欢迎 AI 效率工具",
-    "benefit": "每月 500 积分 + 每日签到 100 积分 · 邀请得 50 积分/人",
+    "provider": "腾讯 · CodeBuddy 云龙计划",
+    "benefit": "已过期：原邀请奖励与签到积分停发；当前仍可免费使用云端 IDE",
     "benefit_highlight": [
-      "签到100积分/天",
-      "每月500积分",
-      "邀请50积分/人"
+      "已过期",
+      "免费使用",
+      "云端 IDE"
     ],
-    "url": "https://www.codebuddy.cn/events/invite?inviteCode=xwdhgx8ucuss",
+    "url": "https://www.codebuddy.cn",
     "tags": [
       "GLM-5.2"
     ],
-    "deadline": "每月可领",
+    "deadline": "已过期",
     "referral": {
-      "type": "invite_code",
+      "type": "expired",
       "code": "xwdhgx8ucuss",
-      "reward_invitee": "2000 积分（已过期）",
-      "reward_inviter": "50 积分/人"
+      "reward_invitee": "原2000积分+签到每月500积分（2026-06-30起停发）",
+      "reward_inviter": "原50积分/人（2026-06-30起停发）"
     },
-    "status": "active",
-    "note": "通过每日签到稳定获取积分，月累计800+积分"
+    "status": "expired",
+    "note": "2026-07-02验证：原邀请链接404，产品升级为CodeBuddy，签到积分停发"
   },
   {
     "id": "zhipu-glm",
     "name": "智谱 GLM",
+    "tier": "hidden_gem",
     "provider": "Zhipu AI · 国内领先大模型",
     "benefit": "新用户注册即送 2000 万 Tokens 大礼包",
     "benefit_highlight": [
-      "2000万 Tokens"
+      "2000 万 Tokens"
     ],
     "url": "https://www.bigmodel.cn/invite?icode=MGeIswTxCik0L%2FYvFLn7HZmwcr074zMJTpgMb8zZZvg%3D",
     "tags": [
@@ -48,16 +49,16 @@
     "id": "trae",
     "name": "TRAE",
     "provider": "字节跳动 · AI 编程 IDE",
-    "benefit": "免费模型可长期使用 · 报名即领 ¥99 速通 Pro 月卡（7月15日截止）",
+    "benefit": "免费模型长期使用 · 报名领 ¥99 速通 Pro 月卡",
     "benefit_highlight": [
       "¥99 速通 Pro 月卡",
-      "免费长期使用"
+      "免费模型长期使用"
     ],
     "url": "https://www.trae.cn/ai-creativity",
     "tags": [
       "GLM-5.2"
     ],
-    "deadline": "2026-07-15",
+    "deadline": null,
     "referral": {
       "type": "event",
       "reward": "报名活动即得 ¥99 Pro 月卡"
@@ -67,13 +68,14 @@
   {
     "id": "qoderwork",
     "name": "QoderWork CN",
-    "provider": "阿里云通义灵码系列 · AI 编程桌面 IDE",
-    "benefit": "邀请 1 人得 300 Credits → 领 Pro 升至 2000 · 上限 40,000",
+    "tier": "hidden_gem",
+    "provider": "Qoder · AI 编程桌面 IDE 中国区",
+    "benefit": "邀请 1 人得 200 Credits · 首月 Pro 2000 Credits 免费（上限 200 人）",
     "benefit_highlight": [
-      "邀请 300→2000 Credits",
-      "上限 40,000"
+      "200 Credits",
+      "上限 200 人"
     ],
-    "url": "https://qoder.com.cn/referral?referral_code=bvMQpFKC0B3ZSlLZl38Xz6XHkVyGe734",
+    "url": "https://qoder.com.cn/pricing?referral_code=bvMQpFKC0B3ZSlLZl38Xz6XHkVyGe734",
     "tags": [
       "GLM-5.2"
     ],
@@ -82,22 +84,26 @@
       "type": "referral_link",
       "code": "bvMQpFKC0B3ZSlLZl38Xz6XHkVyGe734",
       "reward_invitee": "首月 Pro（2000 Credits）免费",
-      "reward_inviter": "200 Credits/人（上限200人）"
+      "reward_inviter": "200 Credits/人（上限 200 人）"
     },
-    "status": "active"
+    "status": "active",
+    "note": "2026-07-02：原 referral 参数页面已调整为 /pricing"
   },
   {
     "id": "nvidia-api",
     "name": "NVIDIA API",
     "provider": "NVIDIA · 200+ 大模型 API 平台",
-    "benefit": "注册即送 6 个月免费额度，涵盖 GLM-4.7、DeepSeek、MiniMax 等 200+ 模型",
+    "benefit": "注册即送 6 个月免费额度，涵盖 GLM-4.7、DeepSeek、Claude、MiniMax 等 200+ 模型",
     "benefit_highlight": [
-      "6个月免费",
-      "200+ 大模型"
+      "6 个月免费",
+      "200+ 模型",
+      "GLM-4.7"
     ],
     "url": "https://build.nvidia.com",
-    "tags": [],
-    "deadline": "注册起6个月",
+    "tags": [
+      "GLM-5.2"
+    ],
+    "deadline": "注册起6个月（需算费）",
     "referral": {
       "type": "none"
     },
@@ -111,7 +117,7 @@
     "benefit_highlight": [
       "50 credits/月",
       "Claude Sonnet 4.5",
-      "$100活动"
+      "$100 Pro Max"
     ],
     "url": "https://kiro.dev",
     "tags": [],
@@ -127,8 +133,9 @@
     "provider": "字节跳动 · AI Agent 构建平台",
     "benefit": "免费使用 GPT-4 / Claude 构建智能体和工作流，支持微信集成",
     "benefit_highlight": [
-      "免费GPT-4",
-      "工作流集成"
+      "免费使用 GPT-4",
+      "工作流",
+      "微信集成"
     ],
     "url": "https://www.coze.cn",
     "tags": [],
@@ -142,14 +149,14 @@
     "id": "xiaomi-mimo",
     "name": "小米 MiMo",
     "provider": "小米 · 开源大模型商业化",
-    "benefit": "双方各得 ¥10 API 体验金 + 首单 9 折（40天有效·限前30人）",
+    "benefit": "双方各得 ¥10 API 体验金 + 首单 9 折 · 40天有效（名额有限，先到先得）",
     "benefit_highlight": [
       "¥10 API 体验金",
       "首单 9 折"
     ],
     "url": "https://platform.xiaomimimo.com?ref=C2PLQR",
     "tags": [],
-    "deadline": "限前30人",
+    "deadline": "名额有限（先到先得）",
     "referral": {
       "type": "ref_code",
       "code": "C2PLQR",
@@ -179,6 +186,7 @@
   {
     "id": "silicon-flow",
     "name": "硅基流动",
+    "tier": "hidden_gem",
     "provider": "SiliconFlow · 大模型推理云",
     "benefit": "注册+实名认证领 ¥16 代金券（约2000万Token）· 180天有效 · 全站通用",
     "benefit_highlight": [
@@ -203,18 +211,55 @@
     "id": "github-copilot",
     "name": "GitHub Copilot",
     "provider": "GitHub · AI 编程（学生免费）",
-    "benefit": "学生/教师免费 Pro（需验证）支持 Agent + MCP 协议",
+    "benefit": "学生/教师免费 Pro（需验证教育身份）支持 Agent + MCP，并支持 Cloudflare Workers 中转国内访问",
     "benefit_highlight": [
-      "学生免费Pro",
-      "Agent+MCP"
+      "免费 Pro",
+      "Agent + MCP",
+      "中转"
     ],
-    "url": "https://education.github.com",
+    "url": "https://education.github.com/pack",
     "tags": [],
     "deadline": "学生身份有效期内",
     "referral": {
       "type": "none"
     },
     "status": "active",
-    "note": "教育优惠验证超时（GitHub 国内访问不稳定）"
+    "note": "2026-07-02：education.github.com/pack 稳定 200；主域名重定向链路过慢"
+  },
+  {
+    "id": "dyad",
+    "name": "Dyad",
+    "provider": "开源 · 全栈 AI 应用构建器",
+    "benefit": "开源免费，Lovable / Bolt.new / Replit 替代品，本地全栈构建，无需邀请码",
+    "benefit_highlight": [
+      "开源免费",
+      "无需邀请码"
+    ],
+    "url": "https://github.com/dyad-sh/dyad",
+    "tags": [],
+    "deadline": "永久免费（开源）",
+    "referral": {
+      "type": "none"
+    },
+    "status": "active",
+    "note": "2026-07-02：开源项目，GitHub 仓库 dyad-sh/dyad"
+  },
+  {
+    "id": "volcengine-api",
+    "name": "火山引擎 API",
+    "provider": "字节跳动 · 大模型推理平台",
+    "benefit": "免费提供 DeepSeek、豆包等模型；Seedance 每天 90 秒免费视频；新用户注册赠送代金券",
+    "benefit_highlight": [
+      "DeepSeek",
+      "90 秒免费视频",
+      "新用户注册赠送代金券"
+    ],
+    "url": "https://www.volcengine.com",
+    "tags": [],
+    "deadline": "各项活动不同",
+    "referral": {
+      "type": "none"
+    },
+    "status": "active"
   }
 ]

@@ -41,6 +41,13 @@
     .pf-action { align-self: center; }
     .pf-link { display: inline-block; padding: 8px 18px; background: var(--text); color: var(--surface); font-size: .8rem; font-weight: 600; text-decoration: none; transition: background .15s, transform .15s; }
     .pf-link:hover { background: var(--accent); transform: translateX(3px); }
+    .featured { margin-bottom: 32px; border: 2px solid var(--warn); padding: 20px 24px; background: var(--warn-bg); }
+    .feat-title { font-size: .8rem; font-weight: 700; letter-spacing: .06em; color: var(--warn); margin-bottom: 12px; }
+    .feat-card { display: block; margin-bottom: 10px; padding: 10px 14px; background: var(--surface); text-decoration: none; color: inherit; border-left: 3px solid var(--warn); transition: background .15s; }
+    .feat-card:hover { background: oklch(97% .005 250); }
+    .feat-name { font-size: .95rem; font-weight: 650; margin-bottom: 2px; }
+    .feat-benefit { font-size: .82rem; color: var(--text-mid); margin-bottom: 6px; }
+    .feat-cta { font-size: .78rem; font-weight: 600; color: var(--warn); }
     .foot { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border-strong); font-size: .75rem; color: var(--text-dim); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
     .share-hint { position: fixed; top: 0; left: 0; right: 0; background: rgba(0,0,0,.78); color: white; padding: 16px 20px; font-size: 14px; text-align: center; z-index: 999; display: none; }
     .share-hint.show { display: block; }
@@ -55,30 +62,49 @@
   <header class="masthead">
     <div class="masthead-label">AI Platform Free Credits</div>
     <h1>AI 新用户福利合集</h1>
-    <p class="masthead-sub" id="subtitle">——</p>
+    <p class="masthead-sub" id="subtitle">$subtitle</p>
   </header>
   <div class="stat-row">
     <div><div class="num">$total</div><div class="lbl">优质平台</div></div>
     <div><div class="num">¥0</div><div class="lbl">全部免费</div></div>
     <div><div class="num">$glm_count</div><div class="lbl">GLM-5.2</div></div>
   </div>
+  $_featured
   $_deadlines
   <div class="platforms" id="platformList"></div>
+  <noscript style="display:block;padding:24px;text-align:center;color:var(--text-mid);font-size:.9rem;border:1px dashed var(--border);margin-top:16px;">⚠️ 本页面需要 JavaScript 才能显示平台列表。请启用 JS 后刷新，或访问 <a href="qr.html" style="color:var(--accent)">分享版</a>。</noscript>
   <footer class="foot">
     <span>📌 本页更新于 $updated_at · PR 补充 via <a href="https://github.com/ccbq2010/AI-free" style="color:var(--accent)">GitHub</a></span>
-    <span>🔗 <a href="qr.html" style="color:var(--accent)">分享版 (带二维码)</a></span>
+    <span>🔗 <a href="qr.html" style="color:var(--accent)">分享版</a> · <a href="feed.xml" style="color:var(--accent)">RSS</a> · <a href="api.json" style="color:var(--accent)">API</a></span>
   </footer>
 </div>
 <script>
-var PLATFORMS = $_platforms_json;
+var PLATFORMS = $_platforms_json;   // HTML 展示用 URL（带 UTM）
+var PLATFORMS_RAW = $_platforms_raw_json;  // 原始 URL，供 Shift+Click 复制使用
+var ID_TO_RAW = {};
+PLATFORMS_RAW.forEach(function(p){ ID_TO_RAW[p.id] = p.url; });
 
 function fmtDate(s) {
   if (!s) return "";
   var d = new Date(s);
+  if (isNaN(d.getTime())) return s;   // 非 ISO 日期直接展示原文
   return d.getFullYear() + "年" + String(d.getMonth()+1).padStart(2,'0') + "月" + String(d.getDate()).padStart(2,'0') + "日";
 }
 
-function esc(s) { return (s||"").replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+function esc(s) { return (s||"").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+function highlight(benefit, highlights) {
+  if (!benefit) return '';
+  if (!highlights || !highlights.length) return esc(benefit);
+  var escaped = esc(benefit);
+  highlights.forEach(function(hl) {
+    if (!hl) return;
+    var escHl = esc(hl);
+    var re = new RegExp(escHl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+    escaped = escaped.replace(re, '<span class="hi">' + escHl + '</span>');
+  });
+  return escaped;
+}
 
 function render() {
   var list = document.getElementById("platformList");
@@ -89,14 +115,12 @@ function render() {
     var tags = (p.tags||[]).map(function(t){
       return '<span class="pf-tag">'+esc(t)+'</span>';
     }).join("");
-    var benefit = (p.benefit||"").replace(
-      p.benefit_highlight, function(m){ return '<span class="hi">'+m+'</span>'; }
-    );
-    html += '<div class="platform"><a class="platform-inner" href="'+esc(p.url)+'" target="_blank" rel="noopener">'
+    var benefit = highlight(p.benefit||"", p.benefit_highlight);
+    html += '<div class="platform"><a class="platform-inner" href="'+esc(p.url)+'" data-pid="'+esc(p.id)+'" target="_blank" rel="noopener">'
       + '<span class="pf-index">'+String(i+1).padStart(2,'0')+'</span>'
       + '<div class="pf-body"><div class="pf-name">'+esc(p.name)+' '+tags+'</div>'
       + '<div class="pf-provider">'+esc(p.provider||"")+'</div>'
-      + '<div class="pf-benefit">🎁 '+benefit+'</div></div>'
+      + '<div class="pf-benefit">🎁 '+highlight(p.benefit||'', p.benefit_highlight)+'</div></div>'
       + '<span class="pf-action pf-link">前往 →</span></a></div>';
   });
   list.innerHTML = html;
@@ -122,13 +146,15 @@ if (/Mobile|Android|iPhone/i.test(navigator.userAgent)) {
   }, { once: true });
 }
 
-// QR code support for quick copy
+// Shift+Click 复制纯净链接（无 UTM），便于分享
 document.addEventListener("click", function(e) {
   var card = e.target.closest(".platform-inner");
   if (card && e.shiftKey) {
-    var url = card.getAttribute("href");
+    var id = card.dataset.pid;
+    var url = (id && ID_TO_RAW[id]) || card.getAttribute("href");
+    e.preventDefault();
     navigator.clipboard.writeText(url).then(function(){
-      showToast("链接已复制: " + url);
+      showToast("纯净链接已复制: " + url);
     });
   }
 });

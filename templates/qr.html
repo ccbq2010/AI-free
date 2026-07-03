@@ -45,9 +45,22 @@ $_qr_data_json
   function fmtDate(s) {
     if (!s) return "";
     var d = new Date(s);
+    if (isNaN(d.getTime())) return s;   // 非 ISO 日期直接展示原文
     return d.getFullYear() + "." + String(d.getMonth()+1).padStart(2,'0') + "." + String(d.getDate()).padStart(2,'0');
   }
-  function esc(s) { return (s||"").replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+  function esc(s) { return (s||"").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  function highlight(benefit, highlights) {
+    if (!benefit) return '';
+    if (!highlights || !highlights.length) return esc(benefit);
+    var escaped = esc(benefit);
+    highlights.forEach(function(hl) {
+      if (!hl) return;
+      var escHl = esc(hl);
+      var re = new RegExp(escHl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+      escaped = escaped.replace(re, '<b>' + escHl + '</b>');
+    });
+    return escaped;
+  }
 
   var names = PLATFORMS.map(function(p){ return p.name; }).filter(function(v,i,a){ return a.indexOf(v)===i; });
   document.getElementById("subtitle").textContent = names.join(" · ") + " | 截屏分享 · 长按扫码";
@@ -65,7 +78,7 @@ $_qr_data_json
       + '<div class="card-idx">' + String(i+1).padStart(2,'0') + '</div>'
       + '<div class="card-name">' + esc(p.name) + tags + '</div>'
       + '<div class="card-co">' + esc(p.provider||"") + '</div>'
-      + '<div class="card-bf">🎁 ' + esc(p.benefit||"") + '</div>'
+      + '<div class="card-bf">🎁 ' + highlight(p.benefit||"", p.benefit_highlight) + '</div>'
       + '<div class="card-qr">' + (QRS[p.id] || '') + '</div>'
       + '<div class="card-qr-lbl">扫码直达 →</div>'
       + '</div>';
