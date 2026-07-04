@@ -30,6 +30,14 @@ _LINK_ITEM_RE = re.compile(
     re.MULTILINE,
 )
 
+# 剥离 markdown 链接语法：[text](url) → text
+_MD_LINK_RE = re.compile(r'\[(.+?)\]\(.+?\)')
+
+
+def _strip_md_link(text: str) -> str:
+    """去掉文本中的 markdown 链接语法，保留链接文本。"""
+    return _MD_LINK_RE.sub(r'\1', text)
+
 
 def fetch_repo_readme(owner_repo: str) -> str | None:
     """获取仓库 README 内容。"""
@@ -61,13 +69,16 @@ def parse_readme(text: str, source: str) -> list[RawCandidate]:
             ))
 
     # 再匹配普通列表项
+    seen_names = {c.name.lower() for c in candidates}
     for m in _LIST_ITEM_RE.finditer(text):
         name, desc = m.group(1).strip(), m.group(2).strip()
+        name = _strip_md_link(name)  # 剥离 [text](url) → text
         line = f"- {name}: {desc}"
         kws = matches_keywords(line)
         if kws:
-            # 避免与链接项重复
-            if not any(c.raw == line[:200] for c in candidates):
+            # 避免与链接项重复（按名称去重）
+            if name.lower() not in seen_names:
+                seen_names.add(name.lower())
                 candidates.append(RawCandidate(
                     source=source,
                     name=name[:60],

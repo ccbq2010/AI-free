@@ -19,12 +19,10 @@
     body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
     .grid { max-width: 960px; margin: 0 auto; padding: clamp(32px, 6vw, 64px) clamp(20px, 4vw, 40px); }
     .masthead { padding-bottom: clamp(32px, 5vw, 56px); border-bottom: 1px solid var(--border-strong); margin-bottom: clamp(24px, 4vw, 40px); }
-    .masthead-label { font-size: .75rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
     .masthead h1 { font-size: clamp(28px, 5vw, 44px); font-weight: 700; letter-spacing: -.03em; line-height: 1.1; }
     .masthead-sub { font-size: 1rem; color: var(--text-mid); margin-top: 12px; }
-    .stat-row { display: flex; gap: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--border); margin-bottom: 32px; }
-    .stat-row .num { font-size: 1.75rem; font-weight: 700; color: var(--accent); }
-    .stat-row .lbl { font-size: .75rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: .08em; }
+    .stats-bar { font-size: .85rem; color: var(--text-dim); padding: 8px 0 24px; border-bottom: 1px solid var(--border); margin-bottom: 32px; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+    .stats-bar b { color: var(--text); font-weight: 650; }
     .deadline-box { background: var(--warn-bg); border-left: 3px solid var(--warn); padding: 8px 0; margin-bottom: 24px; }
     .deadline-item { color: var(--warn); font-size: .85rem; font-weight: 600; padding: 4px 16px; }
     .platforms { display: flex; flex-direction: column; gap: 1px; background: var(--border); }
@@ -36,18 +34,25 @@
     .pf-name { font-size: 1.05rem; font-weight: 650; margin-bottom: 4px; }
     .pf-provider { font-size: .8rem; color: var(--text-dim); margin-bottom: 6px; }
     .pf-benefit { font-size: .875rem; color: var(--text-mid); }
-    .pf-benefit .hi { color: var(--accent); font-weight: 600; }
+    .pf-benefit .hi { color: var(--warn); font-weight: 600; }
     .pf-tag { display: inline-block; font-size: .675rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; padding: 2px 8px; border: 1px solid var(--accent); color: var(--accent); margin-left: 6px; }
+    .pf-badge { display: inline-block; font-size: .65rem; font-weight: 700; letter-spacing: .03em; padding: 2px 8px; background: var(--warn-bg); color: var(--warn); border: 1px solid var(--warn); margin-left: 4px; }
     .pf-action { align-self: center; }
     .pf-link { display: inline-block; padding: 8px 18px; background: var(--text); color: var(--surface); font-size: .8rem; font-weight: 600; text-decoration: none; transition: background .15s, transform .15s; }
     .pf-link:hover { background: var(--accent); transform: translateX(3px); }
-    .featured { margin-bottom: 32px; border: 2px solid var(--warn); padding: 20px 24px; background: var(--warn-bg); }
-    .feat-title { font-size: .8rem; font-weight: 700; letter-spacing: .06em; color: var(--warn); margin-bottom: 12px; }
-    .feat-card { display: block; margin-bottom: 10px; padding: 10px 14px; background: var(--surface); text-decoration: none; color: inherit; border-left: 3px solid var(--warn); transition: background .15s; }
-    .feat-card:hover { background: oklch(97% .005 250); }
-    .feat-name { font-size: .95rem; font-weight: 650; margin-bottom: 2px; }
-    .feat-benefit { font-size: .82rem; color: var(--text-mid); margin-bottom: 6px; }
-    .feat-cta { font-size: .78rem; font-weight: 600; color: var(--warn); }
+    .featured { margin-bottom: clamp(28px,4vw,40px); }
+    .featured::after { content: ""; display: block; height: 20px; margin-top: 16px; background: linear-gradient(var(--warn-bg), var(--bg)); }
+    .feat-title { font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--warn); margin-bottom: 8px; }
+    .feat-card { display: grid; grid-template-columns: auto 1fr auto; align-items: start; gap: 20px; padding: clamp(18px,3vw,28px) clamp(16px,3vw,32px) clamp(18px,3vw,28px) calc(clamp(16px,3vw,32px) - 4px); background: var(--warn-bg); text-decoration: none; color: inherit; border-left: 4px solid var(--warn); transition: background .15s; }
+    .feat-card:hover { background: oklch(96% .02 35); }
+    .feat-index { font-size: .7rem; font-weight: 600; letter-spacing: .06em; color: var(--warn); text-transform: uppercase; padding-top: 2px; min-width: 26px; }
+    .feat-body { min-width: 0; }
+    .feat-name { font-size: 1.05rem; font-weight: 650; margin-bottom: 4px; color: var(--text); }
+    .feat-provider { font-size: .8rem; color: var(--text-dim); margin-bottom: 4px; }
+    .feat-benefit { font-size: .875rem; color: var(--text-mid); }
+    .feat-benefit .hi { color: var(--warn); font-weight: 600; }
+    .feat-action { font-size: .8rem; font-weight: 600; color: var(--surface); background: var(--warn); padding: 8px 18px; text-decoration: none; transition: background .15s, transform .15s; }
+    .feat-action:hover { background: oklch(48% 0.18 35); transform: translateX(3px); }
     .foot { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border-strong); font-size: .75rem; color: var(--text-dim); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
     .share-hint { position: fixed; top: 0; left: 0; right: 0; background: rgba(0,0,0,.78); color: white; padding: 16px 20px; font-size: 14px; text-align: center; z-index: 999; display: none; }
     .share-hint.show { display: block; }
@@ -60,16 +65,17 @@
 <div class="toast" id="toast"></div>
 <div class="grid">
   <header class="masthead">
-    <div class="masthead-label">AI Platform Free Credits</div>
     <h1>AI 新用户福利合集</h1>
-    <p class="masthead-sub" id="subtitle">$subtitle</p>
+    <p class="masthead-sub">$subtitle</p>
   </header>
-  <div class="stat-row">
-    <div><div class="num">$total</div><div class="lbl">优质平台</div></div>
-    <div><div class="num">¥0</div><div class="lbl">全部免费</div></div>
-    <div><div class="num">$glm_count</div><div class="lbl">GLM-5.2</div></div>
-  </div>
   $_featured
+  <div class="stats-bar">
+    <span>共 <b>$total</b> 个平台</span>
+    <span>·</span>
+    <span><b>$glm_count</b> 个支持 GLM-5.2</span>
+    <span>·</span>
+    <span>更新于 $updated_at</span>
+  </div>
   $_deadlines
   <div class="platforms" id="platformList"></div>
   <noscript style="display:block;padding:24px;text-align:center;color:var(--text-mid);font-size:.9rem;border:1px dashed var(--border);margin-top:16px;">⚠️ 本页面需要 JavaScript 才能显示平台列表。请启用 JS 后刷新，或访问 <a href="qr.html" style="color:var(--accent)">分享版</a>。</noscript>
@@ -82,7 +88,7 @@
 var PLATFORMS = $_platforms_json;   // HTML 展示用 URL（带 UTM）
 var PLATFORMS_RAW = $_platforms_raw_json;  // 原始 URL，供 Shift+Click 复制使用
 var ID_TO_RAW = {};
-PLATFORMS_RAW.forEach(function(p){ ID_TO_RAW[p.id] = p.url; });
+(PLATFORMS_RAW||[]).forEach(function(p){ ID_TO_RAW[p.id] = p.url; });
 
 function fmtDate(s) {
   if (!s) return "";
@@ -108,17 +114,21 @@ function highlight(benefit, highlights) {
 
 function render() {
   var list = document.getElementById("platformList");
-  var names = PLATFORMS.map(p => p.name).filter((v,i,a) => a.indexOf(v) === i);
-  document.getElementById("subtitle").textContent = names.join(" · ") + " 均已支持";
   var html = "";
-  PLATFORMS.forEach(function(p, i) {
+  var idx = 0;
+  PLATFORMS.forEach(function(p) {
+    // Option A: skip featured（已在顶部独立渲染）；Option B: 加 badge 后继续渲染
+    if (!window.SHOW_FEATURED_IN_LIST && p.tier === 'hidden_gem') return;
+    idx++;
     var tags = (p.tags||[]).map(function(t){
       return '<span class="pf-tag">'+esc(t)+'</span>';
     }).join("");
     var benefit = highlight(p.benefit||"", p.benefit_highlight);
+    var featured_badge = (p.tier === 'hidden_gem' && window.SHOW_FEATURED_IN_LIST)
+      ? ' <span class="pf-badge">💎 推荐</span>' : '';
     html += '<div class="platform"><a class="platform-inner" href="'+esc(p.url)+'" data-pid="'+esc(p.id)+'" target="_blank" rel="noopener">'
-      + '<span class="pf-index">'+String(i+1).padStart(2,'0')+'</span>'
-      + '<div class="pf-body"><div class="pf-name">'+esc(p.name)+' '+tags+'</div>'
+      + '<span class="pf-index">'+String(idx).padStart(2,'0')+'</span>'
+      + '<div class="pf-body"><div class="pf-name">'+esc(p.name)+' '+featured_badge+' '+tags+'</div>'
       + '<div class="pf-provider">'+esc(p.provider||"")+'</div>'
       + '<div class="pf-benefit">🎁 '+highlight(p.benefit||'', p.benefit_highlight)+'</div></div>'
       + '<span class="pf-action pf-link">前往 →</span></a></div>';

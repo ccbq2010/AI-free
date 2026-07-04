@@ -21,6 +21,24 @@ def load_platforms() -> list[dict]:
     return json.loads(DATA_FILE.read_text(encoding="utf-8"))
 
 
+def validate_platform(p: dict, index: int) -> list[str]:
+    """返回平台数据的问题列表，空表示通过。"""
+    issues = []
+    if not p.get("id"):
+        issues.append(f"missing 'id'")
+    if not p.get("name"):
+        issues.append(f"missing 'name'")
+    if not p.get("url"):
+        issues.append(f"missing 'url'")
+    if not p.get("benefit"):
+        issues.append(f"missing 'benefit'")
+    # benefit 如果是 markdown 链接格式，简单提醒
+    benefit = p.get("benefit", "")
+    if benefit.startswith("[") or benefit.startswith("http"):
+        issues.append(f"benefit looks like raw markdown/url: {benefit[:40]}")
+    return issues
+
+
 def qr_svg_inline(url: str) -> str:
     qr = qrcode.QRCode(
         error_correction=qrcode.constants.ERROR_CORRECT_M,
@@ -56,17 +74,24 @@ def with_utm(platform: dict, utm: str) -> dict:
 
 
 def build_featured_html(featured: list[dict]) -> str:
-    """生成 top "隐藏大额" 专区的 HTML 片段。"""
+    """生成 top "隐藏大额" 专区的 HTML 片段 — 复用主卡片网格布局，通过琥珀色左边框+背景高亮区分。"""
     cards = []
-    for p in featured:
+    for i, p in enumerate(featured, 1):
         name = html.escape(p["name"])
-        benefit = html.escape(p.get("benefit", ""))
+        provider = html.escape(p.get("provider", ""))
+        benefit = p.get("benefit", "")
+        highlights = p.get("benefit_highlight", [])
+        benefit_html = _apply_highlights(benefit, highlights)
         url = html.escape(p.get("url", "#"))
         cards.append(
-            f'<a class="feat-card" href="{url}" target="_blank" rel="noopener">'
-            f'<div class="feat-name">💎 {name}</div>'
-            f'<div class="feat-benefit">{benefit}</div>'
-            f'<div class="feat-cta">立即领取 →</div>'
+            f'<a class="feat-card" href="{url}" data-pid="{p["id"]}" target="_blank" rel="noopener">'
+            f'<span class="feat-index">💎 {str(i).rjust(1)}</span>'
+            f'<div class="feat-body">'
+            f'<div class="feat-name">{name}</div>'
+            f'<div class="feat-provider">{provider}</div>'
+            f'<div class="feat-benefit">🎁 {benefit_html}</div>'
+            f'</div>'
+            f'<span class="feat-action pf-link">前往 →</span>'
             f'</a>'
         )
     return (
@@ -75,6 +100,16 @@ def build_featured_html(featured: list[dict]) -> str:
         + "\n".join(cards)
         + "\n</section>\n"
     )
+
+
+def _apply_highlights(text: str, highlights: list[str]) -> str:
+    """在文本中包裹高亮 <span class="hi">，不做 HTML 转义。"""
+    if not text or not highlights:
+        return html.escape(text or "")
+    escaped = html.escape(text)
+    for hl in (h for h in highlights if h):
+        escaped = escaped.replace(html.escape(hl), '<span class="hi">' + html.escape(hl) + "</span>")
+    return escaped
 
 
 def validate_referral_urls(platforms: list[dict]) -> list[str]:
@@ -95,10 +130,26 @@ def validate_referral_urls(platforms: list[dict]) -> list[str]:
 
 def main():
     platforms = load_platforms()
+
+    # Schema 校验 — 在构建前拦截脏数据
+    all_issues = []
+    for i, p in enumerate(platforms):
+        issues = validate_platform(p, i)
+        for issue in issues:
+            pid = p.get("id", f"index={i}")
+            all_issues.append(f"  [{pid}] {issue}")
+    if all_issues:
+        print("⚠️ Schema 校验发现问题:")
+        for line in all_issues:
+            print(line)
+        dirty_ids = {p.get("id") for p in platforms if validate_platform(p, -1)}
+        platforms = [p for p in platforms if p.get("id") not in dirty_ids]
+        print(f"   已跳过 {len(all_issues)} 个问题条目，继续构建剩余 {len(platforms)} 个")
+
     active = [p for p in platforms if p.get("status") == "active"]
     glm_count = sum(1 for p in active if any("GLM-5.2" in t for t in p.get("tags", [])))
     now = datetime.now().strftime("%Y年%m月%d日")
-    subtitle = " · ".join(p["name"] for p in active)
+    subtitle = f"免费 AI 额度 · 自动周更 · {len(active)} 个优质平台"
 
     # 推荐码一致性校验
     ref_issues = validate_referral_urls(platforms)
@@ -125,6 +176,7 @@ def main():
 
     # 头部"隐藏大额"专区（tier=hidden_gem 的平台单独提出来）
     featured = [p for p in active if p.get("tier") == "hidden_gem"]
+    featured_web = [with_utm(p, url_web_suffix) for p in featured]
 
     # Build index.html
     tpl = Template(TPL_INDEX.read_text(encoding="utf-8"))
@@ -132,7 +184,7 @@ def main():
         f'<div class="deadline-item">⏰ {d["name"]} {d["display"]}截止</div>'
         for d in deadlines
     )
-    feat_html = build_featured_html(featured) if featured else ""
+    feat_html = build_featured_html(featured_web) if featured_web else ""
     html_out = tpl.safe_substitute(
         _platforms_json=json.dumps(active_web, ensure_ascii=False, indent=2),
         _platforms_raw_json=json.dumps(active, ensure_ascii=False, indent=2),

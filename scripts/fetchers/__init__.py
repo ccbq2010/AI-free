@@ -32,3 +32,19 @@ def matches_keywords(text: str) -> list[str]:
     """返回文本命中的所有关键词。"""
     text_lower = text.lower()
     return [kw for kw in KEYWORDS if kw.lower() in text_lower]
+
+
+# RSS 等宽信息源用的「泛 AI」关键词（先捞进来，LLM 二次过滤）
+AI_TOPIC_KEYWORDS = [
+    # 中文泛 AI
+    "大模型", "人工智能", "AI", "机器学习", "深度学习",
+    "开源", "发布", "模型", "训练", "推理",
+    "LangChain", "Agent", "RAG", "多模态", "AIGC",
+    "GPT", "Claude", "Gemini", "Llama", "Qwen", "DeepSeek",
+    "LLM", "AGI", "具身智能", "智能体", "MCP",
+    # 中文产品名
+    "OpenAI", "Anthropic", "谷歌", "百度AI", "阿里AI", "腾讯AI",
+    "字节", "豆包", "文心", "通义", "盘古", "混元",
+    "智谱", "MiniGLM", "ChatGLM", "百川", "月之暗面", "Kimi",
+    "零一万物", "阶跃星辰", "DeepSeek", "面壁",
+]
