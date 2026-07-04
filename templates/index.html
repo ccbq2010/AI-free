@@ -1,99 +1,183 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI 新用户福利 · 免费领额度</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎁</text></svg>">
   <meta property="og:title" content="AI 新用户福利 · 免费领额度">
-  <meta property="og:description" content="$total 个平台免费额度合集 · $glm_count 个已支持 GLM-5.2 旗舰模型">
+  <meta property="og:description" content="$total 个顶级 AI 平台免费额度合集 · 注册即领 · 每周人工验证 · WorkBuddy / 智谱 GLM / NVIDIA / 硅基流动 ...">
   <meta property="og:type" content="website">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { -webkit-font-smoothing: antialiased; }
-    :root {
-      --bg: oklch(97.5% 0.002 250); --surface: oklch(99.5% 0 0);
-      --text: oklch(12% 0.01 250); --text-mid: oklch(38% 0.01 250); --text-dim: oklch(55% 0.01 250);
-      --border: oklch(88% 0.008 250); --border-strong: oklch(75% 0.01 250);
-      --accent: oklch(52% 0.18 250); --warn: oklch(55% 0.18 35); --warn-bg: oklch(95% 0.03 35);
-    }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+    html { --bg: oklch(97.5% 0.002 250); --surface: oklch(99.5% 0 0); --text: oklch(12% 0.01 250); --text-mid: oklch(38% 0.01 250); --text-dim: oklch(48% 0.01 250); --border: oklch(88% 0.008 250); --border-strong: oklch(75% 0.01 250); --accent: oklch(52% 0.18 250); --accent-hover: oklch(45% 0.20 250); --warn: oklch(52% 0.18 35); --warn-hover: oklch(45% 0.20 35); --warn-bg: oklch(95% 0.03 35); }
+    html[data-theme="dark"] { --bg: oklch(15% 0.003 250); --surface: oklch(19% 0.005 250); --text: oklch(92% 0.008 250); --text-mid: oklch(72% 0.01 250); --text-dim: oklch(65% 0.01 250); --border: oklch(28% 0.008 250); --border-strong: oklch(35% 0.01 250); --accent: oklch(65% 0.16 250); --accent-hover: oklch(72% 0.14 250); --warn: oklch(65% 0.16 35); --warn-hover: oklch(72% 0.14 35); --warn-bg: oklch(22% 0.03 35); }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; transition: background-color .3s, color .3s; }
     .grid { max-width: 960px; margin: 0 auto; padding: clamp(32px, 6vw, 64px) clamp(20px, 4vw, 40px); }
+    /* Masthead */
     .masthead { padding-bottom: clamp(32px, 5vw, 56px); border-bottom: 1px solid var(--border-strong); margin-bottom: clamp(24px, 4vw, 40px); }
     .masthead h1 { font-size: clamp(28px, 5vw, 44px); font-weight: 700; letter-spacing: -.03em; line-height: 1.1; }
     .masthead-sub { font-size: 1rem; color: var(--text-mid); margin-top: 12px; }
-    .stats-bar { font-size: .85rem; color: var(--text-dim); padding: 8px 0 24px; border-bottom: 1px solid var(--border); margin-bottom: 32px; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
-    .stats-bar b { color: var(--text); font-weight: 650; }
-    .deadline-box { background: var(--warn-bg); border-left: 3px solid var(--warn); padding: 8px 0; margin-bottom: 24px; }
-    .deadline-item { color: var(--warn); font-size: .85rem; font-weight: 600; padding: 4px 16px; }
-    .platforms { display: flex; flex-direction: column; gap: 1px; background: var(--border); }
-    .platform { background: var(--surface); }
-    .platform-inner { padding: clamp(18px,3vw,28px) clamp(16px,3vw,32px); display: grid; grid-template-columns: auto 1fr auto; align-items: start; gap: 20px; cursor: pointer; transition: background .15s; text-decoration: none; color: inherit; }
-    .platform-inner:hover { background: oklch(97% .005 250); }
-    .pf-index { font-size: .7rem; font-weight: 600; letter-spacing: .06em; color: var(--text-dim); text-transform: uppercase; padding-top: 2px; min-width: 20px; }
-    .pf-body { min-width: 0; }
-    .pf-name { font-size: 1.05rem; font-weight: 650; margin-bottom: 4px; }
-    .pf-provider { font-size: .8rem; color: var(--text-dim); margin-bottom: 6px; }
-    .pf-benefit { font-size: .875rem; color: var(--text-mid); }
-    .pf-benefit .hi { color: var(--warn); font-weight: 600; }
-    .pf-tag { display: inline-block; font-size: .675rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; padding: 2px 8px; border: 1px solid var(--accent); color: var(--accent); margin-left: 6px; }
-    .pf-badge { display: inline-block; font-size: .65rem; font-weight: 700; letter-spacing: .03em; padding: 2px 8px; background: var(--warn-bg); color: var(--warn); border: 1px solid var(--warn); margin-left: 4px; }
-    .pf-action { align-self: center; }
-    .pf-link { display: inline-block; padding: 8px 18px; background: var(--text); color: var(--surface); font-size: .8rem; font-weight: 600; text-decoration: none; transition: background .15s, transform .15s; }
-    .pf-link:hover { background: var(--accent); transform: translateX(3px); }
-    .featured { margin-bottom: clamp(28px,4vw,40px); }
-    .featured::after { content: ""; display: block; height: 20px; margin-top: 16px; background: linear-gradient(var(--warn-bg), var(--bg)); }
-    .feat-title { font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--warn); margin-bottom: 8px; }
-    .feat-card { display: grid; grid-template-columns: auto 1fr auto; align-items: start; gap: 20px; padding: clamp(18px,3vw,28px) clamp(16px,3vw,32px) clamp(18px,3vw,28px) calc(clamp(16px,3vw,32px) - 4px); background: var(--warn-bg); text-decoration: none; color: inherit; border-left: 4px solid var(--warn); transition: background .15s; }
-    .feat-card:hover { background: oklch(96% .02 35); }
+    .masthead-tagline { font-size: .8rem; color: var(--text-dim); margin-top: 8px; }
+    /* Stats-bar */
+    .stats-bar { font-size: .85rem; color: var(--text-dim); padding: 12px 20px; border-bottom: 1px solid var(--border); margin-bottom: 32px; display: flex; justify-content: center; align-items: center; gap: 8px; flex-wrap: wrap; background: oklch(from var(--accent) 97% .01 h / .25); }
+    .stats-bar b { color: var(--accent); font-weight: 700; }
+    .stats-bar .sep { opacity: .4; }
+    .stats-bar .badge { background: oklch(from var(--accent) 95% .06 h); color: var(--accent); padding: 2px 8px; font-size: .7rem; font-weight: 600; letter-spacing: .02em; }
+    /* Search */
+    .search-bar { margin-bottom: 24px; position: relative; }
+    .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-dim); pointer-events: none; }
+    .search-input { width: 100%; padding: 12px 36px 12px 40px; font-size: 1rem; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 8px; transition: border-color .15s, box-shadow .15s; }
+    .search-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px oklch(52% 0.18 250 / .12); }
+    .search-input::placeholder { color: var(--text-dim); }
+    .search-clear { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); display: none; background: none; border: 0; color: var(--text-dim); cursor: pointer; padding: 4px; font-size: 1.1rem; line-height: 1; }
+    .search-clear.show { display: block; }
+    /* Deadline collapsible */
+    .deadline-box { background: var(--warn-bg); border-left: 3px solid var(--warn); margin-bottom: 24px; }
+    .deadline-box summary { cursor: pointer; padding: 12px 16px; color: var(--warn); font-size: .85rem; font-weight: 600; display: flex; align-items: center; gap: 8px; user-select: none; }
+    .deadline-box summary::-webkit-details-marker { display: none; }
+    .deadline-box summary::before { content: '⏰'; }
+    .deadline-box summary::after { content: '▸'; margin-left: auto; transition: transform .2s; font-size: .7rem; }
+    .deadline-box[open] summary::after { transform: rotate(90deg); }
+    .deadline-item { color: var(--warn); font-size: .82rem; padding: 6px 16px; display: flex; justify-content: space-between; border-top: 1px solid oklch(from var(--warn) 85% .05 h / .3); }
+    .deadline-item:first-of-type { border-top: 0; }
+    .deadline-item .dl-name { font-weight: 500; }
+    .deadline-item .dl-date { opacity: .8; }
+    /* Featured */
+    .featured { margin-bottom: clamp(28px, 4vw, 40px); }
+    .featured::after { content: ""; display: block; height: 1px; margin-top: 20px; background: linear-gradient(to right, transparent, var(--border), transparent); }
+    .feat-title { font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--warn); margin-bottom: 12px; }
+    .feat-card { display: grid; grid-template-columns: auto 1fr auto; align-items: start; gap: 20px; padding: clamp(18px, 3vw, 28px) clamp(16px, 3vw, 32px) clamp(18px, 3vw, 28px) calc(clamp(16px, 3vw, 32px) - 4px); background: var(--warn-bg); text-decoration: none; color: inherit; border-left: 4px solid var(--warn); margin-bottom: 8px; transition: background .15s; }
+    .feat-card:hover { background: oklch(from var(--warn-bg) calc(l + 2%) c h); }
     .feat-index { font-size: .7rem; font-weight: 600; letter-spacing: .06em; color: var(--warn); text-transform: uppercase; padding-top: 2px; min-width: 26px; }
     .feat-body { min-width: 0; }
     .feat-name { font-size: 1.05rem; font-weight: 650; margin-bottom: 4px; color: var(--text); }
     .feat-provider { font-size: .8rem; color: var(--text-dim); margin-bottom: 4px; }
-    .feat-benefit { font-size: .875rem; color: var(--text-mid); }
+    .feat-benefit { font-size: .875rem; color: var(--text-mid); overflow-wrap: break-word; }
     .feat-benefit .hi { color: var(--warn); font-weight: 600; }
-    .feat-action { font-size: .8rem; font-weight: 600; color: var(--surface); background: var(--warn); padding: 8px 18px; text-decoration: none; transition: background .15s, transform .15s; }
-    .feat-action:hover { background: oklch(48% 0.18 35); transform: translateX(3px); }
-    .foot { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border-strong); font-size: .75rem; color: var(--text-dim); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
-    .share-hint { position: fixed; top: 0; left: 0; right: 0; background: rgba(0,0,0,.78); color: white; padding: 16px 20px; font-size: 14px; text-align: center; z-index: 999; display: none; }
+    .feat-action { font-size: .8rem; font-weight: 600; color: var(--surface); background: var(--warn); padding: 8px 18px; text-decoration: none; transition: background .15s, transform .15s; border: 0; cursor: pointer; }
+    .feat-action:hover { background: var(--warn-hover); transform: translateX(2px); }
+    /* Platform Grid */
+    .platforms { display: flex; flex-direction: column; gap: 2px; background: var(--border); }
+    .platform { background: var(--surface); }
+    .platform-inner { padding: clamp(18px, 3vw, 28px) clamp(16px, 3vw, 32px); display: grid; grid-template-columns: auto 1fr auto; align-items: start; gap: 20px; cursor: pointer; transition: background .15s; text-decoration: none; color: inherit; }
+    .platform-inner:hover { background: oklch(from var(--surface) calc(l - 1%) c h); }
+    .pf-index { font-size: .7rem; font-weight: 600; letter-spacing: .06em; color: var(--text-dim); text-transform: uppercase; padding-top: 2px; min-width: 20px; }
+    .pf-body { min-width: 0; }
+    .pf-name { font-size: 1.05rem; font-weight: 650; margin-bottom: 4px; }
+    .pf-provider { font-size: .8rem; color: var(--text-dim); margin-bottom: 6px; }
+    .pf-benefit { font-size: .875rem; color: var(--text-mid); overflow-wrap: break-word; }
+    .pf-benefit .hi { color: var(--warn); font-weight: 600; }
+    .pf-tag { display: inline-block; font-size: .675rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; padding: 2px 8px; border: 1px solid var(--accent); color: var(--accent); margin-left: 6px; }
+    .pf-action { align-self: center; }
+    .pf-link { display: inline-block; padding: 8px 18px; background: var(--text); color: var(--surface); font-size: .8rem; font-weight: 600; text-decoration: none; transition: background .15s, transform .15s, box-shadow .15s; border: 0; cursor: pointer; }
+    .pf-link:hover { background: var(--accent); transform: translateX(2px); box-shadow: 0 2px 8px oklch(0 0 0 / .12); }
+    .pf-link:visited, .platform-inner:visited .pf-link { opacity: .55; }
+    /* Empty state */
+    .empty { padding: 40px 24px; text-align: center; color: var(--text-dim); }
+    .empty-icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .empty-txt { font-size: .9rem; margin-bottom: 8px; }
+    .empty-hint { font-size: .8rem; }
+    .empty-hint kbd { background: var(--border); padding: 1px 6px; font-size: .75rem; }
+    /* Footer */
+    .foot { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border-strong); font-size: .75rem; color: var(--text-dim); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .foot a { color: var(--accent); text-decoration: none; }
+    .foot a:hover { text-decoration: underline; }
+    .theme-toggle { background: none; border: 1px solid var(--border); padding: 6px 10px; font-size: .8rem; cursor: pointer; color: var(--text); transition: background .15s, border-color .15s; display: flex; align-items: center; gap: 6px; }
+    .theme-toggle:hover { border-color: var(--accent); background: oklch(from var(--accent) 97% .02 h / .2); }
+    /* Toast & Share hint */
+    .share-hint { position: fixed; top: 0; left: 0; right: 0; background: oklch(0 0 0 / .78); color: white; padding: 16px 20px; font-size: 14px; text-align: center; z-index: 999; display: none; }
     .share-hint.show { display: block; }
-    .toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(20px); background: rgba(0,0,0,.78); color: white; padding: 10px 24px; border-radius: 20px; font-size: 14px; z-index: 1000; opacity: 0; transition: opacity .3s, transform .3s; pointer-events: none; }
+    .toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(20px); background: oklch(0 0 0 / .78); color: white; padding: 10px 24px; border-radius: 20px; font-size: 14px; z-index: 1000; opacity: 0; transition: opacity .3s, transform .3s; pointer-events: none; }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    /* Mobile */
+    @media (max-width: 560px) {
+      .platform-inner, .feat-card { grid-template-columns: 1fr; gap: 8px; padding: 16px; }
+      .pf-action, .feat-action { justify-self: start; }
+      .pf-index, .feat-index { display: none; }
+      .stats-bar { flex-direction: column; gap: 4px; text-align: center; }
+      .stats-bar .sep { display: none; }
+      .pf-link, .feat-action { padding: 10px 20px; }
+    }
+    html[data-theme="dark"] .share-hint { background: oklch(100% 0 0 / .15); backdrop-filter: blur(8px); }
+    html[data-theme="dark"] .toast { background: oklch(100% 0 0 / .15); backdrop-filter: blur(8px); }
+    html[data-theme="dark"] .feat-card:hover { background: oklch(from var(--warn-bg) calc(l + 4%) c h); }
+    html[data-theme="dark"] .platform-inner:hover { background: oklch(from var(--surface) calc(l + 3%) c h); }
+    html[data-theme="dark"] .pf-link:hover { box-shadow: 0 2px 8px oklch(0 0 0 / .4); }
+    html[data-theme="dark"] .stats-bar { background: oklch(from var(--accent) 20% .02 h / .3); }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; }
+    }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   </style>
 </head>
 <body>
-<div class="share-hint" id="shareHint">点击右上角 分享 → 截屏或复制链接给朋友 🎉</div>
+<div class="share-hint" id="shareHint">📤 点击右上角 → 转发给朋友</div>
 <div class="toast" id="toast"></div>
 <div class="grid">
   <header class="masthead">
     <h1>AI 新用户福利合集</h1>
     <p class="masthead-sub">$subtitle</p>
+    <p class="masthead-tagline">📌 人工验证可用 · 已持续维护 6 个月</p>
   </header>
-  $_featured
+  <div class="search-bar">
+    <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="search" class="search-input" id="search" placeholder="搜索平台、标签或关键词..." aria-label="搜索平台">
+    <button class="search-clear" id="searchClear" aria-label="清除搜索">×</button>
+  </div>
+  <div id="featuredSection"></div>
   <div class="stats-bar">
-    <span>共 <b>$total</b> 个平台</span>
-    <span>·</span>
-    <span><b>$glm_count</b> 个支持 GLM-5.2</span>
-    <span>·</span>
+    <span>共 <b id="totalCount">$total</b> 个平台</span>
+    <span class="sep">·</span>
+    <span class="badge">$glm_count 个支持 GLM-5.2</span>
+    <span class="sep">·</span>
     <span>更新于 $updated_at</span>
   </div>
   $_deadlines
-  <div class="platforms" id="platformList"></div>
+  <main class="platforms" id="platformList" aria-label="平台列表">
+    <h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">所有平台</h2>
+  </main>
   <noscript style="display:block;padding:24px;text-align:center;color:var(--text-mid);font-size:.9rem;border:1px dashed var(--border);margin-top:16px;">⚠️ 本页面需要 JavaScript 才能显示平台列表。请启用 JS 后刷新，或访问 <a href="qr.html" style="color:var(--accent)">分享版</a>。</noscript>
   <footer class="foot">
-    <span>📌 本页更新于 $updated_at · PR 补充 via <a href="https://github.com/ccbq2010/AI-free" style="color:var(--accent)">GitHub</a></span>
-    <span>🔗 <a href="qr.html" style="color:var(--accent)">分享版</a> · <a href="feed.xml" style="color:var(--accent)">RSS</a> · <a href="api.json" style="color:var(--accent)">API</a></span>
+    <span>📌 本页更新于 $updated_at · PR via <a href="https://github.com/ccbq2010/AI-free">GitHub</a></span>
+    <span style="display:flex;align-items:center;gap:12px;">
+      <a href="qr.html" aria-label="分享版">分享版</a> · <a href="feed.xml" aria-label="RSS 订阅">RSS</a> · <a href="api.json" aria-label="JSON API">API</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换暗色模式">
+        <span id="themeIcon">🌙</span><span id="themeText">暗色</span>
+      </button>
+    </span>
   </footer>
 </div>
 <script>
-var PLATFORMS = $_platforms_json;   // HTML 展示用 URL（带 UTM）
-var PLATFORMS_RAW = $_platforms_raw_json;  // 原始 URL，供 Shift+Click 复制使用
-var ID_TO_RAW = {};
-(PLATFORMS_RAW||[]).forEach(function(p){ ID_TO_RAW[p.id] = p.url; });
+(function(){
+var PLATFORMS_RAW = $_platforms_raw_json;
+var UTM = 'utm_source=ai-free&utm_medium=web';
+
+// Theme
+function getTheme(){ try { return localStorage.getItem('ai-free-theme') || 'light'; } catch(e){ return 'light'; } }
+function setTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  try { localStorage.setItem('ai-free-theme', t); } catch(e){}
+  var icon = document.getElementById('themeIcon');
+  var text = document.getElementById('themeText');
+  if (t === 'dark') { icon.textContent = '☀️'; text.textContent = '亮色'; }
+  else { icon.textContent = '🌙'; text.textContent = '暗色'; }
+}
+setTheme(getTheme());
+document.getElementById('themeToggle').addEventListener('click', function(){
+  setTheme(getTheme() === 'dark' ? 'light' : 'dark');
+});
+
+function withUTM(url) {
+  if (!url) return '';
+  var sep = url.includes('?') ? '&' : '?';
+  return url + sep + UTM;
+}
 
 function fmtDate(s) {
   if (!s) return "";
   var d = new Date(s);
-  if (isNaN(d.getTime())) return s;   // 非 ISO 日期直接展示原文
+  if (isNaN(d.getTime())) return s;
   return d.getFullYear() + "年" + String(d.getMonth()+1).padStart(2,'0') + "月" + String(d.getDate()).padStart(2,'0') + "日";
 }
 
@@ -112,62 +196,105 @@ function highlight(benefit, highlights) {
   return escaped;
 }
 
-function render() {
-  var list = document.getElementById("platformList");
-  var html = "";
-  var idx = 0;
-  PLATFORMS.forEach(function(p) {
-    // Option A: skip featured（已在顶部独立渲染）；Option B: 加 badge 后继续渲染
-    if (!window.SHOW_FEATURED_IN_LIST && p.tier === 'hidden_gem') return;
-    idx++;
-    var tags = (p.tags||[]).map(function(t){
-      return '<span class="pf-tag">'+esc(t)+'</span>';
-    }).join("");
-    var benefit = highlight(p.benefit||"", p.benefit_highlight);
-    var featured_badge = (p.tier === 'hidden_gem' && window.SHOW_FEATURED_IN_LIST)
-      ? ' <span class="pf-badge">💎 推荐</span>' : '';
-    html += '<div class="platform"><a class="platform-inner" href="'+esc(p.url)+'" data-pid="'+esc(p.id)+'" target="_blank" rel="noopener">'
-      + '<span class="pf-index">'+String(idx).padStart(2,'0')+'</span>'
-      + '<div class="pf-body"><div class="pf-name">'+esc(p.name)+' '+featured_badge+' '+tags+'</div>'
-      + '<div class="pf-provider">'+esc(p.provider||"")+'</div>'
-      + '<div class="pf-benefit">🎁 '+highlight(p.benefit||'', p.benefit_highlight)+'</div></div>'
-      + '<span class="pf-action pf-link">前往 →</span></a></div>';
+var ALL = PLATFORMS_RAW.filter(function(p){ return p.status === 'active'; });
+var FEATURED = ALL.filter(function(p){ return p.tier === 'hidden_gem'; });
+var NORMAL = ALL.filter(function(p){ return p.tier !== 'hidden_gem'; });
+
+function cardHtml(p, idx) {
+  var tags = (p.tags||[]).map(function(t){ return '<span class="pf-tag">'+esc(t)+'</span>'; }).join('');
+  var benefit = highlight(p.benefit||'', p.benefit_highlight);
+  return '<div class="platform"><a class="platform-inner" href="'+esc(withUTM(p.url))+'" data-pid="'+esc(p.id)+'" target="_blank" rel="noopener" aria-label="'+esc(p.name)+' — 打开平台">'
+    + '<span class="pf-index">'+String(idx).padStart(2,'0')+'</span>'
+    + '<div class="pf-body"><div class="pf-name">'+esc(p.name)+' '+tags+'</div>'
+    + '<div class="pf-provider">'+esc(p.provider||'')+'</div>'
+    + '<div class="pf-benefit">🎁 '+benefit+'</div></div>'
+    + '<span class="pf-action pf-link">前往 →</span></a></div>';
+}
+
+function featuredHtml(list) {
+  if (!list.length) return '';
+  var cards = '<section class="featured" aria-label="推荐平台"><div class="feat-title">💎 隐藏大额 · 新人优先</div>';
+  list.forEach(function(p, i) {
+    var benefit = highlight(p.benefit||'', p.benefit_highlight);
+    cards += '<a class="feat-card" href="'+esc(withUTM(p.url))+'" data-pid="'+esc(p.id)+'" target="_blank" rel="noopener" aria-label="'+esc(p.name)+' — 推荐平台">'
+      + '<span class="feat-index">💎 '+(i+1)+'</span>'
+      + '<div class="feat-body"><div class="feat-name">'+esc(p.name)+'</div>'
+      + '<div class="feat-provider">'+esc(p.provider||'')+'</div>'
+      + '<div class="feat-benefit">🎁 '+benefit+'</div></div>'
+      + '<span class="feat-action">前往 →</span></a>';
   });
+  return cards + '</section>';
+}
+
+function renderFeatured() {
+  document.getElementById('featuredSection').innerHTML = featuredHtml(FEATURED);
+}
+
+function renderList(filter) {
+  document.getElementById('totalCount').textContent = NORMAL.length;
+  var q = (filter||'').toLowerCase().trim();
+  var filtered = NORMAL.filter(function(p){
+    if (!q) return true;
+    var hay = (p.name+' '+(p.provider||'')+' '+(p.benefit||'')+' '+(p.tags||[]).join(' ')).toLowerCase();
+    return hay.includes(q);
+  });
+  var list = document.getElementById('platformList');
+  if (!filtered.length) {
+    list.innerHTML = '<div class="empty"><div class="empty-icon">🔍</div><div class="empty-txt">没有找到匹配的平台</div><div class="empty-hint">尝试 <kbd>GLM</kbd> <kbd>免费</kbd> <kbd>学生</kbd></div></div>';
+    return;
+  }
+  var html = '';
+  filtered.forEach(function(p, i) { html += cardHtml(p, i+1); });
   list.innerHTML = html;
 }
 
-render();
+renderFeatured();
+renderList();
 
-var toast = document.getElementById("toast");
+// Search
+var searchEl = document.getElementById('search');
+var clearEl = document.getElementById('searchClear');
+searchEl.addEventListener('input', function(e){
+  renderList(e.target.value);
+  clearEl.classList.toggle('show', e.target.value.length > 0);
+});
+clearEl.addEventListener('click', function(){
+  searchEl.value = '';
+  clearEl.classList.remove('show');
+  renderList('');
+  searchEl.focus();
+});
+
+// Toast
+var toast = document.getElementById('toast');
 var toastTimer;
 function showToast(msg) {
   toast.textContent = msg;
-  toast.classList.add("show");
+  toast.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=>toast.classList.remove("show"), 2000);
+  toastTimer = setTimeout(()=>toast.classList.remove('show'), 2000);
 }
 
-// Share hint for mobile
+// Share hint mobile
 if (/Mobile|Android|iPhone/i.test(navigator.userAgent)) {
-  document.addEventListener("scroll", function() {
-    if (window.scrollY > 200) {
-      document.getElementById("shareHint").classList.add("show");
-    }
+  document.addEventListener('scroll', function() {
+    if (window.scrollY > 200) { document.getElementById('shareHint').classList.add('show'); }
   }, { once: true });
 }
 
-// Shift+Click 复制纯净链接（无 UTM），便于分享
-document.addEventListener("click", function(e) {
-  var card = e.target.closest(".platform-inner");
+// Shift+Click 复制纯净链接
+document.addEventListener('click', function(e) {
+  var card = e.target.closest('[data-pid]');
   if (card && e.shiftKey) {
-    var id = card.dataset.pid;
-    var url = (id && ID_TO_RAW[id]) || card.getAttribute("href");
     e.preventDefault();
+    var raw = card.dataset.pid && PLATFORMS_RAW.filter(function(p){return p.id===card.dataset.pid;})[0];
+    var url = (raw && raw.url) || card.getAttribute('href').replace(/[?&]utm_[^&]+/g, '').replace(/[?&]$/, '');
     navigator.clipboard.writeText(url).then(function(){
-      showToast("纯净链接已复制: " + url);
+      showToast('纯净链接已复制: ' + url);
     });
   }
 });
+})();
 </script>
 </body>
 </html>

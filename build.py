@@ -149,7 +149,7 @@ def main():
     active = [p for p in platforms if p.get("status") == "active"]
     glm_count = sum(1 for p in active if any("GLM-5.2" in t for t in p.get("tags", [])))
     now = datetime.now().strftime("%Y年%m月%d日")
-    subtitle = f"免费 AI 额度 · 自动周更 · {len(active)} 个优质平台"
+    subtitle = f"{len(active)} 个顶级 AI 平台免费额度 · 注册即领 · 每周验证更新"
 
     # 推荐码一致性校验
     ref_issues = validate_referral_urls(platforms)
@@ -158,42 +158,43 @@ def main():
         for line in ref_issues:
             print(line)
 
-    # 为 HTML 输出版本追加 UTM 参数，用于流量来源追踪
-    url_web_suffix = "utm_source=ai-free&utm_medium=web"
+    # UTM suffixes for QR and RSS
     url_qr_suffix = "utm_source=ai-free&utm_medium=qr"
-    active_web = [with_utm(p, url_web_suffix) for p in active]
     active_qr = [with_utm(p, url_qr_suffix) for p in active]
-
-    deadlines = [
-        {"name": p["name"], "display": fmt_date(p["deadline"])}
-        for p in active if p.get("deadline")
-    ]
 
     # Pre-generate QR SVGs
     qr_data = {}
     for p in active_qr:
         qr_data[p["id"]] = qr_svg_inline(p["url"])
 
-    # 头部"隐藏大额"专区（tier=hidden_gem 的平台单独提出来）
-    featured = [p for p in active if p.get("tier") == "hidden_gem"]
-    featured_web = [with_utm(p, url_web_suffix) for p in featured]
+    # Deadlines 折叠（<details> + <summary>）
+    deadline_items = [
+        (p["name"], fmt_date(p["deadline"]))
+        for p in active if p.get("deadline")
+    ]
+    if deadline_items:
+        items_html = "".join(
+            f'<div class="deadline-item"><span class="dl-name">{name}</span>'
+            f'<span class="dl-date">{date}</span></div>'
+            for name, date in deadline_items
+        )
+        deadlines_html = (
+            f'<details class="deadline-box"><summary>部分福利有截止时间 — 展开查看 ({len(deadline_items)} 项)</summary>'
+            f'{items_html}</details>'
+        )
+    else:
+        deadlines_html = ""
 
-    # Build index.html
+    # Build index.html — featured 由 JS 从 PLATFORMS_RAW 中按 tier 渲染
     tpl = Template(TPL_INDEX.read_text(encoding="utf-8"))
-    dl_html = "".join(
-        f'<div class="deadline-item">⏰ {d["name"]} {d["display"]}截止</div>'
-        for d in deadlines
-    )
-    feat_html = build_featured_html(featured_web) if featured_web else ""
     html_out = tpl.safe_substitute(
-        _platforms_json=json.dumps(active_web, ensure_ascii=False, indent=2),
         _platforms_raw_json=json.dumps(active, ensure_ascii=False, indent=2),
         total=str(len(active)),
         glm_count=str(glm_count),
         updated_at=now,
         subtitle=subtitle,
-        _deadlines=dl_html,
-        _featured=feat_html,
+        _deadlines=deadlines_html,
+        _featured="",  # JS-driven
     )
     (ROOT / "index.html").write_text(html_out, encoding="utf-8")
 

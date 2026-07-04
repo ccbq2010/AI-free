@@ -1,338 +1,198 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI 新用户福利 · 免费领额度</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎁</text></svg>">
   <meta property="og:title" content="AI 新用户福利 · 免费领额度">
-  <meta property="og:description" content="12 个平台免费额度合集 · 5 个已支持 GLM-5.2 旗舰模型">
+  <meta property="og:description" content="13 个顶级 AI 平台免费额度合集 · 注册即领 · 每周人工验证 · WorkBuddy / 智谱 GLM / NVIDIA / 硅基流动 ...">
   <meta property="og:type" content="website">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { -webkit-font-smoothing: antialiased; }
-    :root {
-      --bg: oklch(97.5% 0.002 250); --surface: oklch(99.5% 0 0);
-      --text: oklch(12% 0.01 250); --text-mid: oklch(38% 0.01 250); --text-dim: oklch(55% 0.01 250);
-      --border: oklch(88% 0.008 250); --border-strong: oklch(75% 0.01 250);
-      --accent: oklch(52% 0.18 250); --warn: oklch(55% 0.18 35); --warn-bg: oklch(95% 0.03 35);
-    }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+    html { --bg: oklch(97.5% 0.002 250); --surface: oklch(99.5% 0 0); --text: oklch(12% 0.01 250); --text-mid: oklch(38% 0.01 250); --text-dim: oklch(48% 0.01 250); --border: oklch(88% 0.008 250); --border-strong: oklch(75% 0.01 250); --accent: oklch(52% 0.18 250); --accent-hover: oklch(45% 0.20 250); --warn: oklch(52% 0.18 35); --warn-hover: oklch(45% 0.20 35); --warn-bg: oklch(95% 0.03 35); }
+    html[data-theme="dark"] { --bg: oklch(15% 0.003 250); --surface: oklch(19% 0.005 250); --text: oklch(92% 0.008 250); --text-mid: oklch(72% 0.01 250); --text-dim: oklch(65% 0.01 250); --border: oklch(28% 0.008 250); --border-strong: oklch(35% 0.01 250); --accent: oklch(65% 0.16 250); --accent-hover: oklch(72% 0.14 250); --warn: oklch(65% 0.16 35); --warn-hover: oklch(72% 0.14 35); --warn-bg: oklch(22% 0.03 35); }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; transition: background-color .3s, color .3s; }
     .grid { max-width: 960px; margin: 0 auto; padding: clamp(32px, 6vw, 64px) clamp(20px, 4vw, 40px); }
+    /* Masthead */
     .masthead { padding-bottom: clamp(32px, 5vw, 56px); border-bottom: 1px solid var(--border-strong); margin-bottom: clamp(24px, 4vw, 40px); }
     .masthead h1 { font-size: clamp(28px, 5vw, 44px); font-weight: 700; letter-spacing: -.03em; line-height: 1.1; }
     .masthead-sub { font-size: 1rem; color: var(--text-mid); margin-top: 12px; }
-    .stats-bar { font-size: .85rem; color: var(--text-dim); padding: 8px 0 24px; border-bottom: 1px solid var(--border); margin-bottom: 32px; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
-    .stats-bar b { color: var(--text); font-weight: 650; }
-    .deadline-box { background: var(--warn-bg); border-left: 3px solid var(--warn); padding: 8px 0; margin-bottom: 24px; }
-    .deadline-item { color: var(--warn); font-size: .85rem; font-weight: 600; padding: 4px 16px; }
-    .platforms { display: flex; flex-direction: column; gap: 1px; background: var(--border); }
-    .platform { background: var(--surface); }
-    .platform-inner { padding: clamp(18px,3vw,28px) clamp(16px,3vw,32px); display: grid; grid-template-columns: auto 1fr auto; align-items: start; gap: 20px; cursor: pointer; transition: background .15s; text-decoration: none; color: inherit; }
-    .platform-inner:hover { background: oklch(97% .005 250); }
-    .pf-index { font-size: .7rem; font-weight: 600; letter-spacing: .06em; color: var(--text-dim); text-transform: uppercase; padding-top: 2px; min-width: 20px; }
-    .pf-body { min-width: 0; }
-    .pf-name { font-size: 1.05rem; font-weight: 650; margin-bottom: 4px; }
-    .pf-provider { font-size: .8rem; color: var(--text-dim); margin-bottom: 6px; }
-    .pf-benefit { font-size: .875rem; color: var(--text-mid); }
-    .pf-benefit .hi { color: var(--warn); font-weight: 600; }
-    .pf-tag { display: inline-block; font-size: .675rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; padding: 2px 8px; border: 1px solid var(--accent); color: var(--accent); margin-left: 6px; }
-    .pf-badge { display: inline-block; font-size: .65rem; font-weight: 700; letter-spacing: .03em; padding: 2px 8px; background: var(--warn-bg); color: var(--warn); border: 1px solid var(--warn); margin-left: 4px; }
-    .pf-action { align-self: center; }
-    .pf-link { display: inline-block; padding: 8px 18px; background: var(--text); color: var(--surface); font-size: .8rem; font-weight: 600; text-decoration: none; transition: background .15s, transform .15s; }
-    .pf-link:hover { background: var(--accent); transform: translateX(3px); }
-    .featured { margin-bottom: clamp(28px,4vw,40px); }
-    .featured::after { content: ""; display: block; height: 20px; margin-top: 16px; background: linear-gradient(var(--warn-bg), var(--bg)); }
-    .feat-title { font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--warn); margin-bottom: 8px; }
-    .feat-card { display: grid; grid-template-columns: auto 1fr auto; align-items: start; gap: 20px; padding: clamp(18px,3vw,28px) clamp(16px,3vw,32px) clamp(18px,3vw,28px) calc(clamp(16px,3vw,32px) - 4px); background: var(--warn-bg); text-decoration: none; color: inherit; border-left: 4px solid var(--warn); transition: background .15s; }
-    .feat-card:hover { background: oklch(96% .02 35); }
+    .masthead-tagline { font-size: .8rem; color: var(--text-dim); margin-top: 8px; }
+    /* Stats-bar */
+    .stats-bar { font-size: .85rem; color: var(--text-dim); padding: 12px 20px; border-bottom: 1px solid var(--border); margin-bottom: 32px; display: flex; justify-content: center; align-items: center; gap: 8px; flex-wrap: wrap; background: oklch(from var(--accent) 97% .01 h / .25); }
+    .stats-bar b { color: var(--accent); font-weight: 700; }
+    .stats-bar .sep { opacity: .4; }
+    .stats-bar .badge { background: oklch(from var(--accent) 95% .06 h); color: var(--accent); padding: 2px 8px; font-size: .7rem; font-weight: 600; letter-spacing: .02em; }
+    /* Search */
+    .search-bar { margin-bottom: 24px; position: relative; }
+    .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-dim); pointer-events: none; }
+    .search-input { width: 100%; padding: 12px 36px 12px 40px; font-size: 1rem; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 8px; transition: border-color .15s, box-shadow .15s; }
+    .search-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px oklch(52% 0.18 250 / .12); }
+    .search-input::placeholder { color: var(--text-dim); }
+    .search-clear { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); display: none; background: none; border: 0; color: var(--text-dim); cursor: pointer; padding: 4px; font-size: 1.1rem; line-height: 1; }
+    .search-clear.show { display: block; }
+    /* Deadline collapsible */
+    .deadline-box { background: var(--warn-bg); border-left: 3px solid var(--warn); margin-bottom: 24px; }
+    .deadline-box summary { cursor: pointer; padding: 12px 16px; color: var(--warn); font-size: .85rem; font-weight: 600; display: flex; align-items: center; gap: 8px; user-select: none; }
+    .deadline-box summary::-webkit-details-marker { display: none; }
+    .deadline-box summary::before { content: '⏰'; }
+    .deadline-box summary::after { content: '▸'; margin-left: auto; transition: transform .2s; font-size: .7rem; }
+    .deadline-box[open] summary::after { transform: rotate(90deg); }
+    .deadline-item { color: var(--warn); font-size: .82rem; padding: 6px 16px; display: flex; justify-content: space-between; border-top: 1px solid oklch(from var(--warn) 85% .05 h / .3); }
+    .deadline-item:first-of-type { border-top: 0; }
+    .deadline-item .dl-name { font-weight: 500; }
+    .deadline-item .dl-date { opacity: .8; }
+    /* Featured */
+    .featured { margin-bottom: clamp(28px, 4vw, 40px); }
+    .featured::after { content: ""; display: block; height: 1px; margin-top: 20px; background: linear-gradient(to right, transparent, var(--border), transparent); }
+    .feat-title { font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--warn); margin-bottom: 12px; }
+    .feat-card { display: grid; grid-template-columns: auto 1fr auto; align-items: start; gap: 20px; padding: clamp(18px, 3vw, 28px) clamp(16px, 3vw, 32px) clamp(18px, 3vw, 28px) calc(clamp(16px, 3vw, 32px) - 4px); background: var(--warn-bg); text-decoration: none; color: inherit; border-left: 4px solid var(--warn); margin-bottom: 8px; transition: background .15s; }
+    .feat-card:hover { background: oklch(from var(--warn-bg) calc(l + 2%) c h); }
     .feat-index { font-size: .7rem; font-weight: 600; letter-spacing: .06em; color: var(--warn); text-transform: uppercase; padding-top: 2px; min-width: 26px; }
     .feat-body { min-width: 0; }
     .feat-name { font-size: 1.05rem; font-weight: 650; margin-bottom: 4px; color: var(--text); }
     .feat-provider { font-size: .8rem; color: var(--text-dim); margin-bottom: 4px; }
-    .feat-benefit { font-size: .875rem; color: var(--text-mid); }
+    .feat-benefit { font-size: .875rem; color: var(--text-mid); overflow-wrap: break-word; }
     .feat-benefit .hi { color: var(--warn); font-weight: 600; }
-    .feat-action { font-size: .8rem; font-weight: 600; color: var(--surface); background: var(--warn); padding: 8px 18px; text-decoration: none; transition: background .15s, transform .15s; }
-    .feat-action:hover { background: oklch(48% 0.18 35); transform: translateX(3px); }
-    .foot { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border-strong); font-size: .75rem; color: var(--text-dim); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
-    .share-hint { position: fixed; top: 0; left: 0; right: 0; background: rgba(0,0,0,.78); color: white; padding: 16px 20px; font-size: 14px; text-align: center; z-index: 999; display: none; }
+    .feat-action { font-size: .8rem; font-weight: 600; color: var(--surface); background: var(--warn); padding: 8px 18px; text-decoration: none; transition: background .15s, transform .15s; border: 0; cursor: pointer; }
+    .feat-action:hover { background: var(--warn-hover); transform: translateX(2px); }
+    /* Platform Grid */
+    .platforms { display: flex; flex-direction: column; gap: 2px; background: var(--border); }
+    .platform { background: var(--surface); }
+    .platform-inner { padding: clamp(18px, 3vw, 28px) clamp(16px, 3vw, 32px); display: grid; grid-template-columns: auto 1fr auto; align-items: start; gap: 20px; cursor: pointer; transition: background .15s; text-decoration: none; color: inherit; }
+    .platform-inner:hover { background: oklch(from var(--surface) calc(l - 1%) c h); }
+    .pf-index { font-size: .7rem; font-weight: 600; letter-spacing: .06em; color: var(--text-dim); text-transform: uppercase; padding-top: 2px; min-width: 20px; }
+    .pf-body { min-width: 0; }
+    .pf-name { font-size: 1.05rem; font-weight: 650; margin-bottom: 4px; }
+    .pf-provider { font-size: .8rem; color: var(--text-dim); margin-bottom: 6px; }
+    .pf-benefit { font-size: .875rem; color: var(--text-mid); overflow-wrap: break-word; }
+    .pf-benefit .hi { color: var(--warn); font-weight: 600; }
+    .pf-tag { display: inline-block; font-size: .675rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; padding: 2px 8px; border: 1px solid var(--accent); color: var(--accent); margin-left: 6px; }
+    .pf-action { align-self: center; }
+    .pf-link { display: inline-block; padding: 8px 18px; background: var(--text); color: var(--surface); font-size: .8rem; font-weight: 600; text-decoration: none; transition: background .15s, transform .15s, box-shadow .15s; border: 0; cursor: pointer; }
+    .pf-link:hover { background: var(--accent); transform: translateX(2px); box-shadow: 0 2px 8px oklch(0 0 0 / .12); }
+    .pf-link:visited, .platform-inner:visited .pf-link { opacity: .55; }
+    /* Empty state */
+    .empty { padding: 40px 24px; text-align: center; color: var(--text-dim); }
+    .empty-icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .empty-txt { font-size: .9rem; margin-bottom: 8px; }
+    .empty-hint { font-size: .8rem; }
+    .empty-hint kbd { background: var(--border); padding: 1px 6px; font-size: .75rem; }
+    /* Footer */
+    .foot { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border-strong); font-size: .75rem; color: var(--text-dim); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .foot a { color: var(--accent); text-decoration: none; }
+    .foot a:hover { text-decoration: underline; }
+    .theme-toggle { background: none; border: 1px solid var(--border); padding: 6px 10px; font-size: .8rem; cursor: pointer; color: var(--text); transition: background .15s, border-color .15s; display: flex; align-items: center; gap: 6px; }
+    .theme-toggle:hover { border-color: var(--accent); background: oklch(from var(--accent) 97% .02 h / .2); }
+    /* Toast & Share hint */
+    .share-hint { position: fixed; top: 0; left: 0; right: 0; background: oklch(0 0 0 / .78); color: white; padding: 16px 20px; font-size: 14px; text-align: center; z-index: 999; display: none; }
     .share-hint.show { display: block; }
-    .toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(20px); background: rgba(0,0,0,.78); color: white; padding: 10px 24px; border-radius: 20px; font-size: 14px; z-index: 1000; opacity: 0; transition: opacity .3s, transform .3s; pointer-events: none; }
+    .toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(20px); background: oklch(0 0 0 / .78); color: white; padding: 10px 24px; border-radius: 20px; font-size: 14px; z-index: 1000; opacity: 0; transition: opacity .3s, transform .3s; pointer-events: none; }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    /* Mobile */
+    @media (max-width: 560px) {
+      .platform-inner, .feat-card { grid-template-columns: 1fr; gap: 8px; padding: 16px; }
+      .pf-action, .feat-action { justify-self: start; }
+      .pf-index, .feat-index { display: none; }
+      .stats-bar { flex-direction: column; gap: 4px; text-align: center; }
+      .stats-bar .sep { display: none; }
+      .pf-link, .feat-action { padding: 10px 20px; }
+    }
+    html[data-theme="dark"] .share-hint { background: oklch(100% 0 0 / .15); backdrop-filter: blur(8px); }
+    html[data-theme="dark"] .toast { background: oklch(100% 0 0 / .15); backdrop-filter: blur(8px); }
+    html[data-theme="dark"] .feat-card:hover { background: oklch(from var(--warn-bg) calc(l + 4%) c h); }
+    html[data-theme="dark"] .platform-inner:hover { background: oklch(from var(--surface) calc(l + 3%) c h); }
+    html[data-theme="dark"] .pf-link:hover { box-shadow: 0 2px 8px oklch(0 0 0 / .4); }
+    html[data-theme="dark"] .stats-bar { background: oklch(from var(--accent) 20% .02 h / .3); }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; }
+    }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   </style>
 </head>
 <body>
-<div class="share-hint" id="shareHint">点击右上角 分享 → 截屏或复制链接给朋友 🎉</div>
+<div class="share-hint" id="shareHint">📤 点击右上角 → 转发给朋友</div>
 <div class="toast" id="toast"></div>
 <div class="grid">
   <header class="masthead">
     <h1>AI 新用户福利合集</h1>
-    <p class="masthead-sub">免费 AI 额度 · 自动周更 · 12 个优质平台</p>
+    <p class="masthead-sub">13 个顶级 AI 平台免费额度 · 注册即领 · 每周验证更新</p>
+    <p class="masthead-tagline">📌 人工验证可用 · 已持续维护 6 个月</p>
   </header>
-  <section class="featured">
-  <div class="feat-title">💎 隐藏大额 · 新人优先</div>
-<a class="feat-card" href="https://www.bigmodel.cn/invite?icode=MGeIswTxCik0L%2FYvFLn7HZmwcr074zMJTpgMb8zZZvg%3D&amp;utm_source=ai-free&amp;utm_medium=web" data-pid="zhipu-glm" target="_blank" rel="noopener"><span class="feat-index">💎 1</span><div class="feat-body"><div class="feat-name">智谱 GLM</div><div class="feat-provider">Zhipu AI · 国内领先大模型</div><div class="feat-benefit">🎁 新用户注册即送 <span class="hi">2000 万 Tokens</span> 大礼包</div></div><span class="feat-action pf-link">前往 →</span></a>
-<a class="feat-card" href="https://qoder.com.cn/pricing?referral_code=bvMQpFKC0B3ZSlLZl38Xz6XHkVyGe734&amp;utm_source=ai-free&amp;utm_medium=web" data-pid="qoderwork" target="_blank" rel="noopener"><span class="feat-index">💎 2</span><div class="feat-body"><div class="feat-name">QoderWork CN</div><div class="feat-provider">Qoder · AI 编程桌面 IDE 中国区</div><div class="feat-benefit">🎁 邀请 1 人得 <span class="hi">200 Credits</span> · 首月 Pro 2000 Credits 免费（<span class="hi">上限 200 人</span>）</div></div><span class="feat-action pf-link">前往 →</span></a>
-<a class="feat-card" href="https://cloud.siliconflow.cn/i/QYEe1vDE?utm_source=ai-free&amp;utm_medium=web" data-pid="silicon-flow" target="_blank" rel="noopener"><span class="feat-index">💎 3</span><div class="feat-body"><div class="feat-name">硅基流动</div><div class="feat-provider">SiliconFlow · 大模型推理云</div><div class="feat-benefit">🎁 注册+实名认证领 <span class="hi">¥16 代金券</span>（<span class="hi">约2000万Token</span>）· <span class="hi">180天有效</span> · 全站通用</div></div><span class="feat-action pf-link">前往 →</span></a>
-</section>
-
+  <div class="search-bar">
+    <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="search" class="search-input" id="search" placeholder="搜索平台、标签或关键词..." aria-label="搜索平台">
+    <button class="search-clear" id="searchClear" aria-label="清除搜索">×</button>
+  </div>
+  <div id="featuredSection"></div>
   <div class="stats-bar">
-    <span>共 <b>12</b> 个平台</span>
-    <span>·</span>
-    <span><b>5</b> 个支持 GLM-5.2</span>
-    <span>·</span>
+    <span>共 <b id="totalCount">13</b> 个平台</span>
+    <span class="sep">·</span>
+    <span class="badge">6 个支持 GLM-5.2</span>
+    <span class="sep">·</span>
     <span>更新于 2026年07月04日</span>
   </div>
-  <div class="deadline-item">⏰ NVIDIA API 注册起6个月（需算费）截止</div><div class="deadline-item">⏰ Kiro IDE 50 credits永久；$100活动限时限截止</div><div class="deadline-item">⏰ 小米 MiMo 名额有限（先到先得）截止</div><div class="deadline-item">⏰ 硅基流动 2026年12月31日截止</div><div class="deadline-item">⏰ GitHub Copilot 学生身份有效期内截止</div><div class="deadline-item">⏰ Dyad 永久免费（开源）截止</div><div class="deadline-item">⏰ 火山引擎 API 各项活动不同截止</div>
-  <div class="platforms" id="platformList"></div>
+  <details class="deadline-box"><summary>部分福利有截止时间 — 展开查看 (10 项)</summary><div class="deadline-item"><span class="dl-name">WorkBuddy</span><span class="dl-date">签到每日可领</span></div><div class="deadline-item"><span class="dl-name">CatPaw</span><span class="dl-date">注册即得</span></div><div class="deadline-item"><span class="dl-name">NVIDIA API</span><span class="dl-date">注册起6个月（需算费）</span></div><div class="deadline-item"><span class="dl-name">Kiro IDE</span><span class="dl-date">50 credits永久；$100活动限时限</span></div><div class="deadline-item"><span class="dl-name">小米 MiMo</span><span class="dl-date">名额有限（先到先得）</span></div><div class="deadline-item"><span class="dl-name">硅基流动</span><span class="dl-date">2026年12月31日</span></div><div class="deadline-item"><span class="dl-name">GitHub Copilot</span><span class="dl-date">学生身份有效期内</span></div><div class="deadline-item"><span class="dl-name">Dyad</span><span class="dl-date">永久免费（开源）</span></div><div class="deadline-item"><span class="dl-name">火山引擎 API</span><span class="dl-date">各项活动不同</span></div><div class="deadline-item"><span class="dl-name">OpenRouter 免费模型池</span><span class="dl-date">免费 tier 有 RPM 限制（2-5次/分钟）</span></div></details>
+  <main class="platforms" id="platformList" aria-label="平台列表">
+    <h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">所有平台</h2>
+  </main>
   <noscript style="display:block;padding:24px;text-align:center;color:var(--text-mid);font-size:.9rem;border:1px dashed var(--border);margin-top:16px;">⚠️ 本页面需要 JavaScript 才能显示平台列表。请启用 JS 后刷新，或访问 <a href="qr.html" style="color:var(--accent)">分享版</a>。</noscript>
   <footer class="foot">
-    <span>📌 本页更新于 2026年07月04日 · PR 补充 via <a href="https://github.com/ccbq2010/AI-free" style="color:var(--accent)">GitHub</a></span>
-    <span>🔗 <a href="qr.html" style="color:var(--accent)">分享版</a> · <a href="feed.xml" style="color:var(--accent)">RSS</a> · <a href="api.json" style="color:var(--accent)">API</a></span>
+    <span>📌 本页更新于 2026年07月04日 · PR via <a href="https://github.com/ccbq2010/AI-free">GitHub</a></span>
+    <span style="display:flex;align-items:center;gap:12px;">
+      <a href="qr.html" aria-label="分享版">分享版</a> · <a href="feed.xml" aria-label="RSS 订阅">RSS</a> · <a href="api.json" aria-label="JSON API">API</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换暗色模式">
+        <span id="themeIcon">🌙</span><span id="themeText">暗色</span>
+      </button>
+    </span>
   </footer>
 </div>
 <script>
-var PLATFORMS = [
-  {
-    "id": "zhipu-glm",
-    "name": "智谱 GLM",
-    "tier": "hidden_gem",
-    "provider": "Zhipu AI · 国内领先大模型",
-    "benefit": "新用户注册即送 2000 万 Tokens 大礼包",
-    "benefit_highlight": [
-      "2000 万 Tokens"
-    ],
-    "url": "https://www.bigmodel.cn/invite?icode=MGeIswTxCik0L%2FYvFLn7HZmwcr074zMJTpgMb8zZZvg%3D&utm_source=ai-free&utm_medium=web",
-    "tags": [
-      "GLM-5.2 原厂"
-    ],
-    "deadline": null,
-    "referral": {
-      "type": "invite_code",
-      "code": "MGeIswTxCik0L/YvFLn7HZmwcr074zMJTpgMb8zZZvg=",
-      "reward_invitee": "2000万 Tokens",
-      "reward_inviter": "当前政策未公开"
-    },
-    "status": "active"
-  },
-  {
-    "id": "trae",
-    "name": "TRAE",
-    "provider": "字节跳动 · AI 编程 IDE",
-    "benefit": "免费模型长期使用 · 报名领 ¥99 速通 Pro 月卡",
-    "benefit_highlight": [
-      "¥99 速通 Pro 月卡",
-      "免费模型长期使用"
-    ],
-    "url": "https://www.trae.cn/ai-creativity?utm_source=ai-free&utm_medium=web",
-    "tags": [
-      "GLM-5.2"
-    ],
-    "deadline": null,
-    "referral": {
-      "type": "event",
-      "reward": "报名活动即得 ¥99 Pro 月卡"
-    },
-    "status": "active"
-  },
-  {
-    "id": "qoderwork",
-    "name": "QoderWork CN",
-    "tier": "hidden_gem",
-    "provider": "Qoder · AI 编程桌面 IDE 中国区",
-    "benefit": "邀请 1 人得 200 Credits · 首月 Pro 2000 Credits 免费（上限 200 人）",
-    "benefit_highlight": [
-      "200 Credits",
-      "上限 200 人"
-    ],
-    "url": "https://qoder.com.cn/pricing?referral_code=bvMQpFKC0B3ZSlLZl38Xz6XHkVyGe734&utm_source=ai-free&utm_medium=web",
-    "tags": [
-      "GLM-5.2"
-    ],
-    "deadline": null,
-    "referral": {
-      "type": "referral_link",
-      "code": "bvMQpFKC0B3ZSlLZl38Xz6XHkVyGe734",
-      "reward_invitee": "首月 Pro（2000 Credits）免费",
-      "reward_inviter": "200 Credits/人（上限 200 人）"
-    },
-    "status": "active",
-    "note": "2026-07-02：原 referral 参数页面已调整为 /pricing"
-  },
-  {
-    "id": "nvidia-api",
-    "name": "NVIDIA API",
-    "provider": "NVIDIA · 200+ 大模型 API 平台",
-    "benefit": "注册即送 6 个月免费额度，涵盖 GLM-4.7、DeepSeek、Claude、MiniMax 等 200+ 模型",
-    "benefit_highlight": [
-      "6 个月免费",
-      "200+ 模型",
-      "GLM-4.7"
-    ],
-    "url": "https://build.nvidia.com?utm_source=ai-free&utm_medium=web",
-    "tags": [
-      "GLM-5.2"
-    ],
-    "deadline": "注册起6个月（需算费）",
-    "referral": {
-      "type": "none"
-    },
-    "status": "active"
-  },
-  {
-    "id": "kiro-ide",
-    "name": "Kiro IDE",
-    "provider": "亚马逊 AWS · AI 编程 IDE（Spec-driven）",
-    "benefit": "免费 50 credits/月 + Claude Sonnet 4.5；当前有活动送 $100 Pro Max",
-    "benefit_highlight": [
-      "50 credits/月",
-      "Claude Sonnet 4.5",
-      "$100 Pro Max"
-    ],
-    "url": "https://kiro.dev?utm_source=ai-free&utm_medium=web",
-    "tags": [],
-    "deadline": "50 credits永久；$100活动限时限",
-    "referral": {
-      "type": "event"
-    },
-    "status": "active"
-  },
-  {
-    "id": "coze",
-    "name": "Coze 扣子",
-    "provider": "字节跳动 · AI Agent 构建平台",
-    "benefit": "免费使用 GPT-4 / Claude 构建智能体和工作流，支持微信集成",
-    "benefit_highlight": [
-      "免费使用 GPT-4",
-      "工作流",
-      "微信集成"
-    ],
-    "url": "https://www.coze.cn?utm_source=ai-free&utm_medium=web",
-    "tags": [],
-    "deadline": null,
-    "referral": {
-      "type": "none"
-    },
-    "status": "active"
-  },
-  {
-    "id": "xiaomi-mimo",
-    "name": "小米 MiMo",
-    "provider": "小米 · 开源大模型商业化",
-    "benefit": "双方各得 ¥10 API 体验金 + 首单 9 折 · 40天有效（名额有限，先到先得）",
-    "benefit_highlight": [
-      "¥10 API 体验金",
-      "首单 9 折"
-    ],
-    "url": "https://platform.xiaomimimo.com?ref=C2PLQR&utm_source=ai-free&utm_medium=web",
-    "tags": [],
-    "deadline": "名额有限（先到先得）",
-    "referral": {
-      "type": "ref_code",
-      "code": "C2PLQR",
-      "reward_invitee": "¥10 API 体验金 + 首单9折",
-      "reward_inviter": "¥10 API 体验金"
-    },
-    "status": "active"
-  },
-  {
-    "id": "mimo-code",
-    "name": "MiMO CODE",
-    "provider": "小米 · 免费 AI 编程工具",
-    "benefit": "完全免费使用 · 无需邀请码，VS Code / JetBrains / iTerm 直接安装",
-    "benefit_highlight": [
-      "完全免费",
-      "无需邀请码"
-    ],
-    "url": "https://mimo.xiaomi.com/coder?utm_source=ai-free&utm_medium=web",
-    "tags": [],
-    "deadline": null,
-    "referral": {
-      "type": "none",
-      "reward": "免费无需邀请"
-    },
-    "status": "active"
-  },
-  {
-    "id": "silicon-flow",
-    "name": "硅基流动",
-    "tier": "hidden_gem",
-    "provider": "SiliconFlow · 大模型推理云",
-    "benefit": "注册+实名认证领 ¥16 代金券（约2000万Token）· 180天有效 · 全站通用",
-    "benefit_highlight": [
-      "¥16 代金券",
-      "约2000万Token",
-      "180天有效"
-    ],
-    "url": "https://cloud.siliconflow.cn/i/QYEe1vDE?utm_source=ai-free&utm_medium=web",
-    "tags": [
-      "GLM-5.2"
-    ],
-    "deadline": "2026-12-31",
-    "referral": {
-      "type": "invite_link",
-      "code": "QYEe1vDE",
-      "reward_invitee": "¥16 代金券（约2000万Token）",
-      "reward_inviter": "推荐官计划奖励（详询官方）"
-    },
-    "status": "active"
-  },
-  {
-    "id": "github-copilot",
-    "name": "GitHub Copilot",
-    "provider": "GitHub · AI 编程（学生免费）",
-    "benefit": "学生/教师免费 Pro（需验证教育身份）支持 Agent + MCP，并支持 Cloudflare Workers 中转国内访问",
-    "benefit_highlight": [
-      "免费 Pro",
-      "Agent + MCP",
-      "中转"
-    ],
-    "url": "https://education.github.com/pack?utm_source=ai-free&utm_medium=web",
-    "tags": [],
-    "deadline": "学生身份有效期内",
-    "referral": {
-      "type": "none"
-    },
-    "status": "active",
-    "note": "2026-07-02：education.github.com/pack 稳定 200；主域名重定向链路过慢"
-  },
-  {
-    "id": "dyad",
-    "name": "Dyad",
-    "provider": "开源 · 全栈 AI 应用构建器",
-    "benefit": "开源免费，Lovable / Bolt.new / Replit 替代品，本地全栈构建，无需邀请码",
-    "benefit_highlight": [
-      "开源免费",
-      "无需邀请码"
-    ],
-    "url": "https://github.com/dyad-sh/dyad?utm_source=ai-free&utm_medium=web",
-    "tags": [],
-    "deadline": "永久免费（开源）",
-    "referral": {
-      "type": "none"
-    },
-    "status": "active",
-    "note": "2026-07-02：开源项目，GitHub 仓库 dyad-sh/dyad"
-  },
-  {
-    "id": "volcengine-api",
-    "name": "火山引擎 API",
-    "provider": "字节跳动 · 大模型推理平台",
-    "benefit": "免费提供 DeepSeek、豆包等模型；Seedance 每天 90 秒免费视频；新用户注册赠送代金券",
-    "benefit_highlight": [
-      "DeepSeek",
-      "90 秒免费视频",
-      "新用户注册赠送代金券"
-    ],
-    "url": "https://www.volcengine.com?utm_source=ai-free&utm_medium=web",
-    "tags": [],
-    "deadline": "各项活动不同",
-    "referral": {
-      "type": "none"
-    },
-    "status": "active"
-  }
-];   // HTML 展示用 URL（带 UTM）
+(function(){
 var PLATFORMS_RAW = [
+  {
+    "id": "workbuddy",
+    "name": "WorkBuddy",
+    "provider": "腾讯 · CodeBuddy 云端 IDE",
+    "benefit": "注册即送 500 积分 · 每日签到 100 积分 · 免费使用云端 IDE",
+    "benefit_highlight": [
+      "注册 500 积分",
+      "每日 100 积分",
+      "完全免费"
+    ],
+    "url": "https://www.codebuddy.cn",
+    "tags": [
+      "GLM-5.2"
+    ],
+    "deadline": "签到每日可领",
+    "referral": {
+      "type": "none"
+    },
+    "status": "active",
+    "note": "2026-07-04 用户确认：原邀请奖励/升级活动已停，但每日签到100积分仍正常发放"
+  },
+  {
+    "id": "catpaw",
+    "name": "CatPaw",
+    "provider": "美团 · AI 编程 IDE（LongCat）",
+    "benefit": "新用户注册即送 500 Enhanced Calls · 支持 GLM-5.2 / DeepSeek / Kimi 等 8 个模型",
+    "benefit_highlight": [
+      "500 Enhanced Calls",
+      "GLM-5.2",
+      "8 模型"
+    ],
+    "url": "https://catpaw.meituan.com",
+    "tags": [
+      "GLM-5.2"
+    ],
+    "deadline": "注册即得",
+    "referral": {
+      "type": "none"
+    },
+    "status": "active",
+    "note": "2026-07-04 用户截图确认：500 次免费 Enhanced Calls + GLM-5.2 等 8 模型；美团 LongCat 团队出品"
+  },
   {
     "id": "zhipu-glm",
     "name": "智谱 GLM",
@@ -352,26 +212,6 @@ var PLATFORMS_RAW = [
       "code": "MGeIswTxCik0L/YvFLn7HZmwcr074zMJTpgMb8zZZvg=",
       "reward_invitee": "2000万 Tokens",
       "reward_inviter": "当前政策未公开"
-    },
-    "status": "active"
-  },
-  {
-    "id": "trae",
-    "name": "TRAE",
-    "provider": "字节跳动 · AI 编程 IDE",
-    "benefit": "免费模型长期使用 · 报名领 ¥99 速通 Pro 月卡",
-    "benefit_highlight": [
-      "¥99 速通 Pro 月卡",
-      "免费模型长期使用"
-    ],
-    "url": "https://www.trae.cn/ai-creativity",
-    "tags": [
-      "GLM-5.2"
-    ],
-    "deadline": null,
-    "referral": {
-      "type": "event",
-      "reward": "报名活动即得 ¥99 Pro 月卡"
     },
     "status": "active"
   },
@@ -434,24 +274,6 @@ var PLATFORMS_RAW = [
     "deadline": "50 credits永久；$100活动限时限",
     "referral": {
       "type": "event"
-    },
-    "status": "active"
-  },
-  {
-    "id": "coze",
-    "name": "Coze 扣子",
-    "provider": "字节跳动 · AI Agent 构建平台",
-    "benefit": "免费使用 GPT-4 / Claude 构建智能体和工作流，支持微信集成",
-    "benefit_highlight": [
-      "免费使用 GPT-4",
-      "工作流",
-      "微信集成"
-    ],
-    "url": "https://www.coze.cn",
-    "tags": [],
-    "deadline": null,
-    "referral": {
-      "type": "none"
     },
     "status": "active"
   },
@@ -571,15 +393,54 @@ var PLATFORMS_RAW = [
       "type": "none"
     },
     "status": "active"
+  },
+  {
+    "id": "openrouter-free",
+    "name": "OpenRouter 免费模型池",
+    "provider": "OpenRouter · 聚合 23 个免费大模型",
+    "benefit": "一个 API 免费调用 23 个顶级模型（Llama 3.3 70B、Gemma 3 27B、gpt-oss-120b、Qwen3 等）",
+    "benefit_highlight": [
+      "23 个免费模型",
+      "一个 API",
+      "Llama 3.3 70B"
+    ],
+    "url": "https://openrouter.ai/models?fmt=cards&order=pricing-free",
+    "tags": [],
+    "deadline": "免费 tier 有 RPM 限制（2-5次/分钟）",
+    "referral": {
+      "type": "none"
+    },
+    "status": "active",
+    "note": "2026-07-04 巡检发现；免费 tier 有速率限制不适合生产；国内需代理"
   }
-];  // 原始 URL，供 Shift+Click 复制使用
-var ID_TO_RAW = {};
-(PLATFORMS_RAW||[]).forEach(function(p){ ID_TO_RAW[p.id] = p.url; });
+];
+var UTM = 'utm_source=ai-free&utm_medium=web';
+
+// Theme
+function getTheme(){ try { return localStorage.getItem('ai-free-theme') || 'light'; } catch(e){ return 'light'; } }
+function setTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  try { localStorage.setItem('ai-free-theme', t); } catch(e){}
+  var icon = document.getElementById('themeIcon');
+  var text = document.getElementById('themeText');
+  if (t === 'dark') { icon.textContent = '☀️'; text.textContent = '亮色'; }
+  else { icon.textContent = '🌙'; text.textContent = '暗色'; }
+}
+setTheme(getTheme());
+document.getElementById('themeToggle').addEventListener('click', function(){
+  setTheme(getTheme() === 'dark' ? 'light' : 'dark');
+});
+
+function withUTM(url) {
+  if (!url) return '';
+  var sep = url.includes('?') ? '&' : '?';
+  return url + sep + UTM;
+}
 
 function fmtDate(s) {
   if (!s) return "";
   var d = new Date(s);
-  if (isNaN(d.getTime())) return s;   // 非 ISO 日期直接展示原文
+  if (isNaN(d.getTime())) return s;
   return d.getFullYear() + "年" + String(d.getMonth()+1).padStart(2,'0') + "月" + String(d.getDate()).padStart(2,'0') + "日";
 }
 
@@ -598,62 +459,105 @@ function highlight(benefit, highlights) {
   return escaped;
 }
 
-function render() {
-  var list = document.getElementById("platformList");
-  var html = "";
-  var idx = 0;
-  PLATFORMS.forEach(function(p) {
-    // Option A: skip featured（已在顶部独立渲染）；Option B: 加 badge 后继续渲染
-    if (!window.SHOW_FEATURED_IN_LIST && p.tier === 'hidden_gem') return;
-    idx++;
-    var tags = (p.tags||[]).map(function(t){
-      return '<span class="pf-tag">'+esc(t)+'</span>';
-    }).join("");
-    var benefit = highlight(p.benefit||"", p.benefit_highlight);
-    var featured_badge = (p.tier === 'hidden_gem' && window.SHOW_FEATURED_IN_LIST)
-      ? ' <span class="pf-badge">💎 推荐</span>' : '';
-    html += '<div class="platform"><a class="platform-inner" href="'+esc(p.url)+'" data-pid="'+esc(p.id)+'" target="_blank" rel="noopener">'
-      + '<span class="pf-index">'+String(idx).padStart(2,'0')+'</span>'
-      + '<div class="pf-body"><div class="pf-name">'+esc(p.name)+' '+featured_badge+' '+tags+'</div>'
-      + '<div class="pf-provider">'+esc(p.provider||"")+'</div>'
-      + '<div class="pf-benefit">🎁 '+highlight(p.benefit||'', p.benefit_highlight)+'</div></div>'
-      + '<span class="pf-action pf-link">前往 →</span></a></div>';
+var ALL = PLATFORMS_RAW.filter(function(p){ return p.status === 'active'; });
+var FEATURED = ALL.filter(function(p){ return p.tier === 'hidden_gem'; });
+var NORMAL = ALL.filter(function(p){ return p.tier !== 'hidden_gem'; });
+
+function cardHtml(p, idx) {
+  var tags = (p.tags||[]).map(function(t){ return '<span class="pf-tag">'+esc(t)+'</span>'; }).join('');
+  var benefit = highlight(p.benefit||'', p.benefit_highlight);
+  return '<div class="platform"><a class="platform-inner" href="'+esc(withUTM(p.url))+'" data-pid="'+esc(p.id)+'" target="_blank" rel="noopener" aria-label="'+esc(p.name)+' — 打开平台">'
+    + '<span class="pf-index">'+String(idx).padStart(2,'0')+'</span>'
+    + '<div class="pf-body"><div class="pf-name">'+esc(p.name)+' '+tags+'</div>'
+    + '<div class="pf-provider">'+esc(p.provider||'')+'</div>'
+    + '<div class="pf-benefit">🎁 '+benefit+'</div></div>'
+    + '<span class="pf-action pf-link">前往 →</span></a></div>';
+}
+
+function featuredHtml(list) {
+  if (!list.length) return '';
+  var cards = '<section class="featured" aria-label="推荐平台"><div class="feat-title">💎 隐藏大额 · 新人优先</div>';
+  list.forEach(function(p, i) {
+    var benefit = highlight(p.benefit||'', p.benefit_highlight);
+    cards += '<a class="feat-card" href="'+esc(withUTM(p.url))+'" data-pid="'+esc(p.id)+'" target="_blank" rel="noopener" aria-label="'+esc(p.name)+' — 推荐平台">'
+      + '<span class="feat-index">💎 '+(i+1)+'</span>'
+      + '<div class="feat-body"><div class="feat-name">'+esc(p.name)+'</div>'
+      + '<div class="feat-provider">'+esc(p.provider||'')+'</div>'
+      + '<div class="feat-benefit">🎁 '+benefit+'</div></div>'
+      + '<span class="feat-action">前往 →</span></a>';
   });
+  return cards + '</section>';
+}
+
+function renderFeatured() {
+  document.getElementById('featuredSection').innerHTML = featuredHtml(FEATURED);
+}
+
+function renderList(filter) {
+  document.getElementById('totalCount').textContent = NORMAL.length;
+  var q = (filter||'').toLowerCase().trim();
+  var filtered = NORMAL.filter(function(p){
+    if (!q) return true;
+    var hay = (p.name+' '+(p.provider||'')+' '+(p.benefit||'')+' '+(p.tags||[]).join(' ')).toLowerCase();
+    return hay.includes(q);
+  });
+  var list = document.getElementById('platformList');
+  if (!filtered.length) {
+    list.innerHTML = '<div class="empty"><div class="empty-icon">🔍</div><div class="empty-txt">没有找到匹配的平台</div><div class="empty-hint">尝试 <kbd>GLM</kbd> <kbd>免费</kbd> <kbd>学生</kbd></div></div>';
+    return;
+  }
+  var html = '';
+  filtered.forEach(function(p, i) { html += cardHtml(p, i+1); });
   list.innerHTML = html;
 }
 
-render();
+renderFeatured();
+renderList();
 
-var toast = document.getElementById("toast");
+// Search
+var searchEl = document.getElementById('search');
+var clearEl = document.getElementById('searchClear');
+searchEl.addEventListener('input', function(e){
+  renderList(e.target.value);
+  clearEl.classList.toggle('show', e.target.value.length > 0);
+});
+clearEl.addEventListener('click', function(){
+  searchEl.value = '';
+  clearEl.classList.remove('show');
+  renderList('');
+  searchEl.focus();
+});
+
+// Toast
+var toast = document.getElementById('toast');
 var toastTimer;
 function showToast(msg) {
   toast.textContent = msg;
-  toast.classList.add("show");
+  toast.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=>toast.classList.remove("show"), 2000);
+  toastTimer = setTimeout(()=>toast.classList.remove('show'), 2000);
 }
 
-// Share hint for mobile
+// Share hint mobile
 if (/Mobile|Android|iPhone/i.test(navigator.userAgent)) {
-  document.addEventListener("scroll", function() {
-    if (window.scrollY > 200) {
-      document.getElementById("shareHint").classList.add("show");
-    }
+  document.addEventListener('scroll', function() {
+    if (window.scrollY > 200) { document.getElementById('shareHint').classList.add('show'); }
   }, { once: true });
 }
 
-// Shift+Click 复制纯净链接（无 UTM），便于分享
-document.addEventListener("click", function(e) {
-  var card = e.target.closest(".platform-inner");
+// Shift+Click 复制纯净链接
+document.addEventListener('click', function(e) {
+  var card = e.target.closest('[data-pid]');
   if (card && e.shiftKey) {
-    var id = card.dataset.pid;
-    var url = (id && ID_TO_RAW[id]) || card.getAttribute("href");
     e.preventDefault();
+    var raw = card.dataset.pid && PLATFORMS_RAW.filter(function(p){return p.id===card.dataset.pid;})[0];
+    var url = (raw && raw.url) || card.getAttribute('href').replace(/[?&]utm_[^&]+/g, '').replace(/[?&]$/, '');
     navigator.clipboard.writeText(url).then(function(){
-      showToast("纯净链接已复制: " + url);
+      showToast('纯净链接已复制: ' + url);
     });
   }
 });
+})();
 </script>
 </body>
 </html>

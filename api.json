@@ -1,8 +1,30 @@
 {
   "site": "https://ccbq2010.github.io/AI-free",
   "updated_at": "2026-07-04",
-  "count": 12,
+  "count": 13,
   "platforms": [
+    {
+      "id": "workbuddy",
+      "name": "WorkBuddy",
+      "provider": "腾讯 · CodeBuddy 云端 IDE",
+      "benefit": "注册即送 500 积分 · 每日签到 100 积分 · 免费使用云端 IDE",
+      "url": "https://www.codebuddy.cn",
+      "tags": [
+        "GLM-5.2"
+      ],
+      "tier": "normal"
+    },
+    {
+      "id": "catpaw",
+      "name": "CatPaw",
+      "provider": "美团 · AI 编程 IDE（LongCat）",
+      "benefit": "新用户注册即送 500 Enhanced Calls · 支持 GLM-5.2 / DeepSeek / Kimi 等 8 个模型",
+      "url": "https://catpaw.meituan.com",
+      "tags": [
+        "GLM-5.2"
+      ],
+      "tier": "normal"
+    },
     {
       "id": "zhipu-glm",
       "name": "智谱 GLM",
@@ -13,17 +35,6 @@
         "GLM-5.2 原厂"
       ],
       "tier": "hidden_gem"
-    },
-    {
-      "id": "trae",
-      "name": "TRAE",
-      "provider": "字节跳动 · AI 编程 IDE",
-      "benefit": "免费模型长期使用 · 报名领 ¥99 速通 Pro 月卡",
-      "url": "https://www.trae.cn/ai-creativity",
-      "tags": [
-        "GLM-5.2"
-      ],
-      "tier": "normal"
     },
     {
       "id": "qoderwork",
@@ -53,15 +64,6 @@
       "provider": "亚马逊 AWS · AI 编程 IDE（Spec-driven）",
       "benefit": "免费 50 credits/月 + Claude Sonnet 4.5；当前有活动送 $100 Pro Max",
       "url": "https://kiro.dev",
-      "tags": [],
-      "tier": "normal"
-    },
-    {
-      "id": "coze",
-      "name": "Coze 扣子",
-      "provider": "字节跳动 · AI Agent 构建平台",
-      "benefit": "免费使用 GPT-4 / Claude 构建智能体和工作流，支持微信集成",
-      "url": "https://www.coze.cn",
       "tags": [],
       "tier": "normal"
     },
@@ -118,6 +120,15 @@
       "provider": "字节跳动 · 大模型推理平台",
       "benefit": "免费提供 DeepSeek、豆包等模型；Seedance 每天 90 秒免费视频；新用户注册赠送代金券",
       "url": "https://www.volcengine.com",
+      "tags": [],
+      "tier": "normal"
+    },
+    {
+      "id": "openrouter-free",
+      "name": "OpenRouter 免费模型池",
+      "provider": "OpenRouter · 聚合 23 个免费大模型",
+      "benefit": "一个 API 免费调用 23 个顶级模型（Llama 3.3 70B、Gemma 3 27B、gpt-oss-120b、Qwen3 等）",
+      "url": "https://openrouter.ai/models?fmt=cards&order=pricing-free",
       "tags": [],
       "tier": "normal"
     }
