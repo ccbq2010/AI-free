@@ -1,7 +1,7 @@
 {
   "site": "https://ccbq2010.github.io/AI-free",
   "updated_at": "2026-07-04",
-  "count": 13,
+  "count": 12,
   "platforms": [
     {
       "id": "workbuddy",
@@ -102,15 +102,6 @@
       "provider": "GitHub · AI 编程（学生免费）",
       "benefit": "学生/教师免费 Pro（需验证教育身份）支持 Agent + MCP，并支持 Cloudflare Workers 中转国内访问",
       "url": "https://education.github.com/pack",
-      "tags": [],
-      "tier": "normal"
-    },
-    {
-      "id": "dyad",
-      "name": "Dyad",
-      "provider": "开源 · 全栈 AI 应用构建器",
-      "benefit": "开源免费，Lovable / Bolt.new / Replit 替代品，本地全栈构建，无需邀请码",
-      "url": "https://github.com/dyad-sh/dyad",
       "tags": [],
       "tier": "normal"
     },
