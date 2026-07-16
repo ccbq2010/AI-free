@@ -1,7 +1,7 @@
 {
   "site": "https://ccbq2010.github.io/AI-free",
   "updated_at": "2026-07-16",
-  "count": 12,
+  "count": 13,
   "platforms": [
     {
       "id": "workbuddy",
@@ -13,6 +13,17 @@
         "GLM-5.2"
       ],
       "tier": "hidden_gem"
+    },
+    {
+      "id": "opencode",
+      "name": "OpenCode",
+      "provider": "开源 · AI 编程终端/IDE · 75+ 模型提供商",
+      "benefit": "内置免费模型开箱即用：GLM-5、Kimi K2.5、GPT-5 Nano、MiniMax M2.7 · 无需注册/API Key",
+      "url": "https://opencode.ai",
+      "tags": [
+        "GLM-5.2"
+      ],
+      "tier": "normal"
     },
     {
       "id": "catpaw",

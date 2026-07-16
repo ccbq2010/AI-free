@@ -25,6 +25,28 @@
     "note": "2026-07-16 邀请活动更新(即日-2026-08-31)：受邀人注册礼2000积分(1个月)；邀请人基础50(好友首用)+活跃100(7天内活跃3天)+付费500(30天内首付费)，活跃奖励单人上限30000、付费加成不设上限，均6个月有效。详见 REFERRALS.md"
   },
   {
+    "id": "opencode",
+    "name": "OpenCode",
+    "provider": "开源 · AI 编程终端/IDE · 75+ 模型提供商",
+    "benefit": "内置免费模型开箱即用：GLM-5、Kimi K2.5、GPT-5 Nano、MiniMax M2.7 · 无需注册/API Key",
+    "benefit_highlight": [
+      "内置免费模型",
+      "GLM-5",
+      "无需注册",
+      "开箱即用"
+    ],
+    "url": "https://opencode.ai",
+    "tags": [
+      "GLM-5.2"
+    ],
+    "deadline": null,
+    "referral": {
+      "type": "none"
+    },
+    "status": "active",
+    "note": "2026-07-16：免费模型有 IP 级别限流，适合试用和轻量使用；登录 OpenCode Zen 获更高额度；另有 OpenCode Go 付费推荐计划（注册双方各得 $5）。官网：learnopencode.com"
+  },
+  {
     "id": "catpaw",
     "name": "CatPaw",
     "provider": "美团 · AI 编程 IDE（LongCat）",

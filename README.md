@@ -26,6 +26,7 @@
 | 11 | **Dyad** | 🔥 开源免费 · Lovable/Bolt.new 替代品 | |
 | 12 | **火山引擎 API** | 🎁 DeepSeek/豆包免费 + Seedance 90秒/天 | |
 | 13 | **WorkBuddy** | 🎁 注册送 2000 积分（邀请链接）· 邀请人 50+100+500 积分 · 8/31 截止 | ✅ |
+| 14 | **OpenCode** | 🎁 内置免费模型：GLM-5、Kimi K2.5、GPT-5 Nano · 无需注册 | ✅ |
 
 ## 推荐奖励
 
