@@ -25,6 +25,7 @@
 | 10 | **GitHub Copilot** | 🎁 学生/教师免费 Pro · 支持 Cloudflare 中转 | |
 | 11 | **Dyad** | 🔥 开源免费 · Lovable/Bolt.new 替代品 | |
 | 12 | **火山引擎 API** | 🎁 DeepSeek/豆包免费 + Seedance 90秒/天 | |
+| 13 | **WorkBuddy** | 🎁 注册送 2000 积分（邀请链接）· 邀请人 50+100+500 积分 · 8/31 截止 | ✅ |
 
 ## 推荐奖励
 
