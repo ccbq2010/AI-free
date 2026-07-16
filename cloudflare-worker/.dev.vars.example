@@ -1,0 +1,12 @@
+# 本地开发用密钥文件模板。
+# 复制本文件为 .dev.vars 并填入你自己的测试密钥：
+#   cp .dev.vars.example .dev.vars
+# .dev.vars 已加入 .gitignore，不会被提交。
+# 生产环境请改用: wrangler secret put <NAME>
+
+API_GATEWAY_KEY=sk-cf-gateway-local-test
+SILICONFLOW_API_KEY=sk-your-siliconflow-key-here
+CF_AI_TOKEN=
+NOUS_AGENT_KEY=
+TARGET_URL=
+TARGET_API_KEY=

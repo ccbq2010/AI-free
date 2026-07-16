@@ -67,8 +67,9 @@ wrangler login
 # 5. 修改 wrangler.toml 中的 account_id
 # 或通过环境变量: export CF_ACCOUNT_ID=xxx
 
-# 6. 设置安全密钥
-wrangler secret put API_GATEWAY_KEY  # 设置你的访问密钥（任意字符串）
+# 6. 设置安全密钥（切勿把密钥写进 wrangler.toml，该文件已公开）
+wrangler secret put API_GATEWAY_KEY      # 网关访问密钥（客户端调用时携带，任意字符串）
+wrangler secret put SILICONFLOW_API_KEY  # SiliconFlow API Key（siliconflow 模式必填）
 
 # 7. 部署
 wrangler publish

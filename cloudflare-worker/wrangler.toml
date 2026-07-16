@@ -2,13 +2,26 @@ name = "cf-ai-gateway"
 main = "src/worker.js"
 compatibility_date = "2024-01-01"
 
+# ── 非敏感配置（可公开，本文件已提交到公开仓库）──────────
 [vars]
 AI_MODE = "siliconflow"
-API_GATEWAY_KEY = "sk-cf-gateway-ai-free-demo"
 SILICONFLOW_BASE_URL = "https://api.siliconflow.cn/v1"
 CF_ACCOUNT_ID = "1debd27e6c06e3255b316b8594686b36"
-SILICONFLOW_API_KEY = "sk-fynlyevblswhvhphmwhorwrwrsxfxvlgmuvsfveznnfghhvj"
-NOUS_AGENT_KEY = ""
 NOUS_API_URL = "https://api.nousresearch.com"
-TARGET_URL = ""
-TARGET_API_KEY = ""
+
+# ── 敏感密钥：切勿写在此处！用 wrangler secret put 设置 ──
+# 本文件已提交到公开仓库，任何写在这里的密钥都会泄露。
+# 以下变量请改用加密方式存储（Cloudflare 端加密，不出现在代码里）：
+#
+#   wrangler secret put API_GATEWAY_KEY      # 网关访问密钥（客户端调用时携带）
+#   wrangler secret put SILICONFLOW_API_KEY  # SiliconFlow API Key
+#   wrangler secret put CF_AI_TOKEN          # Cloudflare AI Token（cf_ai 模式）
+#   wrangler secret put NOUS_AGENT_KEY       # Nous Portal Key（nous 模式）
+#   wrangler secret put TARGET_URL           # 通用代理目标 URL（custom 模式）
+#   wrangler secret put TARGET_API_KEY       # 通用代理目标 Key（custom 模式）
+#
+# 本地开发：复制 .dev.vars.example 为 .dev.vars 并填入测试密钥。
+#
+# ⚠️ 安全警告：历史 commit 中曾明文提交过 SILICONFLOW_API_KEY 与
+#    API_GATEWAY_KEY。请立即前往 SiliconFlow 控制台【吊销旧 Key】并
+#    生成新 Key，之后只用 `wrangler secret put` 设置新值，切勿再写入本文件。

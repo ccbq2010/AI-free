@@ -30,49 +30,9 @@ jobs:
           python scripts/check_expiry.py 2>&1 | tee /tmp/expiry-output.txt
           echo "exit_code=$?" >> "$GITHUB_OUTPUT"
 
-      - name: Read report
-        if: steps.check.outputs.exit_code != '0'
-        id: report
-        run: |
-          issues=$(python -c "
-          import json
-          with open('data/expiry_report.json') as f:
-              r = json.load(f)
-          print(r.get('issues_found', 0))
-          ")
-          echo "issues_count=$issues" >> "$GITHUB_OUTPUT"
-
       - name: Create issue if issues found
-        if: steps.report.outputs.issues_count > 0
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require('fs');
-            const today = new Date().toISOString().slice(0, 10);
-            const report = JSON.parse(fs.readFileSync('data/expiry_report.json', 'utf8'));
-
-            let body = '## ⚠️ 过期检测报告\n\n';
-            body += `扫描日期: ${report.scan_date}\n`;
-            body += `平台总数: ${report.total_platforms}\n`;
-            body += `发现问题: ${report.issues_found}\n\n`;
-
-            body += '| 平台 | 问题类型 | 详情 |\n';
-            body += '|------|----------|------|\n';
-            for (const issue of report.issues) {
-              const name = issue.name || issue.id;
-              const detail = (issue.detail || '').replace(/\|/g, '/');
-              body += `| ${name} | ${issue.issue} | ${detail} |\n`;
-            }
-
-            body += '\n### 操作说明\n';
-            body += '- 确认过期: 修改 `data/platforms.json` 中该平台 `status` 为 `expired`\n';
-            body += '- 链接失效: 更新 `url` 字段或标记 `expired`\n';
-            body += '- 误报: 回复 `/ignore` 关闭 Issue\n';
-
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: '⚠️ 平台过期/链接失效检测 (' + today + ')',
-              body: body,
-              labels: ['bot', 'maintenance']
-            });
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # 脚本内部会判断 issues_found，无问题则自动跳过
+        run: python scripts/create_issue.py --mode expiry
