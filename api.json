@@ -12,7 +12,7 @@
       "tags": [
         "GLM-5.2"
       ],
-      "tier": "normal"
+      "tier": "hidden_gem"
     },
     {
       "id": "catpaw",
