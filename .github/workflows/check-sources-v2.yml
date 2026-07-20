@@ -1,0 +1,93 @@
+name: Check New Sources v2
+
+on:
+  schedule:
+    # Every day at 10:00 CST (02:00 UTC)
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run v2 multi-source scanner
+        id: check
+        continue-on-error: true
+        run: |
+          python scripts/v2/check_sources_v2.py --output data/last_scan_v2.json 2>&1 | tee /tmp/check-v2-output.txt
+          echo "exit_code=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
+
+      - name: Run LLM extraction v2 (if candidates found)
+        id: extract
+        if: steps.check.outputs.exit_code == '1'
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python -c "
+          import json
+          report = json.load(open('data/last_scan_v2.json'))
+          candidates = report.get('new_candidates', [])
+          json.dump(candidates, open('/tmp/candidates_v2.json', 'w'), ensure_ascii=False)
+          print(f'{len(candidates)} candidates to process')
+          "
+          if [ -s /tmp/candidates_v2.json ]; then
+            python scripts/v2/extract_with_llm_v2.py < /tmp/candidates_v2.json > /tmp/extracted_v2.json
+          fi
+
+      - name: Auto PR for high-confidence candidates
+        if: steps.check.outputs.exit_code == '1'
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -s /tmp/extracted_v2.json ]; then
+            python scripts/v2/auto_pr_v2.py < /tmp/extracted_v2.json
+          fi
+
+      - name: Create issue for low-confidence candidates
+        if: steps.check.outputs.exit_code == '1'
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -s /tmp/extracted_v2.json ]; then
+            python scripts/v2/create_issue_v2.py < /tmp/extracted_v2.json
+          fi
+
+      - name: Run v2 expiry check (daily)
+        id: expiry
+        continue-on-error: true
+        run: |
+          python scripts/v2/check_expiry_v2.py 2>&1 | tee /tmp/expiry-v2-output.txt
+          echo "exit_code=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
+
+      - name: Create issue for v2 expiry problems
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/v2/create_expiry_issue_v2.py
+
+      - name: Upload v2 scan report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scan-report-v2
+          path: |
+            data/last_scan_v2.json
+            data/expiry_report_v2.json
+          retention-days: 30
