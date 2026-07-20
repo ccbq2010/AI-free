@@ -10,10 +10,11 @@
   python scripts/v2/extract_with_llm_v2.py < candidates.json > extracted_v2.json
   python scripts/v2/extract_with_llm_v2.py --text "某平台注册即送1000积分"
 
-环境变量（与 v1 相同）：
-  GITHUB_TOKEN                优先，走 GitHub Models
-  LLM_BASE_URL + LLM_API_KEY  回退，任意 OpenAI-compatible API
-  LLM_MODEL                   默认 gpt-4o-mini
+环境变量：
+  LLM_BASE_URL + LLM_API_KEY  优先，任意 OpenAI-compatible API（自建/第三方）
+  GITHUB_TOKEN                回退，走 GitHub Models（GA 端点 models.github.ai）
+                             ——workflow 须授予 `permissions: models: read`，否则 401
+  LLM_MODEL                   显式 API 默认 gpt-4o-mini；GitHub Models 默认 openai/gpt-4o-mini
 """
 
 from __future__ import annotations
@@ -28,20 +29,23 @@ LOW_CONFIDENCE = 0.5
 
 
 def get_client() -> tuple[str, str, str]:
+    # 优先使用显式配置的 OpenAI-compatible API（自建/第三方），便于覆盖默认。
+    base_url = os.environ.get("LLM_BASE_URL")
+    api_key = os.environ.get("LLM_API_KEY")
+    if base_url and api_key:
+        return (base_url, api_key, os.environ.get("LLM_MODEL", "gpt-4o-mini"))
+    # 回退到 GitHub Models（GA 端点，零成本）。
+    # 注意：调用方 workflow 必须授予 `permissions: models: read`，否则 401。
+    # 端点须用 https://models.github.ai/inference，模型名须带 openai/ 前缀。
     gh_token = os.environ.get("GITHUB_TOKEN")
     if gh_token:
         return (
-            "https://models.inference.ai.azure.com",
+            "https://models.github.ai/inference",
             gh_token,
-            os.environ.get("LLM_MODEL", "gpt-4o-mini"),
+            os.environ.get("LLM_MODEL", "openai/gpt-4o-mini"),
         )
-    base_url = os.environ.get("LLM_BASE_URL")
-    api_key = os.environ.get("LLM_API_KEY")
-    model = os.environ.get("LLM_MODEL", "gpt-4o-mini")
-    if not base_url or not api_key:
-        print("[ERROR] 需要 GITHUB_TOKEN 或 LLM_BASE_URL + LLM_API_KEY", file=sys.stderr)
-        sys.exit(2)
-    return (base_url, api_key, model)
+    print("[ERROR] 需要 LLM_BASE_URL + LLM_API_KEY 或 GITHUB_TOKEN", file=sys.stderr)
+    sys.exit(2)
 
 
 SYSTEM_PROMPT = """你是一个 AI 平台「新用户福利」信息抽取助手。
