@@ -1,7 +1,7 @@
 {
   "site": "https://ccbq2010.github.io/AI-free",
   "updated_at": "2026-07-21",
-  "count": 13,
+  "count": 14,
   "platforms": [
     {
       "id": "workbuddy",
@@ -132,6 +132,19 @@
       "benefit": "一个 API 免费调用 23 个顶级模型（Llama 3.3 70B、Gemma 3 27B、gpt-oss-120b、Qwen3 等）",
       "url": "https://openrouter.ai/models?fmt=cards&order=pricing-free",
       "tags": [],
+      "tier": "normal"
+    },
+    {
+      "id": "groq",
+      "name": "Groq",
+      "provider": "Groq · 超高速 LLM 推理 API（LPU 芯片）",
+      "benefit": "注册即可免费开始，免费额度调用 Llama / Mixtral / Gemma 等开源大模型，推理速度业界领先",
+      "url": "https://groq.com/pricing/",
+      "tags": [
+        "Llama",
+        "Mixtral",
+        "Gemma"
+      ],
       "tier": "normal"
     }
   ]

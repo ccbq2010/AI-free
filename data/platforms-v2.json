@@ -327,5 +327,18 @@
     "referral": { "type": "none" },
     "status": "active",
     "note": "2026-07-04 巡检发现；免费 tier 有速率限制不适合生产；国内需代理"
+  },
+  {
+    "id": "groq",
+    "name": "Groq",
+    "provider": "Groq · 超高速 LLM 推理 API（LPU 芯片）",
+    "benefit": "注册即可免费开始，免费额度调用 Llama / Mixtral / Gemma 等开源大模型，推理速度业界领先",
+    "benefit_highlight": ["注册即用", "免费额度", "超高速推理"],
+    "url": "https://groq.com/pricing/",
+    "tags": ["Llama", "Mixtral", "Gemma"],
+    "deadline": null,
+    "referral": { "type": "none" },
+    "status": "active",
+    "note": "2026-07-20 v2 巡检发现（来源 official:Groq，LLM 置信度 0.70，人工审核后收录）；官网文案 Get started for free，免费 tier 有速率限制"
   }
 ]

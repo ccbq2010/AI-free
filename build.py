@@ -3,6 +3,7 @@
 
 import json
 import html
+import argparse
 from datetime import datetime
 from pathlib import Path
 from string import Template
@@ -15,6 +16,23 @@ DATA_FILE = ROOT / "data" / "platforms.json"
 TPL_INDEX = ROOT / "templates" / "index.html"
 TPL_QR = ROOT / "templates" / "qr.html"
 SITE_URL = "https://ccbq2010.github.io/AI-free"
+
+# 数据源映射：v1=原 platforms.json（遗留），v2=自动发现管线产出 platforms-v2.json
+SOURCE_FILES = {"v1": "platforms.json", "v2": "platforms-v2.json"}
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Generate AI-free site from platform data."
+    )
+    parser.add_argument(
+        "--source",
+        choices=list(SOURCE_FILES.keys()),
+        default="v1",
+        help="数据来源：v1=platforms.json（遗留默认），v2=platforms-v2.json（自动发现管线）。"
+        "线上站点自 v2 上线后由 build.yml 传 --source v2。",
+    )
+    return parser.parse_args()
 
 
 def load_platforms() -> list[dict]:
@@ -129,6 +147,11 @@ def validate_referral_urls(platforms: list[dict]) -> list[str]:
 
 
 def main():
+    args = parse_args()
+    global DATA_FILE
+    DATA_FILE = ROOT / "data" / SOURCE_FILES[args.source]
+    print(f"[build] source={args.source} -> {DATA_FILE.name}")
+
     platforms = load_platforms()
 
     # Schema 校验 — 在构建前拦截脏数据
