@@ -150,13 +150,10 @@
     {
       "id": "cerebras",
       "name": "Cerebras",
-      "provider": "Cerebras Systems",
-      "benefit": "新用户可免费试用 Cerebras Inference Cloud",
+      "provider": "Cerebras Systems · 晶圆级芯片第一方推理云",
+      "benefit": "免费档每天约 100 万 Token（Llama 4 / Qwen3 / GPT-OSS 等，无需信用卡）· 2600+ tokens/秒超高速推理",
       "url": "https://www.cerebras.ai/",
-      "tags": [
-        "免费试用",
-        "新用户福利"
-      ],
+      "tags": [],
       "tier": "hidden_gem"
     }
   ]
