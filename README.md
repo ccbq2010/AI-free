@@ -89,7 +89,8 @@
 ## 自动化
 
 - **每日 08:00 (CST) 自动重建**: `build.yml` 以 v2 数据源重建并部署，日期/状态/文案自动更新
-- **每日 10:00 (CST) v2 巡查**: `check-sources-v2.yml` 扫描信息源 → LLM 结构化抽取 → 自动提 PR
+- **每日 10:00 (CST) v2 巡查**: `check-sources-v2.yml` 九源扫描（GitHub 聚合 / HN / OpenRouter / RSS / 中文媒体 / 官网 / 社区 / 新品 / **搜索引擎发现** / **公众号 RSS 桥**）→ LLM 结构化抽取 → 自动提 PR
+- **官方活动页 diff 监控**: 智谱/ZCode/硅基流动等官方活动页内容变化 → 自动创建 Issue（快照随 workflow 提交）
 - **每周一过期检测**: `check-expiry.yml` 对每个 URL 做 HEAD + 内容检查，标记可能过期平台
 - **每周四 v1 巡查（遗留）**: `check-sources.py` 对比 GitHub 聚合仓库，发现新候选自动创建 Issue
 

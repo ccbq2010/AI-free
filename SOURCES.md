@@ -49,3 +49,33 @@
 
 - `scripts/check_sources.py` 每周四运行，检查 GitHub 聚合仓库并对比现有 platform ids
 - 发现新候选 → 创建 GitHub Issue
+
+## v2 自动化通道（2026-08 新增）
+
+针对「老产品改福利政策」和「社交平台才能拿到的信息」两类盲区，v2 管线新增三个通道：
+
+### 1. 搜索引擎发现源（`v2/fetchers/search_engine.py`）
+
+小红书/公众号/即刻的羊毛帖会被搜索引擎索引——本源对发现型关键词
+（"AI 平台 新用户 注册送 token 免费额度"等）定期跑搜索，把聚合文章
+捞回来交给 LLM 抽取官方 URL 和福利。
+
+- 后端链：Serper（可选付费，`SERPER_API_KEY`）→ DuckDuckGo → SearXNG 公共实例 → Bing 兜底
+- 实测：DDG 对发现型查询召回最好；Bing 反爬时会返回与查询无关的固定结果，由宽网过滤拦截
+- 抽取出的是内容平台文章链接时，`auto_pr_v2` 的 `ARTICLE_DOMAINS` 兜底拦截，防止文章页混进平台数据
+
+### 2. 微信公众号 RSS 桥（`v2/fetchers/wechat_rss.py`）
+
+微信没有公开 API，经由社区桥接服务转成标准 RSS 后订阅**平台官方号**
+（智谱 AI、腾讯 CodeBuddy、硅基流动、火山引擎等），活动公告第一时间可得。
+
+- 配置：`data/wechat_rss.json` 的 `feeds` 数组
+- 生成订阅：wechat2rss.xlab.app → 搜索公众号 → 生成 RSS → 填入 feed 地址
+- 未配置时自动跳过，不影响其余管线
+
+### 3. 官方活动页 diff 监控（`scripts/v2/check_promo_pages.py`）
+
+最可靠的政策变更感知：直接 diff 官方活动/定价页（智谱上新活动、
+ZCode changelog、硅基流动动态、TRAE/Kiro 定价等）。内容变化 →
+自动创建 Issue。快照存于 `data/promo_snapshots.json` 并随 workflow 提交。
+

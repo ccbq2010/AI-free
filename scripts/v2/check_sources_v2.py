@@ -90,11 +90,13 @@ V1_FETCHERS = [
     ("GHTopics",    "fetchers.github_topics", "fetch_all"),
 ]
 
-# v2 三源
+# v2 五源（前三为原三源，后二为搜索发现与公众号桥）
 V2_FETCHERS = [
     ("OfficialSites", "v2.fetchers.official_sites", "fetch_all"),
     ("Community",     "v2.fetchers.community",      "fetch_all"),
     ("NewProducts",   "v2.fetchers.new_products",   "fetch_all"),
+    ("SearchEngine",  "v2.fetchers.search_engine",  "fetch_all"),
+    ("WeChatRSS",     "v2.fetchers.wechat_rss",     "fetch_all"),
 ]
 
 

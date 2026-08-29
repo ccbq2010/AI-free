@@ -1,0 +1,27 @@
+{
+  "https://docs.bigmodel.cn/cn/update/promotion": {
+    "hash": "c1d88329a5652e82763c289a5e1261ab12ff6ead13dafbd540a3e2f9fc29ea8d",
+    "updated": "2026-08-29",
+    "excerpt": "> ## Documentation Index > Fetch the complete documentation index at: https://docs.bigmodel.cn/llms.txt > Use this file to discover all available pages before exploring further. # 上新活动 尊敬的 智谱开放平台 用户： 您好！我们荣幸地宣布，平台正式发布全新一代基座大模型—— **GLM-4.6 与 GLM-4.5 系列模型**。为了回馈广大用户的长期支持与信赖，我们特别推出专属优惠活动，邀您体验智谱最新最强大的模型。 ## **活动一：GLM Coding Plan 编码畅享计划** 为庆祝 GLM Coding Plan 正式上线，我们为全平台用户提供限时优惠，让更多用户以合理成本使用高质量的代码生成能力。["
+  },
+  "https://zcode.z.ai/changelog": {
+    "hash": "f419cb90a46f91fa3fe89dc8e0f45d2e233bbdcfcac71a68ae2440a8fa601444",
+    "updated": "2026-08-29",
+    "excerpt": "登录 文档 更新日志 社区 EN 登录 版本发布与更新 ZCode 各版本的更新说明与桌面端下载。 3.10.1 发布于 2026年8月28日 下载 Release v3.10.1 新功能 新增 Weekend Plan 免费提前领取，可邀请好友一起来领 提示词模板引用的插件支持一键安装，进度提示更清晰 输入框菜单新增技能快捷入口 思考轨迹支持内容搜索，记录更完整并默认展开 MCP 服务器支持配置协议版本，协商失败时有引导提示 编辑后的消息支持立即发送，无需排队等待 对话回合结束时可查看执行摘要与耗时 设置中「浏览器」菜单更名为「浏览器控制」 问题修复 优化登录授权流程，修复偶发回调失败的问题 修复偶现的 mcp oauth 失败问题 模型回复偶发中断或空白时，现在会自动重试 修复出错后排队消息丢失、中断任务状态显示错误的问题 统一工具执行状态文案，思考过程标签更简洁清晰 修复任务操作提示"
+  },
+  "https://www.siliconflow.cn/news": {
+    "hash": "ba08a32608814f9d31afa2cad27a4419b4fe6daede9b6b72a1dd694c5399a5f5",
+    "updated": "2026-08-29",
+    "excerpt": "产品 模型 价格 文档 生态合作 关于 登录 登录 产品 模型 价格 文档 生态合作 关于 公司介绍 品牌理念 企业动态 开发者说 企业动态 硅基流动上线高速版 Kimi K2.7 Code “想得更少、写得更好”：能看会做，既能理解录屏中的操作流程，也能一口气完成跨文件的项目开发。 模型上新 2026-06-18 查看更多 国产 GPU 2:1 等效对标国际高端 GPU！摩尔线程 × 硅基流动发布异构混部白皮书 近日，硅基流动与摩尔线程联合发布《PD 分离异构算力混部实践技术白皮书》（以下简称“《白皮书》”），首次系统阐述基于硅基流动自研高性能推理引擎、以摩尔线程 MTT S5000 与国际高端 GPU 协同工作的 PD 分离推理方案。 生态合作 2026-08-20 硅基流动多样化推理服务，助力电子制造企业 AI 落地 AI 正在加速渗透千行百业。在工业制造领域，核心命题已从“能否用上"
+  },
+  "https://www.trae.cn/pricing": {
+    "hash": "9c4ea69a8865ab915e42f124fb1bbe4b17d24c019394c2bbf67e6f2b6004e52b",
+    "updated": "2026-08-29",
+    "excerpt": "TraeCode Hot TraeWork 企业版 定价 文档 更新日志 社区 知识库 登录 下载中心 个人方案与定价 企业版选型与咨询， 前往火山引擎 ↗ TraeCode 先一步体验未来 下载 TraeCode 服务条款 用户协议 隐私协议 社区与文档 开发者社区 文档 更新日志 联系我们 建议反馈 企业咨询热线 400-034-7888 企业咨询热线 400-034-7888 企业采购咨询 © 2025 北京引力弹弓科技有限公司版权所有 京公网安备11010802046042号 京ICP备2024062284号-13 北京引力弹弓科技有限公司｜ 营业执照 北京市海淀区北三环西路甲23号院 回到顶部 关注微信公众号 下载 TRAE 移动端"
+  },
+  "https://kiro.dev/pricing/": {
+    "hash": "e9ea891f06939ebfbb641f32895b272e3be3cf307dd97a263508dab031188053",
+    "updated": "2026-08-29",
+    "excerpt": "Pricing Get $20 credited toward your subscription when you first upgrade to a paid plan using social login or AWS Builder ID. KIRO FREE $0 per month 50 credits Access to open weight models* and Claude Sonnet 4.5 Download now KIRO PRO $20 per user / month 1,000 credits Access to premium models** Add-on credits ($0.04/credit) Sign up / upgrade KIRO PRO+ $40 per user / month 2,000 credits Access to p"
+  }
+}

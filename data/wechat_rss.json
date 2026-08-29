@@ -1,0 +1,4 @@
+{
+  "description": "微信公众号 RSS 桥订阅。到 https://wechat2rss.xlab.app 搜索公众号生成 RSS feed 地址，填入 feeds 数组。建议订阅平台官方号（智谱AI、腾讯CodeBuddy、硅基流动、火山引擎等），活动公告第一时间可得。feeds 为空时该源自动跳过。",
+  "feeds": []
+}

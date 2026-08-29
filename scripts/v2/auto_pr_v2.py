@@ -39,6 +39,21 @@ DATA_V1 = ROOT / "data" / "platforms.json"
 
 MAX_PR_ITEMS = 5  # 单次 PR 最多包含的条目数，防失控
 
+# 内容平台/社区页面不是平台官网。搜索发现源的候选来自聚合文章，
+# LLM 抽取若误把文章链接当官网，在此兜底拦截。
+ARTICLE_DOMAINS = {
+    "csdn.net", "zhihu.com", "zhuanlan.zhihu.com", "juejin.cn",
+    "xiaohongshu.com", "mp.weixin.qq.com", "v2ex.com", "smzdm.com",
+    "okjike.com", "x.com", "twitter.com", "weibo.com", "bilibili.com",
+    "jianshu.com", "sspai.com", "myzaker.com", "uied.cn",
+    "cloud.tencent.com", "developer.aliyun.com", "cnblogs.com",
+    "github.io", "medium.com", "jianshu.io",
+}
+
+
+def _is_article_domain(domain: str) -> bool:
+    return any(domain == d or domain.endswith("." + d) for d in ARTICLE_DOMAINS)
+
 
 # ── 工具 ────────────────────────────────────────────────
 
@@ -151,6 +166,9 @@ def filter_duplicates(items: list[dict]) -> list[dict]:
         if entry["id"] in existing_ids or entry["id"] in seen_batch:
             continue
         if d and d in existing_domains:
+            continue
+        if d and _is_article_domain(d):
+            print(f"  [SKIP] {entry['name']}: url 是内容平台页面而非官网 ({d})")
             continue
         seen_batch.add(entry["id"])
         out.append(entry)

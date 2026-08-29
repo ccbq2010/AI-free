@@ -84,6 +84,26 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/v2/create_expiry_issue_v2.py
 
+      - name: Check official promo pages (diff + issue)
+        if: always()
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/v2/check_promo_pages.py
+
+      - name: Commit promo snapshots if changed
+        if: always()
+        continue-on-error: true
+        run: |
+          git checkout main
+          if [ -n "$(git status --porcelain data/promo_snapshots.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/promo_snapshots.json
+            git commit -m "chore(promo): update page snapshots [skip ci]"
+            git push
+          fi
+
       - name: Upload v2 scan report
         if: always()
         uses: actions/upload-artifact@v4
