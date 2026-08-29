@@ -35,32 +35,34 @@ LOW_CONFIDENCE = 0.5
 DEFAULT_MODEL = "LongCat-2.0"
 
 
-def get_providers() -> list[tuple[str, str, str]]:
-    """返回 (base_url, api_key, model) 列表，按优先级排序。"""
-    providers: list[tuple[str, str, str]] = []
+def get_providers() -> list[dict]:
+    """返回供应商列表 [{"base_url","api_key","model","extra_body"?}]，按优先级排序。"""
+    providers: list[dict] = []
     raw = os.environ.get("LLM_PROVIDERS", "").strip()
     if raw:
         try:
             for item in json.loads(raw):
                 if item.get("base_url") and item.get("api_key"):
-                    providers.append((
-                        item["base_url"].rstrip("/"),
-                        item["api_key"],
-                        item.get("model") or DEFAULT_MODEL,
-                    ))
+                    providers.append({
+                        "base_url": item["base_url"].rstrip("/"),
+                        "api_key": item["api_key"],
+                        "model": item.get("model") or DEFAULT_MODEL,
+                        "extra_body": item.get("extra_body") or {},
+                    })
         except json.JSONDecodeError:
             print("[WARN] LLM_PROVIDERS 不是合法 JSON，已忽略", file=sys.stderr)
     base_url = os.environ.get("LLM_BASE_URL")
     api_key = os.environ.get("LLM_API_KEY")
     if base_url and api_key:
-        providers.append((base_url.rstrip("/"), api_key,
-                          os.environ.get("LLM_MODEL") or DEFAULT_MODEL))
+        providers.append({"base_url": base_url.rstrip("/"), "api_key": api_key,
+                          "model": os.environ.get("LLM_MODEL") or DEFAULT_MODEL,
+                          "extra_body": {}})
     if not providers:
         print(
             "[ERROR] 缺少 LLM_PROVIDERS 或 LLM_BASE_URL + LLM_API_KEY（仓库 Secrets）。\n"
-            "        推荐 LongCat（每天 10 万 Token）+ Cerebras 备份（长期每天 1M Token）：\n"
-            '        LLM_PROVIDERS=[{"base_url":"https://api.longcat.chat/openai/v1",...},'
-            '{"base_url":"https://api.cerebras.ai/v1",...}]',
+            "        选型原则：只收无需信用卡绑定的免费档。\n"
+            '        示例：LLM_PROVIDERS=[{"base_url":"https://api.longcat.chat/openai/v1",'
+            '"api_key":"...","model":"LongCat-2.0"}]',
             file=sys.stderr,
         )
         sys.exit(2)
@@ -104,10 +106,10 @@ SYSTEM_PROMPT = """你是一个 AI 平台「新用户福利」信息抽取助手
 """
 
 
-def call_llm(provider: tuple[str, str, str], text: str) -> dict | None:
+def call_llm(provider: dict, text: str) -> dict | None:
     import httpx
 
-    base_url, api_key, model = provider
+    base_url, api_key, model = provider["base_url"], provider["api_key"], provider["model"]
 
     def _post(payload: dict) -> str:
         resp = httpx.post(
@@ -117,7 +119,7 @@ def call_llm(provider: tuple[str, str, str], text: str) -> dict | None:
                 "Content-Type": "application/json",
             },
             json=payload,
-            timeout=90,
+            timeout=120,
         )
         resp.raise_for_status()
         return resp.json()["choices"][0]["message"]["content"]
@@ -130,6 +132,7 @@ def call_llm(provider: tuple[str, str, str], text: str) -> dict | None:
         ],
         "temperature": 0.1,
         "response_format": {"type": "json_object"},
+        **(provider.get("extra_body") or {}),
     }
     try:
         content = _post(payload)
@@ -153,7 +156,7 @@ def call_llm(provider: tuple[str, str, str], text: str) -> dict | None:
         return None
 
 
-def process_candidate(candidate: dict, providers: list[tuple[str, str, str]],
+def process_candidate(candidate: dict, providers: list[dict],
                       start_idx: int) -> tuple[dict | None, int]:
     """依次尝试供应商（从上次成功的开始），返回 (结果, 成功供应商下标)。"""
     text = (
@@ -169,7 +172,7 @@ def process_candidate(candidate: dict, providers: list[tuple[str, str, str]],
         try:
             result = call_llm(providers[idx], text)
         except Exception as e:  # noqa: BLE001
-            print(f"    [WARN] provider#{idx} ({providers[idx][0]}) 失败: {e}", file=sys.stderr)
+            print(f"    [WARN] provider#{idx} ({providers[idx]['base_url']}) 失败: {e}", file=sys.stderr)
             last_err = e
             continue
         # 请求成功但输出不可解析属模型输出问题，不再换供应商
@@ -216,7 +219,7 @@ def main() -> None:
 
     providers = get_providers()
     print(f"Processing {len(candidates)} candidates with LLM (v2)...", file=sys.stderr)
-    print(f"LLM providers (failover order): {[p[0] for p in providers]}", file=sys.stderr)
+    print(f"LLM providers (failover order): {[p['base_url'] for p in providers]}", file=sys.stderr)
 
     high: list[dict] = []
     low: list[dict] = []
