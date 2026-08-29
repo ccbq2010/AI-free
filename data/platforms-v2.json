@@ -394,5 +394,71 @@
     },
     "status": "active",
     "note": "2026-08-29 官方文档核实（zcode.z.ai/cn/docs/configuration）：连接 BigModel/Z.ai 账号自动获得体验套餐，无需付费；周末等不定期活动全体用户可领大额 Token 体验 GLM-5.3-Flash"
+  },
+  {
+    "id": "cerebras-inference-cloud",
+    "name": "Cerebras Inference Cloud",
+    "tier": "hidden_gem",
+    "provider": "Cerebras",
+    "benefit": "新用户可免费试用 Cerebras Inference Cloud",
+    "benefit_highlight": [],
+    "url": "https://www.cerebras.ai/",
+    "tags": [
+      "免费试用",
+      "新用户福利"
+    ],
+    "deadline": null,
+    "referral": {
+      "type": "none"
+    },
+    "status": "active",
+    "note": "v2 自动收录 (2026-08-29)，来源 official:Cerebras，confidence=0.9。请人工核对后 Merge。"
+  },
+  {
+    "id": "ai",
+    "name": "智谱AI",
+    "tier": "hidden_gem",
+    "provider": "智谱AI",
+    "benefit": "注册送2000万永久Token",
+    "benefit_highlight": [
+      "注册送2000万永久Token"
+    ],
+    "url": "https://www.chooseai.net/news/4270/",
+    "tags": [
+      "注册送Token",
+      "永久免费"
+    ],
+    "deadline": null,
+    "referral": {
+      "type": "none"
+    },
+    "status": "active",
+    "note": "v2 自动收录 (2026-08-29)，来源 SearchEngine:ddg，confidence=0.95。请人工核对后 Merge。"
+  },
+  {
+    "id": "2026-api",
+    "name": "2026 大模型 API 免费额度汇总",
+    "tier": "hidden_gem",
+    "provider": "腾讯云开发者社区",
+    "benefit": "汇总了腾讯云混元（100万Tokens/年）、百度千帆（每模型100万Tokens/3个月）、阿里云百炼（100万Tokens永久）等平台的免费API额度",
+    "benefit_highlight": [
+      "100万Tokens",
+      "每模型100万Tokens",
+      "3个月",
+      "100万Tokens永久"
+    ],
+    "url": "https://cloud.tencent.com.cn/developer/article/2626756",
+    "tags": [
+      "免费额度",
+      "API",
+      "大模型",
+      "汇总"
+    ],
+    "deadline": null,
+    "referral": {
+      "type": "none"
+    },
+    "status": "active",
+    "note": "v2 自动收录 (2026-08-29)，来源 SearchEngine:ddg，confidence=0.8。请人工核对后 Merge。"
   }
 ]
