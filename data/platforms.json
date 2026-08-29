@@ -76,21 +76,21 @@
     "id": "trae",
     "name": "TRAE（豆包旗下）",
     "provider": "字节跳动 · 豆包体系 AI 编程产品线（2026-08 并入豆包）",
-    "benefit": "新用户 14 天 Pro 免费试用 · 免费版每月 500 积分（SOLO 已更名 TRAE Work）",
+    "benefit": "免费版每月 500 积分长期免费 · 新用户限时免费试用 Pro（官方当前标注 7 天，早期活动为 14 天）",
     "benefit_highlight": [
-      "14 天 Pro 免费",
-      "每月 500 积分"
+      "每月 500 积分",
+      "限时免费试用 Pro"
     ],
     "url": "https://www.trae.cn",
     "tags": [
       "GLM-5.3"
     ],
-    "deadline": "Pro 试用 14 天",
+    "deadline": "Pro 试用限时（以官网定价页为准）",
     "referral": {
       "type": "none"
     },
     "status": "active",
-    "note": "2026-08-24 官宣：TRAE、扣子团队并入豆包体系，TRAE IDE/CLI 作为豆包编程产品线继续发展；2026-06 SOLO 更名 TRAE Work。原 ¥99 速通活动已截止。GLM 支持方式：自定义模型 → 预设服务商选「智谱开放平台」填 API Key（或 GLM Coding Plan 套餐额度），非 TRAE 官方赠送额度，参考 docs.bigmodel.cn/cn/guide/develop/trae",
+    "note": "2026-08-29 核实：「Limited-time Pro Trial」出自国际版官方文档 docs.trae.ai/ide/new-plans-and-billing 及官方博客（注册后 48h 内绑定支付方式可领 14 天 Pro 试用 + $10 额度，2026-02-01 起注册用户）；当前官方定价页显示 7 天试用，时长可能已调整，以官网实时为准。国内版（trae.cn）定价页 JS 渲染未能核实。2026-08-24 官宣 TRAE、扣子团队并入豆包体系，SOLO 已更名 TRAE Work。GLM 支持方式：自定义模型 → 预设服务商选「智谱开放平台」填 API Key（或 GLM Coding Plan 套餐额度），非 TRAE 赠送额度",
     "verified_at": "2026-08-29"
   },
   {
