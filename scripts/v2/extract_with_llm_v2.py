@@ -11,11 +11,11 @@
   python scripts/v2/extract_with_llm_v2.py --text "某平台注册即送1000积分"
 
 环境变量：
-  LLM_PROVIDERS               可选，JSON 数组，按序故障切换。推荐主备写法
-                             （如 LongCat 额度 2026-09-21 到期，主 LongCat 备 Cerebras）：
+  LLM_PROVIDERS               可选，JSON 数组，按序故障切换。推荐主备写法：
                 [{"base_url":"https://api.longcat.chat/openai/v1","api_key":"...","model":"LongCat-2.0"},
-                 {"base_url":"https://api.cerebras.ai/v1","api_key":"...","model":"gpt-oss-120b"}]
-                             Cerebras 免费档长期有效：每天 1M Token、无需信用卡
+                 {"base_url":"<备选供应商>","api_key":"...","model":"..."}]
+                             选备胎原则：只收「无需信用卡绑定」的免费档，
+                             需绑卡/付费开通的服务一律不收（Cerebras 实测 402 即此类）
   LLM_BASE_URL + LLM_API_KEY  兼容旧写法（单供应商），与 LLM_PROVIDERS 同时存在时排在后面
   LLM_MODEL                   旧写法的默认模型（LLM_PROVIDERS 里每项自带 model）
 
