@@ -12,10 +12,11 @@
 
 环境变量：
   LLM_BASE_URL + LLM_API_KEY  必填，任意 OpenAI-compatible API。
-                             推荐智谱开放平台（https://open.bigmodel.cn/api/paas/v4，
-                             glm-4.5-flash 免费），在仓库 Secrets 配置即可。
+                             推荐美团 LongCat（https://longcat.chat/platform，
+                             LongCat-Flash-Chat 每天送 10 万 Token，抽取日用量约 3 万）：
+                             LLM_BASE_URL=https://api.longcat.chat/openai/v1
                              （原 GitHub Models 免费通道已于 2026-08 官方退役，410 Gone）
-  LLM_MODEL                   默认 glm-4.5-flash
+  LLM_MODEL                   默认 LongCat-Flash-Chat
 """
 
 from __future__ import annotations
@@ -28,7 +29,7 @@ import sys
 HIGH_CONFIDENCE = 0.8
 LOW_CONFIDENCE = 0.5
 
-DEFAULT_MODEL = "glm-4.5-flash"
+DEFAULT_MODEL = "LongCat-Flash-Chat"
 
 
 def get_client() -> tuple[str, str, str]:
@@ -38,8 +39,8 @@ def get_client() -> tuple[str, str, str]:
         return (base_url.rstrip("/"), api_key, os.environ.get("LLM_MODEL") or DEFAULT_MODEL)
     print(
         "[ERROR] 缺少 LLM_BASE_URL + LLM_API_KEY（仓库 Secrets）。\n"
-        "        推荐：LLM_BASE_URL=https://open.bigmodel.cn/api/paas/v4\n"
-        "              LLM_API_KEY=<智谱 API Key>，LLM_MODEL=glm-4.5-flash（免费）",
+        "        推荐 LongCat：LLM_BASE_URL=https://api.longcat.chat/openai/v1\n"
+        "        LLM_API_KEY=<longcat.chat/platform 的 API Key>，LLM_MODEL=LongCat-Flash-Chat",
         file=sys.stderr,
     )
     sys.exit(2)

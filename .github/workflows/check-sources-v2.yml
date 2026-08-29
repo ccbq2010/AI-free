@@ -49,7 +49,7 @@ jobs:
           "
           if [ -s /tmp/candidates_v2.json ]; then
             python scripts/v2/extract_with_llm_v2.py < /tmp/candidates_v2.json > /tmp/extracted_v2.json \
-              || echo "::error::LLM 抽取失败：请在仓库 Secrets 配置 LLM_API_KEY/LLM_BASE_URL（推荐智谱 open.bigmodel.cn + glm-4.5-flash，免费）"
+              || echo "::error::LLM 抽取失败：请在仓库 Secrets 配置 LLM_API_KEY/LLM_BASE_URL（推荐美团 LongCat：https://api.longcat.chat/openai/v1 + LongCat-Flash-Chat，每天免费 10 万 Token）"
           fi
 
       - name: Auto PR for high-confidence candidates
