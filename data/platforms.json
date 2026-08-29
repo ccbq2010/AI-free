@@ -48,28 +48,6 @@
     "verified_at": "2026-08-29"
   },
   {
-    "id": "catpaw",
-    "name": "CatPaw",
-    "provider": "美团 · AI 编程 IDE（LongCat）",
-    "benefit": "注册即送 500 Enhanced Calls（2026-08 官网改版为全场景 AI Agent 平台，额度待复核）",
-    "benefit_highlight": [
-      "500 Enhanced Calls",
-      "GLM-5.2",
-      "8 模型"
-    ],
-    "url": "https://catpaw.meituan.com",
-    "tags": [
-      "GLM-5.2"
-    ],
-    "deadline": "注册即得",
-    "referral": {
-      "type": "none"
-    },
-    "status": "active",
-    "note": "2026-08-29 复核：官网改版为「全场景 AI Agent 平台」，原 500 Enhanced Calls + GLM-5.2 等 8 模型未能复核，待确认",
-    "verified_at": "2026-08-29"
-  },
-  {
     "id": "zhipu-glm",
     "name": "智谱 GLM",
     "tier": "hidden_gem",

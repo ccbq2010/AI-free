@@ -1,7 +1,7 @@
 {
   "site": "https://ccbq2010.github.io/AI-free",
   "updated_at": "2026-08-29",
-  "count": 15,
+  "count": 14,
   "platforms": [
     {
       "id": "workbuddy",
@@ -22,17 +22,6 @@
       "url": "https://opencode.ai",
       "tags": [
         "GLM-5.3"
-      ],
-      "tier": "normal"
-    },
-    {
-      "id": "catpaw",
-      "name": "CatPaw",
-      "provider": "美团 · AI 编程 IDE（LongCat）",
-      "benefit": "注册即送 500 Enhanced Calls（2026-08 官网改版为全场景 AI Agent 平台，额度待复核）",
-      "url": "https://catpaw.meituan.com",
-      "tags": [
-        "GLM-5.2"
       ],
       "tier": "normal"
     },
