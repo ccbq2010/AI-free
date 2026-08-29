@@ -151,7 +151,7 @@
       "id": "cerebras",
       "name": "Cerebras",
       "provider": "Cerebras Systems · 晶圆级芯片第一方推理云",
-      "benefit": "免费档每天约 100 万 Token（Llama 4 / Qwen3 / GPT-OSS 等，无需信用卡）· 2600+ tokens/秒超高速推理",
+      "benefit": "免费档每模型每天 100 万 Token（gpt-oss-120b / gemma-4-31b 等，5 RPM）· 新用户另得 $5 赠金 · 2600+ tokens/秒超高速推理",
       "url": "https://www.cerebras.ai/",
       "tags": [],
       "tier": "hidden_gem"
