@@ -68,7 +68,7 @@
     {
       "id": "xiaomi-mimo",
       "name": "小米 MiMo",
-      "provider": "小米 · 开源大模型商业化",
+      "provider": "小米 · MiMo 开放平台（模型 API 计费）",
       "benefit": "新用户注册即得 ¥10 API 体验金（40 天有效）· 邀请好友双方各得 ¥10（长期活动）· MiMo-V2.5 API 永久降价",
       "url": "https://platform.xiaomimimo.com?ref=C2PLQR",
       "tags": [],
@@ -77,8 +77,8 @@
     {
       "id": "mimo-code",
       "name": "MiMO CODE",
-      "provider": "小米 · 免费 AI 编程工具",
-      "benefit": "完全免费使用 · 无需邀请码，VS Code / JetBrains / iTerm 直接安装",
+      "provider": "小米 · 开源 AI 编程智能体（MiMo 体系）",
+      "benefit": "开源（MIT）终端编程智能体 · 内置 MiMo-V2.5 限时免费（官方称比肩 Claude Sonnet 4.6）· 也可接入 DeepSeek/Kimi/GLM",
       "url": "https://mimo.xiaomi.com/coder",
       "tags": [],
       "tier": "normal"

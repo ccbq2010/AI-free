@@ -173,7 +173,7 @@
   {
     "id": "xiaomi-mimo",
     "name": "小米 MiMo",
-    "provider": "小米 · 开源大模型商业化",
+    "provider": "小米 · MiMo 开放平台（模型 API 计费）",
     "benefit": "新用户注册即得 ¥10 API 体验金（40 天有效）· 邀请好友双方各得 ¥10（长期活动）· MiMo-V2.5 API 永久降价",
     "benefit_highlight": [
       "¥10 API 体验金",
@@ -196,20 +196,21 @@
   {
     "id": "mimo-code",
     "name": "MiMO CODE",
-    "provider": "小米 · 免费 AI 编程工具",
-    "benefit": "完全免费使用 · 无需邀请码，VS Code / JetBrains / iTerm 直接安装",
+    "provider": "小米 · 开源 AI 编程智能体（MiMo 体系）",
+    "benefit": "开源（MIT）终端编程智能体 · 内置 MiMo-V2.5 限时免费（官方称比肩 Claude Sonnet 4.6）· 也可接入 DeepSeek/Kimi/GLM",
     "benefit_highlight": [
-      "完全免费",
-      "无需邀请码"
+      "开源 MIT",
+      "MiMo-V2.5 限时免费"
     ],
     "url": "https://mimo.xiaomi.com/coder",
     "tags": [],
-    "deadline": null,
+    "deadline": "工具永久开源；MiMo-V2.5 限免以官方为准",
     "referral": {
       "type": "none",
       "reward": "免费无需邀请"
     },
-    "status": "active"
+    "status": "active",
+    "note": "2026-08-29 核实：2026-06-10 发布并开源（MIT，github.com/XiaomiMiMo/MiMo-Code），定位类 Claude Code 的终端编程智能体；工具免费但模型额度需走 MiMo 开放平台（体验金/Token Plan 抵扣），MiMo-V2.5 为限时免费非永久；与「小米 MiMo」条目为同一体系两层——开放平台是 API 计费入口，MiMo Code 是基于其模型的开源工具"
   },
   {
     "id": "silicon-flow",
