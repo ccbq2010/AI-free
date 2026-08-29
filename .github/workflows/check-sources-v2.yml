@@ -57,7 +57,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ -s /tmp/extracted_v2.json ]; then
-            python scripts/v2/auto_pr_v2.py < /tmp/extracted_v2.json
+            python scripts/v2/auto_pr_v2.py < /tmp/extracted_v2.json \
+              || echo "::error::自动 PR 创建失败：请到仓库 Settings → Actions → General → Workflow permissions 勾选 Allow GitHub Actions to create and approve pull requests"
           fi
 
       - name: Create issue for low-confidence candidates

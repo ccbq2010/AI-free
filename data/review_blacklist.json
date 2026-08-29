@@ -1,8 +1,14 @@
 {
-  "domains": [],
+  "domains": [
+    "quicaibest.com"
+  ],
   "names": [
     "反共政治宣传库",
-    "aibotgo"
+    "aibotgo",
+    "yukiapi",
+    "quicai",
+    "ai api 服务",
+    "ai api"
   ],
   "description": "已拒绝的候选平台。domains 匹配 URL 域名，names 匹配归一化后的名称。"
 }

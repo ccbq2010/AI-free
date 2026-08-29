@@ -175,5 +175,23 @@
     "status": "ready_to_add",
     "verify_notes": "2026-08 媒体/社区文章提及公测注册送 2000 积分；需上官网核实领取入口与积分规则",
     "access": "domestic"
+  },
+  {
+    "id": "cerebras",
+    "name": "Cerebras Inference",
+    "provider": "Cerebras · 超高速 LPU 推理云",
+    "benefit": "注册即享 Cerebras Inference Cloud 免费试用额度",
+    "benefit_highlight": [
+      "免费试用"
+    ],
+    "url": "https://www.cerebras.ai/",
+    "tags": [],
+    "deadline": "免费档长期（额度待核验）",
+    "referral": {
+      "type": "none"
+    },
+    "status": "ready_to_add",
+    "verify_notes": "v2 管线 2026-07-28/29/30 连续三天自动提出（confidence=0.9，来源 official:Cerebras），因 PR 权限问题一直未落地；需核验免费档具体额度与速率限制",
+    "access": "overseas"
   }
 ]
