@@ -10,7 +10,6 @@ permissions:
   contents: write
   issues: write
   pull-requests: write
-  models: read  # 必需：GITHUB_TOKEN 访问 GitHub Models 推理 API
 
 jobs:
   check:
@@ -37,7 +36,9 @@ jobs:
         if: steps.check.outputs.exit_code == '1'
         continue-on-error: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          LLM_MODEL: ${{ secrets.LLM_MODEL }}
         run: |
           python -c "
           import json
@@ -47,7 +48,8 @@ jobs:
           print(f'{len(candidates)} candidates to process')
           "
           if [ -s /tmp/candidates_v2.json ]; then
-            python scripts/v2/extract_with_llm_v2.py < /tmp/candidates_v2.json > /tmp/extracted_v2.json
+            python scripts/v2/extract_with_llm_v2.py < /tmp/candidates_v2.json > /tmp/extracted_v2.json \
+              || echo "::error::LLM 抽取失败：请在仓库 Secrets 配置 LLM_API_KEY/LLM_BASE_URL（推荐智谱 open.bigmodel.cn + glm-4.5-flash，免费）"
           fi
 
       - name: Auto PR for high-confidence candidates

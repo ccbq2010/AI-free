@@ -11,10 +11,11 @@
   python scripts/v2/extract_with_llm_v2.py --text "某平台注册即送1000积分"
 
 环境变量：
-  LLM_BASE_URL + LLM_API_KEY  优先，任意 OpenAI-compatible API（自建/第三方）
-  GITHUB_TOKEN                回退，走 GitHub Models（GA 端点 models.github.ai）
-                             ——workflow 须授予 `permissions: models: read`，否则 401
-  LLM_MODEL                   显式 API 默认 gpt-4o-mini；GitHub Models 默认 openai/gpt-4o-mini
+  LLM_BASE_URL + LLM_API_KEY  必填，任意 OpenAI-compatible API。
+                             推荐智谱开放平台（https://open.bigmodel.cn/api/paas/v4，
+                             glm-4.5-flash 免费），在仓库 Secrets 配置即可。
+                             （原 GitHub Models 免费通道已于 2026-08 官方退役，410 Gone）
+  LLM_MODEL                   默认 glm-4.5-flash
 """
 
 from __future__ import annotations
@@ -27,24 +28,20 @@ import sys
 HIGH_CONFIDENCE = 0.8
 LOW_CONFIDENCE = 0.5
 
+DEFAULT_MODEL = "glm-4.5-flash"
+
 
 def get_client() -> tuple[str, str, str]:
-    # 优先使用显式配置的 OpenAI-compatible API（自建/第三方），便于覆盖默认。
     base_url = os.environ.get("LLM_BASE_URL")
     api_key = os.environ.get("LLM_API_KEY")
     if base_url and api_key:
-        return (base_url, api_key, os.environ.get("LLM_MODEL", "gpt-4o-mini"))
-    # 回退到 GitHub Models（GA 端点，零成本）。
-    # 注意：调用方 workflow 必须授予 `permissions: models: read`，否则 401。
-    # 端点须用 https://models.github.ai/inference，模型名须带 openai/ 前缀。
-    gh_token = os.environ.get("GITHUB_TOKEN")
-    if gh_token:
-        return (
-            "https://models.github.ai/inference",
-            gh_token,
-            os.environ.get("LLM_MODEL", "openai/gpt-4o-mini"),
-        )
-    print("[ERROR] 需要 LLM_BASE_URL + LLM_API_KEY 或 GITHUB_TOKEN", file=sys.stderr)
+        return (base_url.rstrip("/"), api_key, os.environ.get("LLM_MODEL") or DEFAULT_MODEL)
+    print(
+        "[ERROR] 缺少 LLM_BASE_URL + LLM_API_KEY（仓库 Secrets）。\n"
+        "        推荐：LLM_BASE_URL=https://open.bigmodel.cn/api/paas/v4\n"
+        "              LLM_API_KEY=<智谱 API Key>，LLM_MODEL=glm-4.5-flash（免费）",
+        file=sys.stderr,
+    )
     sys.exit(2)
 
 
