@@ -75,15 +75,6 @@
       "tier": "normal"
     },
     {
-      "id": "mimo-code",
-      "name": "MiMO CODE",
-      "provider": "小米 · 开源 AI 编程智能体（MiMo 体系）",
-      "benefit": "开源（MIT）终端编程智能体 · 内置 MiMo-V2.5 限时免费（官方称比肩 Claude Sonnet 4.6）· 也可接入 DeepSeek/Kimi/GLM",
-      "url": "https://mimo.xiaomi.com/coder",
-      "tags": [],
-      "tier": "normal"
-    },
-    {
       "id": "silicon-flow",
       "name": "硅基流动",
       "provider": "SiliconFlow · 大模型推理云",
@@ -144,6 +135,17 @@
       "url": "https://www.volcengine.com/article/2604035",
       "tags": [],
       "tier": "normal"
+    },
+    {
+      "id": "zcode-glm",
+      "name": "ZCode（智谱）",
+      "provider": "智谱 Z.ai · GLM-5.3 Agentic Coding 桌面端",
+      "benefit": "新用户连接 BigModel 账号免费得 5 天 × 每天 800 万 Tokens 的 GLM 系列体验额度 · 不定期全员活动送大额 Token（周末曾送 3 亿）",
+      "url": "https://zcode.z.ai/cn",
+      "tags": [
+        "GLM-5.3"
+      ],
+      "tier": "hidden_gem"
     }
   ]
 }

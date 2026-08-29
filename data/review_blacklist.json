@@ -1,7 +1,8 @@
 {
   "domains": [
     "quicaibest.com",
-    "catpaw.meituan.com"
+    "catpaw.meituan.com",
+    "mimo.xiaomi.com"
   ],
   "names": [
     "反共政治宣传库",
@@ -10,7 +11,8 @@
     "quicai",
     "ai api 服务",
     "ai api",
-    "catpaw"
+    "catpaw",
+    "mimo code"
   ],
   "description": "已拒绝的候选平台。domains 匹配 URL 域名，names 匹配归一化后的名称。"
 }

@@ -46,9 +46,11 @@
 - **邀请机制**: 无需邀请码，完全免费
 - **链接**: https://mimo.xiaomi.com/coder
 
-#### 6. ZCode（中信）
+#### 6. ZCode（智谱 Z.ai）
 - **邀请机制**: 暂未开放邀请码
-- **新用户福利**: 连续 5 天每天 500 万 Tokens（300 万 GLM-5.2 + 200 万 Turbo）
+- **新用户福利**: 连接 BigModel / Z.ai 账号后自动获得体验套餐——首用起 5 天、每天 800 万 Tokens 的 GLM 系列模型体验额度，无需付费
+- **加码活动**: 不定期全员活动（如周末 3 亿 Token 体验 GLM-5.3-Flash），关注 [changelog](https://zcode.z.ai/changelog)
+- **特点**: GLM-5.3 Agentic Coding 桌面端，原厂免费 GLM 额度最直接的入口
 - **链接**: https://zcode.z.ai/cn
 
 #### 7. TRAE（豆包旗下）

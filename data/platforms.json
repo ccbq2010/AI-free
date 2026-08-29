@@ -194,25 +194,6 @@
     "verified_at": "2026-08-29"
   },
   {
-    "id": "mimo-code",
-    "name": "MiMO CODE",
-    "provider": "小米 · 开源 AI 编程智能体（MiMo 体系）",
-    "benefit": "开源（MIT）终端编程智能体 · 内置 MiMo-V2.5 限时免费（官方称比肩 Claude Sonnet 4.6）· 也可接入 DeepSeek/Kimi/GLM",
-    "benefit_highlight": [
-      "开源 MIT",
-      "MiMo-V2.5 限时免费"
-    ],
-    "url": "https://mimo.xiaomi.com/coder",
-    "tags": [],
-    "deadline": "工具永久开源；MiMo-V2.5 限免以官方为准",
-    "referral": {
-      "type": "none",
-      "reward": "免费无需邀请"
-    },
-    "status": "active",
-    "note": "2026-08-29 核实：2026-06-10 发布并开源（MIT，github.com/XiaomiMiMo/MiMo-Code），定位类 Claude Code 的终端编程智能体；工具免费但模型额度需走 MiMo 开放平台（体验金/Token Plan 抵扣），MiMo-V2.5 为限时免费非永久；与「小米 MiMo」条目为同一体系两层——开放平台是 API 计费入口，MiMo Code 是基于其模型的开源工具"
-  },
-  {
     "id": "silicon-flow",
     "name": "硅基流动",
     "tier": "hidden_gem",
@@ -391,5 +372,27 @@
     "status": "active",
     "note": "2026-08 官宣：覆盖全学段在校学生，认证后免费额度 2.5 倍，专业版标准套餐 ¥38/月连续包月特惠（约 44% 折扣）",
     "verified_at": "2026-08-29"
+  },
+  {
+    "id": "zcode-glm",
+    "name": "ZCode（智谱）",
+    "tier": "hidden_gem",
+    "provider": "智谱 Z.ai · GLM-5.3 Agentic Coding 桌面端",
+    "benefit": "新用户连接 BigModel 账号免费得 5 天 × 每天 800 万 Tokens 的 GLM 系列体验额度 · 不定期全员活动送大额 Token（周末曾送 3 亿）",
+    "benefit_highlight": [
+      "免费 5 天",
+      "每天 800 万 Tokens",
+      "不定期送 3 亿"
+    ],
+    "url": "https://zcode.z.ai/cn",
+    "tags": [
+      "GLM-5.3"
+    ],
+    "deadline": "体验额度自首次使用起 5 天有效",
+    "referral": {
+      "type": "none"
+    },
+    "status": "active",
+    "note": "2026-08-29 官方文档核实（zcode.z.ai/cn/docs/configuration）：连接 BigModel/Z.ai 账号自动获得体验套餐，无需付费；周末等不定期活动全体用户可领大额 Token 体验 GLM-5.3-Flash"
   }
 ]
