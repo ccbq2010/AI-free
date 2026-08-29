@@ -170,7 +170,7 @@ def main():
         print(f"   已跳过 {len(all_issues)} 个问题条目，继续构建剩余 {len(platforms)} 个")
 
     active = [p for p in platforms if p.get("status") == "active"]
-    glm_count = sum(1 for p in active if any("GLM-5.2" in t for t in p.get("tags", [])))
+    glm_count = sum(1 for p in active if any(t.startswith("GLM-5") for t in p.get("tags", [])))
     now = datetime.now().strftime("%Y年%m月%d日")
     subtitle = f"{len(active)} 个顶级 AI 平台免费额度 · 注册即领 · 每周验证更新"
 

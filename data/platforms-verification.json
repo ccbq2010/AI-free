@@ -156,5 +156,24 @@
     "status": "pending_verification",
     "verify_notes": "B站25K播放确认免费，需注册确认每月免费次数｜验证：每月 10 次免费生成",
     "access": "needs-proxy"
+  },
+  {
+    "id": "qwen-office",
+    "name": "千问办公",
+    "provider": "阿里 · 千问办公（公测）",
+    "benefit": "公测期间新用户注册即送 2000 积分",
+    "benefit_highlight": [
+      "2000 积分",
+      "公测"
+    ],
+    "url": "https://www.tongyi.com",
+    "tags": [],
+    "deadline": "公测期间",
+    "referral": {
+      "type": "none"
+    },
+    "status": "ready_to_add",
+    "verify_notes": "2026-08 媒体/社区文章提及公测注册送 2000 积分；需上官网核实领取入口与积分规则",
+    "access": "domestic"
   }
 ]
