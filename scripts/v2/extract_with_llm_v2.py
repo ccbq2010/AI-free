@@ -108,25 +108,39 @@ def call_llm(provider: tuple[str, str, str], text: str) -> dict | None:
     import httpx
 
     base_url, api_key, model = provider
-    resp = httpx.post(
-        f"{base_url}/chat/completions",
-        headers={
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json",
-        },
-        json={
-            "model": model,
-            "messages": [
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": text},
-            ],
-            "temperature": 0.1,
-            "response_format": {"type": "json_object"},
-        },
-        timeout=60,
-    )
-    resp.raise_for_status()
-    content = resp.json()["choices"][0]["message"]["content"]
+
+    def _post(payload: dict) -> str:
+        resp = httpx.post(
+            f"{base_url}/chat/completions",
+            headers={
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json",
+            },
+            json=payload,
+            timeout=90,
+        )
+        resp.raise_for_status()
+        return resp.json()["choices"][0]["message"]["content"]
+
+    payload = {
+        "model": model,
+        "messages": [
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": text},
+        ],
+        "temperature": 0.1,
+        "response_format": {"type": "json_object"},
+    }
+    try:
+        content = _post(payload)
+    except httpx.HTTPStatusError as e:
+        # 部分推理端点不支持 response_format，收到 400 时去掉该参数重试一次
+        if e.response.status_code == 400 and "response_format" in payload:
+            print(f"    [INFO] {base_url} 不支持 response_format，去掉重试", file=sys.stderr)
+            payload.pop("response_format")
+            content = _post(payload)
+        else:
+            raise
     try:
         return json.loads(content)
     except json.JSONDecodeError:
