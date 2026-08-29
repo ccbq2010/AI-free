@@ -1,7 +1,7 @@
 {
   "site": "https://ccbq2010.github.io/AI-free",
   "updated_at": "2026-08-29",
-  "count": 14,
+  "count": 15,
   "platforms": [
     {
       "id": "workbuddy",
@@ -144,6 +144,18 @@
       "url": "https://zcode.z.ai/cn",
       "tags": [
         "GLM-5.3"
+      ],
+      "tier": "hidden_gem"
+    },
+    {
+      "id": "cerebras",
+      "name": "Cerebras",
+      "provider": "Cerebras Systems",
+      "benefit": "新用户可免费试用 Cerebras Inference Cloud",
+      "url": "https://www.cerebras.ai/",
+      "tags": [
+        "免费试用",
+        "新用户福利"
       ],
       "tier": "hidden_gem"
     }
