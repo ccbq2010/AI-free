@@ -77,6 +77,9 @@ SYSTEM_PROMPT = """你是一个 AI 平台「新用户福利」信息抽取助手
 - 只是"本身免费/开源/无需注册" → has_new_user_benefit=false
 - 与 AI 平台福利无关 → has_new_user_benefit=false 且 confidence=0
 - 信息不完整、无法确认时，降低 confidence 而不是猜测
+- url 必须是平台官网/活动页域名；若只能给出新闻/聚合/博客文章链接，
+  has_new_user_benefit=false 且 confidence=0.3（汇总文章不是福利页本身）
+- 汇总/榜单/攻略类文章（同时罗列多个平台的额度）→ has_new_user_benefit=false
 """
 
 

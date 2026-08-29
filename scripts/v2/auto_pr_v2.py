@@ -46,8 +46,10 @@ ARTICLE_DOMAINS = {
     "xiaohongshu.com", "mp.weixin.qq.com", "v2ex.com", "smzdm.com",
     "okjike.com", "x.com", "twitter.com", "weibo.com", "bilibili.com",
     "jianshu.com", "sspai.com", "myzaker.com", "uied.cn",
-    "cloud.tencent.com", "developer.aliyun.com", "cnblogs.com",
-    "github.io", "medium.com", "jianshu.io",
+    "cloud.tencent.com", "cloud.tencent.com.cn", "developer.aliyun.com",
+    "cnblogs.com", "github.io", "medium.com", "jianshu.io",
+    "paicoding.com", "javabetter.cn", "uuaihub.com", "aigc.cn",
+    "ai-bot.cn", "chooseai.net",
 }
 
 
