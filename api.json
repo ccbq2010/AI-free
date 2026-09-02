@@ -1,7 +1,7 @@
 {
   "site": "https://ccbq2010.github.io/AI-free",
-  "updated_at": "2026-09-20",
-  "count": 14,
+  "updated_at": "2026-09-02",
+  "count": 15,
   "platforms": [
     {
       "id": "workbuddy",
@@ -13,6 +13,15 @@
         "GLM-5.2"
       ],
       "tier": "hidden_gem"
+    },
+    {
+      "id": "amd-ai-dev",
+      "name": "AMD AI 开发者计划",
+      "provider": "AMD · AI 开发者计划（中国区）",
+      "benefit": "注册即领积分 · 积分可兑换云算力券/模型 API 调用 · 成员免费获 100 小时中国区专属额度（基于 AMD Radeon GPU 的模型服务）",
+      "url": "https://developer.amd.com.cn/points/redeem",
+      "tags": [],
+      "tier": "normal"
     },
     {
       "id": "opencode",

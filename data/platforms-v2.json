@@ -26,6 +26,27 @@
     "verified_at": "2026-08-29"
   },
   {
+    "id": "amd-ai-dev",
+    "name": "AMD AI 开发者计划",
+    "tier": "normal",
+    "provider": "AMD · AI 开发者计划（中国区）",
+    "benefit": "注册即领积分 · 积分可兑换云算力券/模型 API 调用 · 成员免费获 100 小时中国区专属额度（基于 AMD Radeon GPU 的模型服务）",
+    "benefit_highlight": [
+      "注册领积分",
+      "100 小时免费额度",
+      "积分兑换算力/API"
+    ],
+    "url": "https://developer.amd.com.cn/points/redeem",
+    "tags": [],
+    "deadline": "长期（积分规则内免费）",
+    "referral": {
+      "type": "none"
+    },
+    "status": "active",
+    "note": "2026-09-02 收录：手机号/邮箱验证码登录，积分等额兑换云算力券；积分兑换入口 https://developer.amd.com.cn/points/redeem。国际版 ADP 另有 $100 Developer Cloud 信用值 + $50 Fireworks AI 额度",
+    "verified_at": "2026-09-02"
+  },
+  {
     "id": "opencode",
     "name": "OpenCode",
     "provider": "开源 · AI 编程终端/IDE · 75+ 模型提供商",
