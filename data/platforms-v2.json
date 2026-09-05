@@ -394,5 +394,28 @@
     },
     "status": "active",
     "note": "2026-08-29 官方文档核实（zcode.z.ai/cn/docs/configuration）：连接 BigModel/Z.ai 账号自动获得体验套餐，无需付费；周末等不定期活动全体用户可领大额 Token 体验 GLM-5.3-Flash"
+  },
+  {
+    "id": "tokenus",
+    "name": "TokenUs",
+    "tier": "hidden_gem",
+    "provider": "个人开发者基于 new-api 搭建的开源大模型 API 中转站",
+    "benefit": "新用户注册即送 5 美元额度（共 25 份）",
+    "benefit_highlight": [
+      "5",
+      "25"
+    ],
+    "url": "https://tokenus.net",
+    "tags": [
+      "API中转",
+      "开源模型",
+      "免费额度"
+    ],
+    "deadline": null,
+    "referral": {
+      "type": "none"
+    },
+    "status": "active",
+    "note": "v2 自动收录 (2026-09-05)，来源 community:v2ex，confidence=0.9。请人工核对后 Merge。"
   }
 ]
