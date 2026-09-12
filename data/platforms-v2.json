@@ -394,5 +394,30 @@
     },
     "status": "active",
     "note": "2026-08-29 官方文档核实（zcode.z.ai/cn/docs/configuration）：连接 BigModel/Z.ai 账号自动获得体验套餐，无需付费；周末等不定期活动全体用户可领大额 Token 体验 GLM-5.3-Flash"
+  },
+  {
+    "id": "workbuddy-ai",
+    "name": "WorkBuddy AI",
+    "tier": "hidden_gem",
+    "provider": "腾讯",
+    "benefit": "注册立得350积分，可使用gpt-6-Astra、gpt-5.6-sol及deepseek-4.1-flash限时免费",
+    "benefit_highlight": [
+      "注册立得350积分",
+      "6",
+      "5.6",
+      "4.1"
+    ],
+    "url": "https://workbuddy.ai/invite?code=MV5L5R53",
+    "tags": [
+      "注册送积分",
+      "限时免费",
+      "邀请奖励"
+    ],
+    "deadline": null,
+    "referral": {
+      "type": "none"
+    },
+    "status": "active",
+    "note": "v2 自动收录 (2026-09-12)，来源 community:v2ex，confidence=0.9。请人工核对后 Merge。"
   }
 ]
