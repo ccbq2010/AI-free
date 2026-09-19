@@ -394,5 +394,27 @@
     },
     "status": "active",
     "note": "2026-08-29 官方文档核实（zcode.z.ai/cn/docs/configuration）：连接 BigModel/Z.ai 账号自动获得体验套餐，无需付费；周末等不定期活动全体用户可领大额 Token 体验 GLM-5.3-Flash"
+  },
+  {
+    "id": "muse",
+    "name": "Muse",
+    "tier": "hidden_gem",
+    "provider": "Meta",
+    "benefit": "使用邀请码注册可获得10亿个永久Muse词元",
+    "benefit_highlight": [
+      "使用邀请码注册可获得10亿个永久Muse词元"
+    ],
+    "url": "https://muse.ai/join",
+    "tags": [
+      "邀请码",
+      "Token奖励",
+      "新用户福利"
+    ],
+    "deadline": null,
+    "referral": {
+      "type": "none"
+    },
+    "status": "active",
+    "note": "v2 自动收录 (2026-09-19)，来源 community:v2ex，confidence=0.9。请人工核对后 Merge。"
   }
 ]
