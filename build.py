@@ -170,7 +170,6 @@ def main():
         print(f"   已跳过 {len(all_issues)} 个问题条目，继续构建剩余 {len(platforms)} 个")
 
     active = [p for p in platforms if p.get("status") == "active"]
-    glm_count = sum(1 for p in active if any(t.startswith("GLM-5") for t in p.get("tags", [])))
     now = datetime.now().strftime("%Y年%m月%d日")
     subtitle = f"{len(active)} 个顶级 AI 平台免费额度 · 注册即领 · 每周验证更新"
 
@@ -213,7 +212,6 @@ def main():
     html_out = tpl.safe_substitute(
         _platforms_raw_json=json.dumps(active, ensure_ascii=False, indent=2),
         total=str(len(active)),
-        glm_count=str(glm_count),
         updated_at=now,
         subtitle=subtitle,
         _deadlines=deadlines_html,
@@ -227,7 +225,6 @@ def main():
         _platforms_json=json.dumps(active_qr, ensure_ascii=False, indent=2),
         _qr_data_json=json.dumps(qr_data, ensure_ascii=False),
         total=str(len(active)),
-        glm_count=str(glm_count),
         updated_at=now,
     )
     (ROOT / "qr.html").write_text(html2, encoding="utf-8")

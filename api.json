@@ -1,7 +1,7 @@
 {
   "site": "https://ccbq2010.github.io/AI-free",
-  "updated_at": "2026-09-02",
-  "count": 15,
+  "updated_at": "2026-09-20",
+  "count": 16,
   "platforms": [
     {
       "id": "workbuddy",
@@ -55,6 +55,18 @@
         "GLM-5.3"
       ],
       "tier": "normal"
+    },
+    {
+      "id": "qoder-cn",
+      "name": "Qoder CN（阿里）",
+      "provider": "阿里云 · Agentic Coding Platform（中国区）",
+      "benefit": "Qwen3.8-Flash 限时免费用到 9/30（调用不扣 Credits）· 每日登录领 100 通用 Credits（无截止，可累积）· 新用户注册赠 2 周 Pro 试用 + 300 Credits",
+      "url": "https://qoder.com.cn/pricing?referral_code=bvMQpFKC0B3ZSlLZl38Xz6XHkVyGe734",
+      "tags": [
+        "Qwen3.8-Flash",
+        "Qwen3.8-Max"
+      ],
+      "tier": "hidden_gem"
     },
     {
       "id": "nvidia-api",

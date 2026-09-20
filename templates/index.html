@@ -23,7 +23,6 @@
     .stats-bar { font-size: .85rem; color: var(--text-dim); padding: 12px 20px; border-bottom: 1px solid var(--border); margin-bottom: 32px; display: flex; justify-content: center; align-items: center; gap: 8px; flex-wrap: wrap; background: oklch(from var(--accent) 97% .01 h / .25); }
     .stats-bar b { color: var(--accent); font-weight: 700; }
     .stats-bar .sep { opacity: .4; }
-    .stats-bar .badge { background: oklch(from var(--accent) 95% .06 h); color: var(--accent); padding: 2px 8px; font-size: .7rem; font-weight: 600; letter-spacing: .02em; }
     /* Search */
     .search-bar { margin-bottom: 24px; position: relative; }
     .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-dim); pointer-events: none; }
@@ -128,8 +127,6 @@
   <div id="featuredSection"></div>
   <div class="stats-bar">
     <span>共 <b id="totalCount">$total</b> 个平台</span>
-    <span class="sep">·</span>
-    <span class="badge">$glm_count 个支持 GLM-5.3</span>
     <span class="sep">·</span>
     <span>更新于 $updated_at</span>
   </div>

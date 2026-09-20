@@ -115,25 +115,28 @@
     "verified_at": "2026-08-29"
   },
   {
-    "id": "qoderwork",
-    "name": "QoderWork CN",
+    "id": "qoder-cn",
+    "name": "Qoder CN（阿里）",
     "tier": "hidden_gem",
-    "provider": "Qoder · AI 编程桌面 IDE 中国区",
-    "benefit": "已截止：官方条款页标注新用户 Credits 与邀请奖励活动于 2026-07-30 结束",
+    "provider": "阿里云 · Agentic Coding Platform（中国区）",
+    "benefit": "Qwen3.8-Flash 限时免费用到 9/30（调用不扣 Credits）· 每日登录领 100 通用 Credits（无截止，可累积）· 新用户注册赠 2 周 Pro 试用 + 300 Credits",
     "benefit_highlight": [
-      "已截止"
+      "Qwen3.8-Flash 限时免费",
+      "100 通用 Credits",
+      "2 周 Pro 试用 + 300 Credits"
     ],
     "url": "https://qoder.com.cn/pricing?referral_code=bvMQpFKC0B3ZSlLZl38Xz6XHkVyGe734",
     "tags": [
-      "GLM-5.2"
+      "Qwen3.8-Flash",
+      "Qwen3.8-Max"
     ],
-    "deadline": "已截止",
+    "deadline": "2026-09-30（Qwen3.8-Flash 限免）",
     "referral": {
       "type": "expired"
     },
-    "status": "expired",
-    "note": "2026-08-29 复核：阿里云条款页（2026-06-01 ~ 07-30）未公布延期；原机制=新用户 2000 Credits 首月 Pro 免费 + 邀请 200 Credits/人（上限 200 人）+ 高校师生额外 4000 Credits",
-    "verified_at": "2026-08-29"
+    "status": "active",
+    "note": "2026-09-20 重写（原判 expired 有误，仅旧活动截止并非平台无福利）。① Qwen3.8-Flash 限时免费：2026-09-18 10:00 至 09-30 23:59:59，计费系数 0.1×→0.0×，调用不扣 Credits，无需领取，Credits 余额为 0 也可用（docs.qoder.cn/events/flashoffer）。② 每日领 100 通用 Credits：2026-09-18 10:00 起，结束时间另行公告；每日 10:00 开新一轮至次日 10:00，每账号每轮限领 1 次，需在桌面端「用量面板 → 礼物图标」手动领取，每笔 30 天有效、可跨天累积（docs.qoder.cn/events/100credits）。③ 体验版免费（基础模型、条数受限），新用户首次登录赠 14 天 Pro 试用 + 300 Credits。适用范围：CN 新老个人用户（含体验版/免费/试用期），企业订阅不适用；全端可用（Qoder CN / IDE / JetBrains 插件 / CLI / QoderWake CN / Cloud Agents CN / 移动端 / 网页版）。已截止项（勿混入）：原「新用户 2000 Credits 首月 + 邀请 200/人」2026-07-30 截止；周年「Qwen3.8-Max 送 800 次 + 邀请 400 积分」2026-09-03 截止；「极致尝鲜包 200 次」2026-07-31 截止。",
+    "verified_at": "2026-09-20"
   },
   {
     "id": "nvidia-api",
