@@ -418,5 +418,26 @@
     },
     "status": "active",
     "note": "2026-08-29 官方文档核实（zcode.z.ai/cn/docs/configuration）：连接 BigModel/Z.ai 账号自动获得体验套餐，无需付费；周末等不定期活动全体用户可领大额 Token 体验 GLM-5.3-Flash"
+  },
+  {
+    "id": "zooproxy",
+    "name": "ZooProxy",
+    "tier": "hidden_gem",
+    "provider": "代理服务提供商",
+    "benefit": "新用户注册可享五折优惠叠加九折优惠码，另有多组CDK码可兑换免费IP流量",
+    "benefit_highlight": [],
+    "url": "https://zooproxy.com/?kwd=LQ-v2ex",
+    "tags": [
+      "代理服务",
+      "新用户优惠",
+      "免费流量",
+      "优惠码"
+    ],
+    "deadline": null,
+    "referral": {
+      "type": "none"
+    },
+    "status": "active",
+    "note": "v2 自动收录 (2026-10-16)，来源 community:v2ex，confidence=0.9。请人工核对后 Merge。"
   }
 ]
