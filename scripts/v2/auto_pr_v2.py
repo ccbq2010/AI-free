@@ -37,6 +37,15 @@ ROOT = SCRIPT_DIR.parent.parent
 DATA_V2 = ROOT / "data" / "platforms-v2.json"
 DATA_V1 = ROOT / "data" / "platforms.json"
 
+sys.path.insert(0, str(SCRIPT_DIR))  # 本目录可导入（dedup）
+from dedup import (  # noqa: E402
+    build_universe,
+    is_same_platform,
+    name_key,
+    open_pr_entries,
+    slugify,
+)
+
 MAX_PR_ITEMS = 5  # 单次 PR 最多包含的条目数，防失控
 
 # 内容平台/社区页面不是平台官网。搜索发现源的候选来自聚合文章，
@@ -58,12 +67,6 @@ def _is_article_domain(domain: str) -> bool:
 
 
 # ── 工具 ────────────────────────────────────────────────
-
-def slugify(name: str) -> str:
-    """从平台名生成 id slug。"""
-    slug = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
-    return slug[:40] or "unknown"
-
 
 def _domain(url: str) -> str:
     return urlparse(url).netloc.lower() if url else ""
@@ -131,7 +134,7 @@ def to_platform_entry(item: dict) -> dict:
     highlights = re.findall(r"[\w.+$¥￥]*\d+[\w.+$¥￥]*\s*(?:积分|tokens?|credits?|额度|代金券|元|\$|calls?)?",
                             benefit)[:4]
     entry = {
-        "id": slugify(name),
+        "id": slugify(name, url),
         "name": name,
         "tier": "hidden_gem",
         "provider": (item.get("provider") or "").strip(),
@@ -149,30 +152,54 @@ def to_platform_entry(item: dict) -> dict:
     return entry
 
 
-def filter_duplicates(items: list[dict]) -> list[dict]:
-    """剔除已在 v1/v2 数据中的候选（按域名 + slug）。"""
-    existing_ids: set[str] = set()
-    existing_domains: set[str] = set()
+def filter_duplicates(items: list[dict], include_open_prs: bool = True) -> list[dict]:
+    """剔除已收录/已提案的候选。
+
+    去重宇宙 = 已合并的 platforms-v2.json + platforms.json + 未合并的 bot/v2-auto-* PR。
+    （旧实现只看已合并数据，PR 不合就每天重复提同一平台，2026-10 复盘确认。）
+
+    三个键任一命中即跳过：id 相等 / 域名相等 / 归一化名相近。
+    """
+    universe: list[dict] = []
     for path in (DATA_V2, DATA_V1):
-        for p in _load_platforms(path):
-            existing_ids.add(p.get("id", ""))
-            d = _domain(p.get("url", ""))
-            if d:
-                existing_domains.add(d)
+        universe.extend(_load_platforms(path))
+    merged_n = len(universe)
+
+    if include_open_prs:
+        pending = open_pr_entries(_github_api)
+        if pending:
+            print(f"  [dedup] 纳入 {len(pending)} 条未合并 PR 条目"
+                  f"（已合并 {merged_n} 条）")
+            universe.extend(pending)
+
+    existing_ids, existing_domains, existing_keys = build_universe(universe)
 
     out: list[dict] = []
-    seen_batch: set[str] = set()
+    seen_keys: list[str] = []
     for item in items:
         entry = to_platform_entry(item)
+        nk = name_key(entry["name"])
         d = _domain(entry["url"])
-        if entry["id"] in existing_ids or entry["id"] in seen_batch:
+
+        if entry["id"] in existing_ids:
+            print(f"  [SKIP] {entry['name']}: id 已被占用 ({entry['id']})")
             continue
         if d and d in existing_domains:
+            print(f"  [SKIP] {entry['name']}: 域名已收录 ({d})")
+            continue
+        hit = next((k for k in (*existing_keys, *seen_keys) if is_same_platform(nk, k)), None)
+        if hit:
+            print(f"  [SKIP] {entry['name']}: 名称近似已存在 ({hit})")
             continue
         if d and _is_article_domain(d):
             print(f"  [SKIP] {entry['name']}: url 是内容平台页面而非官网 ({d})")
             continue
-        seen_batch.add(entry["id"])
+
+        existing_ids.add(entry["id"])
+        if d:
+            existing_domains.add(d)
+        if nk:
+            seen_keys.append(nk)
         out.append(entry)
     return out
 
