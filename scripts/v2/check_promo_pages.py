@@ -86,7 +86,31 @@ def _github_api(method: str, path: str, payload: dict | None = None) -> dict:
         return json.loads(resp.read().decode())
 
 
+def _has_open_issue(page_name: str) -> bool:
+    """该页面是否已有 open 的变更 Issue。
+
+    幂等保护：快照提交可能因与 build.yml 抢推而失败（远端已有新提交），
+    下一轮会重新检测到同一变更。若不做这层判断，同一次变更会被反复开单
+    （历史上 ZCode 被开过 10 次、硅基流动 7 次）。
+    """
+    marker = f"官方活动页变更：{page_name}"
+    try:
+        issues = _github_api("GET", "/issues?state=open&per_page=100")
+    except Exception:  # noqa: BLE001 —— 查询失败不阻塞，退化为原行为
+        return False
+    if not isinstance(issues, list):
+        return False
+    return any(
+        marker in (it.get("title") or "")
+        for it in issues
+        if isinstance(it, dict) and "pull_request" not in it
+    )
+
+
 def _create_issue(page: dict, old: dict, new_hash: str, new_excerpt: str) -> None:
+    if _has_open_issue(page["name"]):
+        print(f"  [SKIP] {page['name']} 已有 open 的变更 Issue，不重复创建")
+        return
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     title = f"📢 官方活动页变更：{page['name']}（{today}）"
     body = (
