@@ -10,18 +10,18 @@
     "excerpt": "文档 更新日志 提交漏洞 社区 EN 登录 版本发布与更新 ZCode 各版本的更新说明与桌面端下载。 3.14.4 发布于 2026年9月29日 下载 Release v3.14.4 问题修复 为了进一步优化免费套餐的使用体验，关闭模型请求验证码校验。 3.14.3 发布于 2026年9月22日 Release v3.14.3 新功能 运行中的工作流可直接调整并发上限，无需停止任务。 优化了工作流修改和重启时的复用逻辑。 优化了大型工作流的实时状态显示。 优化工作流脚本提交和修改效率，减少token消耗。 问题修复 修复了工作流在一些情况下导致界面崩溃的问题。 修复了工作流卡片有时按钮会被挤出界面的问题。 修复了工作流工具占用上下文过大的问题。 3.14.1 发布于 2026年9月22日 Release v3.14.1 问题修复 选择插件后会正确插入草稿引用。 折叠计划或压缩输入框时，草"
   },
   "https://www.siliconflow.cn/news": {
-    "hash": "0cf5fc8837dac0da94843b92b7f296cbac2024de8c474c4528738e0cde120202",
-    "updated": "2026-09-29",
-    "excerpt": "产品 模型 价格 文档 生态合作 关于 登录 登录 产品 模型 价格 文档 生态合作 关于 公司介绍 品牌理念 企业动态 开发者说 企业动态 硅基流动上线高速版 Kimi K2.7 Code “想得更少、写得更好”：能看会做，既能理解录屏中的操作流程，也能一口气完成跨文件的项目开发。 模型上新 2026-06-18 查看更多 硅基流动亮相 2026 算力网发展大会，分享 Token 工厂实践 硅基流动解决方案架构总监韩冠平出席 2026 算力网发展大会 Token 生态论坛，发表《产销一体，共赢 Token 经济新生态》主题演讲 企业动态 市场活动 2026-09-22 硅基流动参与华为全联接大会 2026，分享 Token 服务实践 硅基流动亮相华为全联接大会 2026，参与智能广域网络、全球政府 AI CITY、城市智算及行业智算等多个议程，分享大模型推理、MaaS 与 Token 服"
+    "hash": "3b6d6bd0c1e181a72b171f8691475d853743e54ba68159773eb7cda287c10d31",
+    "updated": "2026-10-21",
+    "excerpt": "产品 模型 价格 文档 生态合作 关于 登录 登录 产品 模型 价格 文档 生态合作 关于 公司介绍 品牌理念 企业动态 开发者说 企业动态 硅基流动上线高速版 Kimi K2.7 Code “想得更少、写得更好”：能看会做，既能理解录屏中的操作流程，也能一口气完成跨文件的项目开发。 模型上新 2026-06-18 查看更多 硅基流动上线高速版 DeepSeek V4.1 Flash 硅基流动已上线高速版 DeepSeek V4.1 Flash。深度求索开源的新版本模型在多项基准测试中超越前代旗舰 DeepSeek V4 Pro，并通过全新架构显著降低了计算与缓存开销。新增的原生视觉理解能力，也让它能处理更丰富的任务类型。 模型上新 2026-10-16 岚图汽车 × 硅基流动：构建统一大模型调度管理平台 通过统一接入、智能路由、精细治理、精确成本核算、全链路观测与企业级数据安全防护，硅基"
   },
   "https://www.trae.cn/pricing": {
-    "hash": "70e5d403b7473cdc8786f890edc766186a74f97f97a17cc4039d1b80a4ede4c1",
-    "updated": "2026-09-30",
-    "excerpt": "TraeCode Hot TraeWork 企业版 定价 文档 更新日志 社区 知识库 登录 下载中心 个人方案与定价 企业版选型与咨询， 前往火山引擎 ↗ 免费 Free ¥ 0 每月 500 积分 所有功能均可免费使用 支持 2 个云端任务同时执行 免费使用 会员 Lite 首月优惠 低至 ¥ 39 /月 ¥49 包含免费版功能与积分，以及 2,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed-2.1 2.5折，GLM、Deepseek-V4.1 5折 高峰期优先响应 2个云端任务同时执行 立即升级 会员 Pro 首月优惠 低至 ¥ 69 /月 ¥99 包含免费版功能与积分，以及 4,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed-2.1 2.5折，GLM、Deepseek-V4.1 5折 高峰期优先响应 10个云端任务同时执行 立即升级 会员 P"
+    "hash": "5b6077d7956715e779e2e7b9e6d7959d6b51ca2b285c436552b1e2a8bfe55e70",
+    "updated": "2026-10-21",
+    "excerpt": "产品 企业版 定价 文档 更新日志 社区 知识库 登录 下载中心 个人方案与定价 企业版选型与咨询， 前往火山引擎 ↗ 免费 Free ¥ 0 每月 500 积分 所有功能均可免费使用 支持 2 个云端任务同时执行 免费使用 会员 Lite 首月优惠 低至 ¥ 39 /月 ¥49 包含免费版功能与积分，以及 2,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed-2.1 2.5折，GLM、Deepseek-V4.1 5折 高峰期优先响应 2个云端任务同时执行 立即升级 会员 Pro 首月优惠 低至 ¥ 69 /月 ¥99 包含免费版功能与积分，以及 4,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed-2.1 2.5折，GLM、Deepseek-V4.1 5折 高峰期优先响应 10个云端任务同时执行 立即升级 会员 Pro+ 低至 ¥ 219 /月 ¥23"
   },
   "https://kiro.dev/pricing/": {
-    "hash": "ed4997d9301c9de3e16788fc97ecf1e5922dbfa8955284c9c25e2a37f2ef934b",
-    "updated": "2026-10-03",
-    "excerpt": "Pricing Get $20 credited toward your subscription when you first upgrade to a paid plan using social login or AWS Builder ID. KIRO FREE $0 per month 50 credits Access to open weight models* and Claude Sonnet 4.5 Download now for teams up to 500 KIRO PRO $20 per user / month 1,000 credits Access to premium models** Add-on credits ($0.04/credit) Sign up / upgrade for teams up to 500 KIRO PRO+ $40 pe"
+    "hash": "4158defa93a7aa0ac8d5b40e96c3616f2f1f65efa5190d15fa34f1495dabc186",
+    "updated": "2026-10-21",
+    "excerpt": "Pricing Get $20 credited toward your subscription when you first upgrade to a paid plan using social login or AWS Builder ID. KIRO FREE $0 per month 50 credits Access to open weight models* and Claude Sonnet 4.5 Download now for teams from 2 to 500 KIRO PRO $20 per user / month 1,000 credits Access to premium models** Add-on credits ($0.04/credit) Download now for teams from 2 to 500 KIRO PRO+ $40"
   }
 }
