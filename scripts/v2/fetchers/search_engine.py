@@ -26,7 +26,10 @@ from datetime import datetime
 from urllib.parse import parse_qs, urlparse
 
 import httpx
-from selectolax.parser import HTMLParser
+
+# selectolax 1.0 起 parser.HTMLParser（Modest 后端）被移除，import 时直接抛
+# ImportError。lexbor 后端的 LexborHTMLParser 在 0.4.10 ~ 1.x 均可用，统一用它。
+from selectolax.lexbor import LexborHTMLParser as HTMLParser
 
 from .. import RawCandidate, is_new_user_benefit_candidate, matches_topic
 

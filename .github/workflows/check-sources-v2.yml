@@ -24,6 +24,20 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      # 依赖级冒烟检查：selectolax 1.x 移除了 Modest 后端，曾导致
+      # search_engine / check_promo_pages 在 import 阶段静默崩溃 18 天。
+      # 这里直接验证用到的后端与最小解析能力，坏掉当天就红。
+      - name: Smoke-check parser backend
+        run: |
+          python - <<'PY'
+          import selectolax
+          from selectolax.lexbor import LexborHTMLParser as P
+          t = P('<html><body><div class="r"><a href="https://x.com">hi</a></div></body></html>')
+          assert t.css("div.r")[0].css_first("a").attributes.get("href") == "https://x.com"
+          assert t.css_first("a").text() == "hi"
+          print(f"selectolax {selectolax.__version__} / lexbor backend OK")
+          PY
+
       - name: Run v2 multi-source scanner
         id: check
         continue-on-error: true
@@ -89,10 +103,20 @@ jobs:
 
       - name: Check official promo pages (diff + issue)
         if: always()
-        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python scripts/v2/check_promo_pages.py
+        run: |
+          # 退出码约定：0=无变化 1=有变更（正常） 2=运行错误（必须红）
+          # 注意不能给本步加 continue-on-error，否则 2 会被吞掉导致静默停摆
+          set +e
+          python scripts/v2/check_promo_pages.py 2>&1 | tee /tmp/promo-v2-output.txt
+          code=${PIPESTATUS[0]}
+          echo "promo check exit=${code}（0=无变化 1=有变更 2=运行错误）"
+          if [ "$code" -eq 2 ]; then
+            echo "::error::官方活动页监控运行失败，快照未更新，请查看上方日志"
+            exit 1
+          fi
+          exit 0
 
       - name: Commit promo snapshots if changed
         if: always()

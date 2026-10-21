@@ -1,5 +1,7 @@
 # AI-free project dependencies
 httpx>=0.27
-selectolax>=0.4
+# 下限 0.4.10：该版本起 selectolax.lexbor.LexborHTMLParser 可用
+# 上限 <2：1.x 移除了 Modest 后端（parser.HTMLParser），已改用 LexborHTMLParser
+selectolax>=0.4.10,<2
 feedparser>=6.0
 qrcode[pil]==7.4.2

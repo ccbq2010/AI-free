@@ -23,7 +23,8 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
-from selectolax.parser import HTMLParser
+# 同 search_engine.py：selectolax 1.0 移除了 Modest 后端的 parser.HTMLParser
+from selectolax.lexbor import LexborHTMLParser as HTMLParser
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 ROOT = SCRIPT_DIR.parent.parent
