@@ -91,8 +91,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Noto Sans SC',s
   {
     "id": "opencode",
     "name": "OpenCode",
-    "provider": "开源 · AI 编程终端/IDE + Zen 模型网关（目录 85 个模型）",
-    "benefit": "开源 AI 编程终端 · Zen 免费模型池官方 13 个、公开目录实测 9 个：DeepSeek V4.1 Flash 与 GLM-5.3-Flash 零留存免费（不用于训练），另有 MiMo V2.6、Nemotron 3.5、Big Pickle 等；注册取 API key 即可调用，无需充值",
+    "provider": "开源 · AI 编程终端/IDE + Console 模型网关（原 Zen · 目录 85 个模型）",
+    "benefit": "开源 AI 编程终端 · Console（原 Zen）免费模型文档列 13 个、接口目录实测 9 个：DeepSeek V4.1 Flash 与 GLM-5.3-Flash 零留存免费（不用于训练），另有 MiMo V2.6、Nemotron 3.5、Big Pickle 等；须先登录 Console 取 API key，否则 /models 里整个 provider 都不显示，免费模型本身不扣费",
     "benefit_highlight": [
       "13 个",
       "DeepSeek V4.1 Flash",
@@ -111,7 +111,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Noto Sans SC',s
       "type": "none"
     },
     "status": "active",
-    "note": "2026-10-23 复核（官方 docs/zen 定价页 + /zen/v1/models 实测）：官方免费清单 13 个 —— DeepSeek V4.1 Flash Free、GLM-5.3-Flash Free（这两个明确零留存、不用于训练）、LongCat 2.5 Preview Free（零留存）、Beam Free、Flint 40B Free、Exo Free、MiMo-V2.6-Flash Free、MiMo-V2.5 Free、Nemotron 3 Ultra/3.5 Lightning/3.5 Super VL Free（NVIDIA 免费端点，仅限试用，勿传敏感数据）、Big Pickle、Jev 1.13 Free。公开目录 /zen/v1/models 当前只返回 9 个带 free 的模型，与文档有差异（可能按端点或灰度放量）。注意：Beam Free 在中国大陆/香港/澳门不可用。旧记录「免费模型已大幅缩减仅剩 Grok Code Fast 1」已失效。付费：Console 按量计费；OpenCode Go $10/月 订阅含额度。隐藏免费模型可设 OPENCODE_DISABLE_FREE_MODELS=1。",
+    "note": "2026-10-23 二次复核（官方 docs + 接口实测），修正上一版的过时说法：① 品牌改名——Zen 已更名 Console，文档从 docs/zen 重定向到 /v2/docs/console/models，接口域名由 opencode.ai/zen/v1 改为 opencode.ai/inference/v1（旧路径仍 200 但属兼容）。② 找不到免费模型的原因：官方文档明写「Signed out, the opencode provider is absent until you connect an OpenCode Console account or set OPENCODE_API_KEY」——未登录时 /models 里根本没有 opencode 这个 provider，登录 opencode.ai/auth 换 API key 后 /connect 才会列出来。③ 免费清单文档 13 个：DeepSeek V4.1 Flash Free、GLM-5.3-Flash Free（两者零留存、不用于训练）、LongCat 2.5 Preview Free（零留存）、Beam Free、Flint 40B Free、Exo Free、MiMo-V2.6-Flash Free、MiMo-V2.5 Free、Nemotron 3 Ultra/3.5 Lightning/3.5 Super VL Free（NVIDIA 免费端点，勿传敏感数据）、Big Pickle（隐身模型）、Jev 1.13 Free。④ 接口目录 85 个模型中只返回 9 个免费，缺的 4 个是 longcat-2.5-preview-free / exo-free / mimo-v2.5-free / nemotron-3-ultra-free（文档有、目录无，疑灰度）。⑤ 免费判定 = 该模型 input 价格为 0（定价表 Free/Free/Free/Free）；设 OPENCODE_DISABLE_FREE_MODELS=1 可隐藏。⑥ 雷区：Beam Free 在中国大陆/香港/澳门等 21 个地区不可用；付费模型才需 credits，充值有 4.6%+$0.31 手续费；OpenCode Go $10/月 为独立订阅。旧记录「免费模型仅剩 Grok Code Fast 1 + IP 限流」已失效。",
     "verified_at": "2026-10-23"
   },
   {

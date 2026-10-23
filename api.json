@@ -26,8 +26,8 @@
     {
       "id": "opencode",
       "name": "OpenCode",
-      "provider": "开源 · AI 编程终端/IDE + Zen 模型网关（目录 85 个模型）",
-      "benefit": "开源 AI 编程终端 · Zen 免费模型池官方 13 个、公开目录实测 9 个：DeepSeek V4.1 Flash 与 GLM-5.3-Flash 零留存免费（不用于训练），另有 MiMo V2.6、Nemotron 3.5、Big Pickle 等；注册取 API key 即可调用，无需充值",
+      "provider": "开源 · AI 编程终端/IDE + Console 模型网关（原 Zen · 目录 85 个模型）",
+      "benefit": "开源 AI 编程终端 · Console（原 Zen）免费模型文档列 13 个、接口目录实测 9 个：DeepSeek V4.1 Flash 与 GLM-5.3-Flash 零留存免费（不用于训练），另有 MiMo V2.6、Nemotron 3.5、Big Pickle 等；须先登录 Console 取 API key，否则 /models 里整个 provider 都不显示，免费模型本身不扣费",
       "url": "https://opencode.ai",
       "tags": [
         "DeepSeek-V4.1",
