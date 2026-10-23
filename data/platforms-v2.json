@@ -418,5 +418,58 @@
     },
     "status": "active",
     "note": "2026-08-29 官方文档核实（zcode.z.ai/cn/docs/configuration）：连接 BigModel/Z.ai 账号自动获得体验套餐，无需付费；周末等不定期活动全体用户可领大额 Token 体验 GLM-5.3-Flash"
+  },
+  {
+    "id": "baidu-qianfan",
+    "name": "百度千帆",
+    "tier": "hidden_gem",
+    "provider": "百度智能云 · 千帆大模型平台",
+    "benefit": "首次开通自动送 17 个模型各 100 万 Tokens（3 个月有效）· 覆盖 ERNIE-4.5 / DeepSeek-V3.1 / Kimi-K2 / Qwen3 · 同意用户协议即自动发放，无需申请",
+    "benefit_highlight": [
+      "17 模型各 100 万 Tokens",
+      "3 个月有效",
+      "自动发放"
+    ],
+    "url": "https://cloud.baidu.com/doc/qianfan/s/Imi2rpirg",
+    "tags": [
+      "ERNIE-4.5",
+      "DeepSeek-V3.1",
+      "Kimi-K2",
+      "Qwen3"
+    ],
+    "deadline": "长期（每份额度自开通起 3 个月内有效）",
+    "referral": {
+      "type": "none"
+    },
+    "status": "active",
+    "note": "2026-10-23 核实官方文档（页面更新于 2025-11-17）：2025-10-24 起首次开通千帆并同意用户协议，系统自动发放新用户免费 Tokens。17 个指定模型各 100 万 Tokens / 3 个月：ERNIE-4.5-Turbo-128K、ERNIE-4.5-Turbo-32K、ERNIE-4.5-Turbo-VL、ERNIE-X1-Turbo-32K、DeepSeek-R1、DeepSeek-R1-250528、DeepSeek-V3-250324、DeepSeek-V3.1-250821、DeepSeek-V3.1-Think-250821、Kimi-K2-Instruct、Qwen3-235B-A22B-Instruct-2507、Qwen3-30B-A3B-Instruct-2507、Qwen3-Coder-30B-A3B-Instruct、Qwen3-Coder-480B-A35B-Instruct、bge-large-en、bge-large-zh、qianfan-sug-8k。仅抵扣预置模型在线推理，不含批量推理；剩余额度在控制台模型广场查看",
+    "verified_at": "2026-10-23"
+  },
+  {
+    "id": "muse-ai",
+    "name": "Muse（Meta）",
+    "tier": "hidden_gem",
+    "provider": "Meta · 个人 AI Agent（自带云端 VM）",
+    "benefit": "邀请码注册双方各得 10 亿 Muse Token（无期限）· 免费版另含每周 1 亿 Token · 邀请奖励约等于免费版 10 周用量",
+    "benefit_highlight": [
+      "双方各得 10 亿 Token",
+      "每周 1 亿 Token",
+      "无期限"
+    ],
+    "url": "https://muse.ai/join",
+    "tags": [
+      "Muse Spark 1.3",
+      "10 亿 Token",
+      "AI Agent"
+    ],
+    "deadline": "无公布截止（邀请码须在注册后 48 小时内兑换）",
+    "referral": {
+      "type": "invite_code",
+      "reward_invitee": "10 亿 Muse Token（无期限）",
+      "reward_inviter": "10 亿 Muse Token/人（每账号最多邀 20 人）"
+    },
+    "status": "active",
+    "note": "2026-10-23 核实：Meta 于 2026-09-08 上线的个人 AI Agent，每账号自带独立云 VM（Muse Secure VM）+ 浏览器，底层 Muse Spark 1.3。⚠️ 门槛：目前正式开放美国/加拿大，非美区需美区网络；注册需 Meta 账号 + $1 信用卡验证（5–7 工作日退回）。兑换路径 Settings → General → Redeem invite code，仅注册后 48 小时内可兑，过期作废。付费档 Power $20/月（每周 5 亿）、Maximum $100/月（每周 30 亿）",
+    "verified_at": "2026-10-23"
   }
 ]
