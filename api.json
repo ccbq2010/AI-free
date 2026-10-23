@@ -26,11 +26,14 @@
     {
       "id": "opencode",
       "name": "OpenCode",
-      "provider": "开源 · AI 编程终端/IDE · 75+ 模型提供商",
-      "benefit": "开源 AI 编程终端/IDE · 免费模型已大幅缩减（Grok Code Fast 1 等少数，IP 限流）· OpenCode Go $10/月 可用 GLM-5.3-Flash",
+      "provider": "开源 · AI 编程终端/IDE + Zen 模型网关（目录 85 个模型）",
+      "benefit": "开源 AI 编程终端 · Zen 免费模型池官方 13 个、公开目录实测 9 个：DeepSeek V4.1 Flash 与 GLM-5.3-Flash 零留存免费（不用于训练），另有 MiMo V2.6、Nemotron 3.5、Big Pickle 等；注册取 API key 即可调用，无需充值",
       "url": "https://opencode.ai",
       "tags": [
-        "GLM-5.3"
+        "DeepSeek-V4.1",
+        "GLM-5.3",
+        "免费模型",
+        "零留存"
       ],
       "tier": "normal"
     },
