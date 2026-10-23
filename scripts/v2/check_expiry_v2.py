@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import re
 import sys
 from datetime import date
 from pathlib import Path
@@ -26,6 +27,34 @@ _spec = importlib.util.spec_from_file_location(
     "check_expiry_v1", ROOT / "scripts" / "check_expiry.py")
 _v1 = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(_v1)  # type: ignore[union-attr]
+
+
+# ── deadline 解析：v2 的 deadline 是自由文本 ──────────────────
+# v1 的 check_deadline() 用 strptime 整串匹配 %Y-%m-%d，而 v2 数据里日期后面
+# 常带中文括注（"2026-08-31（邀请活动）"），整串永远解析失败 → 落到「无法解析
+# 则跳过」分支 → 过期检测对 v2 近乎全盲（实测 2026-10-23 时有 2 条已过期，
+# 报告仍是 0 issues）。这里在 v2 侧覆盖成「只取开头 ISO 日期」，不改 v1 源码。
+_ISO_PREFIX = re.compile(r"^\s*(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})")
+
+
+def _check_deadline_v2(platform: dict) -> str | None:
+    """与 v1 同名同契约，但容忍日期后带说明文字。"""
+    deadline = platform.get("deadline")
+    if not deadline:
+        return None
+    m = _ISO_PREFIX.match(str(deadline))
+    if not m:
+        # 「长期（积分规则内免费）」「各项活动不同」这类没有确切日期的跳过
+        return None
+    year, month, day = (int(g) for g in m.groups())
+    try:
+        passed = date(year, month, day) < date.today()
+    except ValueError:
+        return None
+    return f"deadline {deadline} passed" if passed else None
+
+
+_v1.check_deadline = _check_deadline_v2
 
 
 def main() -> None:

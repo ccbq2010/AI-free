@@ -16,5 +16,9 @@ Thumbs.db
 .dev.vars
 cloudflare-worker/.dev.vars
 
+# v2 巡检产物（每次运行重建，随 Actions artifact 上传，不入库）
+data/expiry_report_v2.json
+data/last_scan_v2.json
+
 # WorkBuddy 助手工作区（内部状态，勿提交）
 .workbuddy/

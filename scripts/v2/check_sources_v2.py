@@ -259,4 +259,19 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    # 未捕获异常的默认退出码是 1，而 1 在本脚本的语义是「发现新候选」——
+    # 崩溃会被 CI 误读成「有候选」，接着拿残缺/陈旧的报告去跑 LLM 抽取。
+    # 这里显式把异常翻译成 2（运行错误），让 CI 能区分「有货」和「挂了」。
+    try:
+        main()
+    except SystemExit:
+        raise
+    except Exception:  # noqa: BLE001
+        import traceback
+
+        traceback.print_exc()
+        print(
+            "\n[FATAL] 扫描器运行异常（退出码 2 = 运行错误，不是「发现新候选」）",
+            file=sys.stderr,
+        )
+        sys.exit(2)

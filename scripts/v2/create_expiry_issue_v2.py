@@ -20,6 +20,35 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 ROOT = SCRIPT_DIR.parent.parent
 REPORT_FILE = ROOT / "data" / "expiry_report_v2.json"
 
+# 标题里带日期便于归档，但幂等判断只认这个固定标记 —— 否则同一个未处理问题
+# 会每天新开一张单（活动页脚本历史上的 27 张重复单就是这么来的）。
+TITLE_MARKER = "v2 平台过期/链接失效检测"
+
+
+def _has_open_issue(repo: str, token: str) -> bool:
+    """是否已有 open 的 v2 过期 Issue。查询失败时退化为原行为，不阻塞巡检。"""
+    req = urllib.request.Request(
+        f"https://api.github.com/repos/{repo}/issues?state=open&per_page=100",
+        headers={
+            "Authorization": f"Bearer {token}",
+            "Accept": "application/vnd.github+json",
+            "X-GitHub-Api-Version": "2022-11-28",
+        },
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            issues = json.loads(resp.read().decode("utf-8"))
+    except Exception as e:  # noqa: BLE001
+        print(f"  [WARN] 查询 open Issue 失败，按无重复处理: {e}", file=sys.stderr)
+        return False
+    if not isinstance(issues, list):
+        return False
+    return any(
+        TITLE_MARKER in (it.get("title") or "")
+        for it in issues
+        if isinstance(it, dict) and "pull_request" not in it
+    )
+
 
 def _clean(text: object) -> str:
     if text is None:
@@ -81,7 +110,7 @@ def main() -> None:
         return
 
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    title = f"⚠️ v2 平台过期/链接失效检测 ({today})"
+    title = f"⚠️ {TITLE_MARKER} ({today})"
     body = build_body(report)
 
     if args.dry_run:
@@ -95,6 +124,10 @@ def main() -> None:
     if not token or not repo:
         print("[ERROR] 缺少 GITHUB_TOKEN 或无法确定仓库。", file=sys.stderr)
         sys.exit(2)
+
+    if _has_open_issue(repo, token):
+        print(f"[SKIP] 已有 open 的「{TITLE_MARKER}」Issue，不重复创建。")
+        return
 
     payload = json.dumps({
         "title": title, "body": body, "labels": ["bot", "maintenance", "v2"],

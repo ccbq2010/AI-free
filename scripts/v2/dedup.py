@@ -33,6 +33,10 @@ GENERIC_SEGMENTS = {
     "signup", "sign-up", "invite", "join", "joinus", "pricing",
     "price", "zh", "en", "cn", "api", "v1", "v2", "events",
     "event", "blog", "news", "detail", "about",
+    # 资讯页常见路径：活动页 URL 形如 /article/12345，
+    # 不剥掉会把「火山引擎 article」当成平台辨识名（doubao-student 曾得到
+    # volcengine-article 这种 id）。
+    "article", "articles", "post", "posts", "story", "stories", "read",
 }
 
 # 不能单独当 id 的泛词（模型名/通用词，中文名剥完常只剩这些）
@@ -64,6 +68,19 @@ def _latin_slug(text: str) -> str:
     s = re.sub(r"[^a-z0-9]+", "-", (text or "").lower()).strip("-")
     parts = [p for p in s.split("-") if p and not p.isdigit()]
     return "-".join(parts)[:40]
+
+
+def _has_distinctive_part(slug: str) -> bool:
+    """拉丁片段是否有辨识度。
+
+    只判「整串是否在泛词表」不够：泛词拼起来同样没信息量，例如
+    「百度千帆·大模型服务及Agent开发平台免费Tokens额度」的拉丁片段是
+    `agent-tokens`，整串不在表里，但每一段都是泛词 —— 这会把同一个平台
+    又切成多个 id，正是本模块要消灭的问题。要求至少一个 ≥3 字符的非泛词段。
+    """
+    if not slug or slug in GENERIC_SLUGS:
+        return False
+    return any(len(p) >= 3 and p not in GENERIC_SLUGS for p in slug.split("-") if p)
 
 
 def _sld(netloc: str) -> str:
@@ -106,7 +123,7 @@ def slugify(name: str, url: str = "") -> str:
       4. p-<hash> 兜底
     """
     latin = _latin_slug(name)
-    if len(latin) >= 3 and latin not in GENERIC_SLUGS:
+    if _has_distinctive_part(latin):
         return latin[:40]
 
     netloc = urlparse(url or "").netloc.lower()
@@ -131,17 +148,25 @@ def name_key(name: str) -> str:
     return s
 
 
+def _is_cjk(s: str) -> bool:
+    return any("\u4e00" <= c <= "\u9fff" for c in s)
+
+
 def is_same_platform(a: str, b: str) -> bool:
     """两个归一化名是否指向同一平台。
 
-    相等，或一方是另一方前缀且双方都 ≥4 字符
-    （「workbuddyai」≈「workbuddy」、「museai」≈「muse」）。
+    相等，或一方是另一方前缀。前缀判定的最短长度按字符信息密度分档：
+    拉丁名要 ≥4 字符（避免 `qwen`/`qw` 这类短语误伤），中文名 2 字即可
+    （「智谱」vs「智谱GLM」是同一家，2 字阈值不降会漏判，中文品牌普遍很短）。
     """
     if not a or not b:
         return False
     if a == b:
         return True
-    return len(a) >= 4 and len(b) >= 4 and (a.startswith(b) or b.startswith(a))
+    if not (a.startswith(b) or b.startswith(a)):
+        return False
+    need = 2 if (_is_cjk(a) or _is_cjk(b)) else 4
+    return min(len(a), len(b)) >= need
 
 
 # ── 未合并 PR 里的条目 ──────────────────────────────────

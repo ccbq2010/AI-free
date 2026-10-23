@@ -40,10 +40,21 @@ jobs:
 
       - name: Run v2 multi-source scanner
         id: check
-        continue-on-error: true
         run: |
+          # 退出码约定：0=无新候选 1=有新候选（正常） 2=运行错误（必须红）
+          # 这里不能加 continue-on-error：扫描器崩了也会留下 exit_code=1，
+          # 下游会拿残缺/陈旧的报告去跑 LLM，而 job 依然全绿 —— 正是
+          # 「静默停摆 18 天」那一类故障。
+          set +e
           python scripts/v2/check_sources_v2.py --output data/last_scan_v2.json 2>&1 | tee /tmp/check-v2-output.txt
-          echo "exit_code=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
+          code=${PIPESTATUS[0]}
+          echo "exit_code=${code}" >> "$GITHUB_OUTPUT"
+          echo "scanner exit=${code}（0=无新候选 1=有新候选 2=运行错误）"
+          if [ "$code" -ne 0 ] && [ "$code" -ne 1 ]; then
+            echo "::error::多源扫描器运行失败（exit=$code），本轮未产生有效候选"
+            exit 1
+          fi
+          exit 0
 
       - name: Run LLM extraction v2 (if candidates found)
         id: extract
