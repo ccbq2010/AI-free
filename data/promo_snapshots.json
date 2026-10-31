@@ -15,13 +15,13 @@
     "excerpt": "产品 模型 价格 文档 生态合作 关于 登录 登录 产品 模型 价格 文档 生态合作 关于 公司介绍 品牌理念 企业动态 开发者说 企业动态 硅基流动上线高速版 Kimi K2.7 Code “想得更少、写得更好”：能看会做，既能理解录屏中的操作流程，也能一口气完成跨文件的项目开发。 模型上新 2026-06-18 查看更多 「SiliconFlow 开发者说：Build with MaaS」活动回顾 四位分享嘉宾和开发者们相聚硅基流动，从开发经验、行业应用实践，到法律 AI 助理和硅基流动 MaaS 平台，展开了精彩的技术分享和讨论。 市场活动 2026-10-26 硅基流动上线高速版 DeepSeek V4.1 Flash 硅基流动已上线高速版 DeepSeek V4.1 Flash。深度求索开源的新版本模型在多项基准测试中超越前代旗舰 DeepSeek V4 Pro，并通过全新架构显"
   },
   "https://www.trae.cn/pricing": {
-    "hash": "5b6077d7956715e779e2e7b9e6d7959d6b51ca2b285c436552b1e2a8bfe55e70",
-    "updated": "2026-10-21",
+    "hash": "adfcfcf2c5b5213d7a0a0dd4a9c63e2caa0aae570ea801498c0fd9e1d45f4fd0",
+    "updated": "2026-10-31",
     "excerpt": "产品 企业版 定价 文档 更新日志 社区 知识库 登录 下载中心 个人方案与定价 企业版选型与咨询， 前往火山引擎 ↗ 免费 Free ¥ 0 每月 500 积分 所有功能均可免费使用 支持 2 个云端任务同时执行 免费使用 会员 Lite 首月优惠 低至 ¥ 39 /月 ¥49 包含免费版功能与积分，以及 2,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed-2.1 2.5折，GLM、Deepseek-V4.1 5折 高峰期优先响应 2个云端任务同时执行 立即升级 会员 Pro 首月优惠 低至 ¥ 69 /月 ¥99 包含免费版功能与积分，以及 4,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed-2.1 2.5折，GLM、Deepseek-V4.1 5折 高峰期优先响应 10个云端任务同时执行 立即升级 会员 Pro+ 低至 ¥ 219 /月 ¥23"
   },
   "https://kiro.dev/pricing/": {
-    "hash": "4158defa93a7aa0ac8d5b40e96c3616f2f1f65efa5190d15fa34f1495dabc186",
-    "updated": "2026-10-21",
-    "excerpt": "Pricing Get $20 credited toward your subscription when you first upgrade to a paid plan using social login or AWS Builder ID. KIRO FREE $0 per month 50 credits Access to open weight models* and Claude Sonnet 4.5 Download now for teams from 2 to 500 KIRO PRO $20 per user / month 1,000 credits Access to premium models** Add-on credits ($0.04/credit) Download now for teams from 2 to 500 KIRO PRO+ $40"
+    "hash": "776fa763a15ca543e7b871ecc5c49478bfedc07505f1bca85e569d3a90873c1b",
+    "updated": "2026-10-31",
+    "excerpt": "Pricing Get $20 credited toward your subscription when you first upgrade to a paid plan using social login or AWS Builder ID. KIRO FREE $0 per month 50 credits Access to open weight models and Claude Sonnet 4.5 Download now KIRO PRO $20 per user / month 1,000 credits Access to premium models Add-on credits ($0.04/credit) Download now KIRO PRO+ $40 per user / month 2,000 credits Access to premium m"
   }
 }
