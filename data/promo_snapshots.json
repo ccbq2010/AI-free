@@ -10,9 +10,9 @@
     "excerpt": "文档 更新日志 提交漏洞 社区 EN 登录 版本发布与更新 ZCode 各版本的更新说明与桌面端下载。 3.17.2 发布于 2026年11月3日 下载 Release v3.17.2 [系统要求] macOS平台本版本及以后版本基于 Electron 44（Chromium 152），最低系统要求为 macOS 13 (Ventura)。macOS 12 (Monterey) 及更早版本不再支持。 新功能 新增 ZCode Sites 官方插件，支持一键部署网站 插件管理支持一键全部更新 新增 Kimi K3.1 Pro、MiniMax M3.1 Flash 等模型配置项 文档查看器按会话隔离，多个文档插件共用进程降低占用 图片预览支持标注编辑并作为附件发送 新增未读任务筛选 设置页可批量管理项目，删除时可同时清理数据 设置页统一远程数据同步功能 远程设备改为紧凑的可搜索列表 远程设备菜"
   },
   "https://www.siliconflow.cn/news": {
-    "hash": "19b9cfba143caff1f78dd4d1a7f5e5c140541dc8760657dbd47ea98ed3907d14",
-    "updated": "2026-11-05",
-    "excerpt": "产品 模型 价格 文档 生态合作 关于 登录 登录 产品 模型 价格 文档 生态合作 关于 公司介绍 品牌理念 企业动态 开发者说 企业动态 硅基流动上线高速版 Kimi K2.7 Code “想得更少、写得更好”：能看会做，既能理解录屏中的操作流程，也能一口气完成跨文件的项目开发。 模型上新 2026-06-18 查看更多 硅基流动上线 MOSS-Image MOSS-Image 由模思智能与 OpenMOSS 团队发布并开源，上线仅四天，下载量超过100万次。该模型采用5B参数主干，支持中英文密集文字生成和复杂布局控制，最长支持4K tokens提示词输入，支持多种视觉风格。硅基流动现已提供MOSS-Image API调用，价格为0.3元/张。硅基流动还提供多种大模型云服务，覆盖全任务场景，新用户可获得赠金体验。 模型上新 2026-11-04 硅基流动 × Yamice：让 AI 参"
+    "hash": "763579881eafb8900196d132d36a88317b36831c6ea74045dceb075912ef16bf",
+    "updated": "2026-11-06",
+    "excerpt": "产品 模型 价格 文档 生态合作 关于 登录 登录 产品 模型 价格 文档 生态合作 关于 公司介绍 品牌理念 企业动态 开发者说 企业动态 硅基流动上线高速版 Kimi K2.7 Code “想得更少、写得更好”：能看会做，既能理解录屏中的操作流程，也能一口气完成跨文件的项目开发。 模型上新 2026-06-18 查看更多 硅基流动 Token 工厂：异构算力的大规模调度与商业化运营实践 硅基流动受邀参加耀途资本2026年人民币基金合伙人年会，联合创始人胡健分享了关于Token工厂的思考与实践，强调了推理优化、国产算力适配及平台运营的重要性。胡健指出，Token工厂的竞争是硬件选择、系统优化、弹性调度和流量运营的综合能力竞争，关键在于将算力高效转化为满足业务需求的Token。他还讨论了如何通过精细化经营提升产能、利用率和价格，并介绍了硅基流动在国产算力适配和弹性调度方面的实践。 市场活动"
   },
   "https://www.trae.cn/pricing": {
     "hash": "88fba173410b9681b66814445da92a2903032372f4ba4f81c87bc18a6eddbbc9",
@@ -20,8 +20,8 @@
     "excerpt": "产品 企业版 定价 文档 更新日志 社区 知识库 登录 下载中心 个人方案与定价 企业版选型与咨询， 前往火山引擎 ↗ 免费 Free ¥ 0 每月 500 积分 所有功能均可免费使用 支持 2 个云端任务同时执行 免费使用 会员 Lite 首月优惠 低至 ¥ 34 /月 ¥49 包含免费版功能与积分，以及 2,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed 2.1模型 2.5 折，GLM5.3、Deepseek-V4.1-Flash模型 7.5折 高峰期优先响应 2个云端任务同时执行 立即升级 会员 Pro 首月优惠 低至 ¥ 69 /月 ¥99 包含免费版功能与积分，以及 4,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed 2.1模型 2.5 折，GLM5.3、Deepseek-V4.1-Flash模型 7.5折 高峰期优先响应 10个云端任务同"
   },
   "https://kiro.dev/pricing/": {
-    "hash": "bacc7fe603c297006daed8257b17a75f74ae76119ddc0e899d7ab721ceb372f5",
-    "updated": "2026-11-05",
+    "hash": "1b776322da6ce5750f2488fc34f56ff58ba7c08bdf68719f765ec4cba60b2c33",
+    "updated": "2026-11-06",
     "excerpt": "Pricing Free trial: when you first upgrade to Pro, you’ll get the rest of the month free, plus 500 trial credits to use within 12 months. KIRO FREE $0 per month 50 credits Access to open weight models and Claude Sonnet 4.5 Download now KIRO PRO $20 per user / month 1,000 credits Access to premium models Add-on credits ($0.04/credit) Download now KIRO PRO+ $40 per user / month 2,000 credits Access "
   }
 }
