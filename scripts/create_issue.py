@@ -136,6 +136,41 @@ def build_new_sources_body() -> str:
     return "\n".join(parts) + "\n"
 
 
+def _has_open_issue(marker: str) -> bool:
+    """是否已有 open 的同类 Issue（按标题标记判断）。
+
+    2026-11-09 复盘：new-sources 模式没有任何幂等保护，LLM 抽取连续失败时
+    每周都会把 data/last_scan.json 里同一批原始候选再开一张新单 —— 实测累积
+    17 张内容几乎相同的「发现新的免费 AI 资源」。这里加一层去重：已有未处理
+    的单就不再新开，人工关单后可自然重开。
+    """
+    token = os.environ.get("GITHUB_TOKEN")
+    repo = _repo_full_name()
+    if not token or not repo:
+        return False
+    req = urllib.request.Request(
+        f"https://api.github.com/repos/{repo}/issues?state=open&per_page=100",
+        headers={
+            "Authorization": f"Bearer {token}",
+            "Accept": "application/vnd.github+json",
+            "X-GitHub-Api-Version": "2022-11-28",
+        },
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            issues = json.loads(resp.read().decode("utf-8"))
+    except Exception as e:  # noqa: BLE001 —— 查询失败不阻塞建单（退化为原行为）
+        print(f"  [WARN] 查询 open Issue 失败，按无重复处理: {e}", file=sys.stderr)
+        return False
+    if not isinstance(issues, list):
+        return False
+    return any(
+        marker in (it.get("title") or "")
+        for it in issues
+        if isinstance(it, dict) and "pull_request" not in it
+    )
+
+
 def build_expiry_body() -> str:
     """构建「过期/链接失效」Issue 正文（对应原 check-expiry.yml 的 JS）。"""
     report = _read_json(ROOT / "data" / "expiry_report.json", default={})
@@ -233,6 +268,10 @@ def main():
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
     if args.mode == "new-sources":
+        new_sources_marker = "发现新的免费 AI 资源"
+        if not args.dry_run and _has_open_issue(new_sources_marker):
+            print(f"[SKIP] 已有 open 的「{new_sources_marker}」Issue，不重复创建。")
+            return
         title = f"🤖 发现新的免费 AI 资源 ({today})"
         body = build_new_sources_body()
         labels = ["bot", "content-update"]

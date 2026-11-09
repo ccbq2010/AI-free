@@ -126,6 +126,42 @@ def _has_open_issue(page_name: str) -> bool:
     )
 
 
+CHANGE_MARKER = "官方活动页变更："
+
+
+def _close_superseded(keep_titles: set[str]) -> None:
+    """关闭历史「官方活动页变更」Issue。
+
+    这类单是通知性质的：本轮快照已更新，旧单里的对比结果已作废、无行动项。
+    不加自动关闭时它们会无限累积 —— 2026-11-09 实测 open 状态有 33 张，
+    最新一张停在 10-21。只关带固定标记的，且保留本轮刚建的。
+    """
+    if not os.environ.get("GITHUB_TOKEN"):
+        return
+    try:
+        issues = _github_api("GET", "/issues?state=open&per_page=100")
+    except Exception as e:  # noqa: BLE001
+        print(f"  [WARN] 查询 open Issue 失败，跳过自动关闭: {e}", file=sys.stderr)
+        return
+    if not isinstance(issues, list):
+        return
+    closed = 0
+    for it in issues:
+        if not isinstance(it, dict) or "pull_request" in it:
+            continue
+        title = it.get("title") or ""
+        if CHANGE_MARKER not in title or title in keep_titles:
+            continue
+        try:
+            _github_api("PATCH", f"/issues/{it['number']}",
+                        {"state": "closed", "state_reason": "not_planned"})
+            closed += 1
+        except Exception as e:  # noqa: BLE001
+            print(f"  [WARN] 关闭 #{it.get('number')} 失败: {e}", file=sys.stderr)
+    if closed:
+        print(f"  [OK] 已自动关闭 {closed} 张历史变更单（本轮快照已更新）")
+
+
 def _create_issue(page: dict, old: dict, new_hash: str, new_excerpt: str) -> None:
     if _has_open_issue(page["name"]):
         print(f"  [SKIP] {page['name']} 已有 open 的变更 Issue，不重复创建")
@@ -185,6 +221,9 @@ def main() -> None:
 
     for page, old, new_hash, new_excerpt in changed:
         _create_issue(page, old, new_hash, new_excerpt)
+
+    # 快照已是本轮最新 → 关闭此前累积的变更通知单（保留本轮刚建的）
+    _close_superseded({f"📢 {CHANGE_MARKER}{p['name']}（{today}）" for p, *_ in changed})
 
     # 退出码分级（原判据是 errors and not changed -> 2，任一页面抖动就红，
     # 6 个源任一失败等于整个每日任务失败，噪音远大于信号）：

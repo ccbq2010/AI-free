@@ -121,7 +121,18 @@ def main() -> None:
 
     # 把 v1 模块的数据文件指向 v2，然后复用 scan_all
     _v1.DATA_FILE = DATA_FILE
+    data = json.loads(DATA_FILE.read_text(encoding="utf-8"))
     issues = _v1.scan_all()
+
+    # 已下架（status != active）的条目不做 URL/内容告警：它们的链接失效是预期结果
+    # 而不是待办。2026-11-09 之前 Dyad（已 expired）的 GitHub 页面偶发 504，
+    # 每次关单后次日又开一张新单 —— 属于结构性噪音。
+    active_ids = {p.get("id") for p in data if p.get("status") == "active"}
+    dropped = [i for i in issues if i.get("id") not in active_ids]
+    if dropped:
+        print(f"  [SKIP] {len(dropped)} 条告警来自非 active 条目，已忽略："
+              f"{', '.join(str(i.get('id')) for i in dropped)}")
+        issues = [i for i in issues if i.get("id") in active_ids]
 
     data = json.loads(DATA_FILE.read_text(encoding="utf-8"))
     stale = _stale_entries(data)
