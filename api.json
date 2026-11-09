@@ -7,7 +7,7 @@
       "id": "workbuddy",
       "name": "WorkBuddy",
       "provider": "腾讯 · CodeBuddy 云端 IDE",
-      "benefit": "注册礼 2,000 积分（走邀请链接，活动至 10/31）· 混元 Hy3 限免至 10/31（调用不扣积分，不分新老时段）· Hy4 preview 夜间 23:00–08:00 限免至 10/31 · 新人 30 天内首次付费，双方各 +500 积分",
+      "benefit": "注册礼 2,000 积分（走邀请链接）· 混元 Hy3 限免延至 2026-11-15 23:59（0.00x，全天可用，纯语言任务不扣积分）· 每日签到（Buddy 加油站）与免费版每月 500 积分· 新人 30 天内首次付费，双方各 +500 积分",
       "url": "https://www.codebuddy.cn/events/invite?inviteCode=vjeubjv5g",
       "tags": [
         "GLM-5.2"
@@ -41,7 +41,7 @@
       "id": "zhipu-glm",
       "name": "智谱 GLM",
       "provider": "Zhipu AI · 国内领先大模型",
-      "benefit": "新用户注册即领 2500 万 Tokens 新用户礼包 · GLM-5.3 旗舰模型（2026-08-14 发布）",
+      "benefit": "新用户注册即领约 2,500 万 Tokens 新用户礼包（含 2,000 万入门额度，以控制台到账为准）· GLM-4.7-Flash 与 GLM-4.6V-Flash 输入/输出/缓存**全部免费**（长期免费档，非活动额度）· 旗舰 GLM-5.3 / GLM-5.3-Flash（2026-08-14 发布）",
       "url": "https://www.bigmodel.cn/invite?icode=MGeIswTxCik0L%2FYvFLn7HZmwcr074zMJTpgMb8zZZvg%3D",
       "tags": [
         "GLM-5.3 原厂"
@@ -52,7 +52,7 @@
       "id": "trae",
       "name": "TRAE（豆包旗下）",
       "provider": "字节跳动 · 豆包体系 AI 编程产品线（2026-08 并入豆包）",
-      "benefit": "免费版每月 500 积分长期免费 · 新用户限时免费试用 Pro（官方当前标注 7 天，早期活动为 14 天）",
+      "benefit": "免费版每月 500 积分长期免费 · 新用户注册即赠 2,500 积分（2026-11 起，此前为 4,500）· 新用户限时免费试用 Pro（官方当前标注 7 天，早期活动为 14 天）",
       "url": "https://www.trae.cn",
       "tags": [
         "GLM-5.3"
@@ -93,7 +93,7 @@
       "id": "xiaomi-mimo",
       "name": "小米 MiMo",
       "provider": "小米 · MiMo 开放平台（模型 API 计费）",
-      "benefit": "新用户注册即得 ¥10 API 体验金（40 天有效）· 邀请好友双方各得 ¥10（长期活动）· MiMo-V2.5 API 永久降价",
+      "benefit": "新用户注册即得 ¥10 API 体验金（40 天有效，可抵扣 API 调用，Token Plan 除外）· 邀请好友首次购买 Token Plan 可获赠金返现、好友享首单折扣（2026-06-11 规则升级，不再是早期「双方各得 ¥10」）· 当前旗舰 MiMo V2.6（V2.5 系列此前的永久降价仍有效）",
       "url": "https://platform.xiaomimimo.com?ref=C2PLQR",
       "tags": [],
       "tier": "normal"
@@ -164,7 +164,7 @@
       "id": "zcode-glm",
       "name": "ZCode（智谱）",
       "provider": "智谱 Z.ai · GLM-5.3 Agentic Coding 桌面端",
-      "benefit": "新用户连接 BigModel 账号免费得 5 天 × 每天 800 万 Tokens 的 GLM 系列体验额度 · 不定期全员活动送大额 Token（周末曾送 3 亿）",
+      "benefit": "新用户连接 BigModel 账号自动获得体验套餐：**首次使用起 5 天内**每天 800 万 Tokens（GLM-5.3 300 万 + GLM-5.3-Flash 500 万，按日刷新）· 5 天后体验期结束即失效，不是长期每天发放· 不定期全员活动送大额 Token",
       "url": "https://zcode.z.ai/cn",
       "tags": [
         "GLM-5.3"

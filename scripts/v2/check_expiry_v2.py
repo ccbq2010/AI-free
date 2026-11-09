@@ -29,29 +29,75 @@ _v1 = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(_v1)  # type: ignore[union-attr]
 
 
-# ── deadline 解析：v2 的 deadline 是自由文本 ──────────────────
-# v1 的 check_deadline() 用 strptime 整串匹配 %Y-%m-%d，而 v2 数据里日期后面
-# 常带中文括注（"2026-08-31（邀请活动）"），整串永远解析失败 → 落到「无法解析
-# 则跳过」分支 → 过期检测对 v2 近乎全盲（实测 2026-10-23 时有 2 条已过期，
-# 报告仍是 0 issues）。这里在 v2 侧覆盖成「只取开头 ISO 日期」，不改 v1 源码。
+# ── deadline 判定 ────────────────────────────────────────────
+# 2026-11-09 起数据侧新增两个机器字段（详见 data/platforms-v2.json）：
+#   deadline_iso   绝对截止日（YYYY-MM-DD 或 null）
+#   deadline_kind  date / rolling / long_term / unknown
+# 旧实现只认 deadline 自由文本开头的 ISO 日期，22 条里 21 条形如「长期（…）」
+# 直接跳过 —— 等于过期检测对全库基本失明（2026-10-23 实测 0/22 覆盖）。
+# 现在优先读 deadline_iso；没有该字段的老条目回退到旧的文本前缀解析。
 _ISO_PREFIX = re.compile(r"^\s*(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})")
+
+# verified_at 超过这么久没复核 → 进 stale 报告（不建 Issue、不染红，只出 warning）
+STALE_DAYS = 45
+
+
+def _resolve_deadline(platform: dict) -> date | None:
+    """取该条目的绝对截止日；没有则 None。"""
+    iso = platform.get("deadline_iso")
+    if iso:
+        try:
+            return date.fromisoformat(str(iso)[:10])
+        except ValueError:
+            return None
+    m = _ISO_PREFIX.match(str(platform.get("deadline") or ""))
+    if not m:
+        return None
+    try:
+        return date(int(m.group(1)), int(m.group(2)), int(m.group(3)))
+    except ValueError:
+        return None
 
 
 def _check_deadline_v2(platform: dict) -> str | None:
-    """与 v1 同名同契约，但容忍日期后带说明文字。"""
-    deadline = platform.get("deadline")
-    if not deadline:
+    """与 v1 同名同契约，但读机器字段，并能区分长期/滚动型。
+
+    rolling（活动型/按开通日滚动）与 long_term（政策型长期）没有绝对日期，
+    不做日期判定，改由 verified_at 陈旧度兜底。
+    """
+    kind = platform.get("deadline_kind") or "unknown"
+    if kind in ("long_term", "rolling") and not platform.get("deadline_iso"):
         return None
-    m = _ISO_PREFIX.match(str(deadline))
-    if not m:
-        # 「长期（积分规则内免费）」「各项活动不同」这类没有确切日期的跳过
+    d = _resolve_deadline(platform)
+    if d is None:
         return None
-    year, month, day = (int(g) for g in m.groups())
-    try:
-        passed = date(year, month, day) < date.today()
-    except ValueError:
-        return None
-    return f"deadline {deadline} passed" if passed else None
+    if d < date.today():
+        return f"deadline {platform.get('deadline') or d.isoformat()} passed"
+    return None
+
+
+def _stale_entries(data: list[dict]) -> list[dict]:
+    """active 条目里 verified_at 缺失或过旧的清单（只报告，不建 Issue）。"""
+    today = date.today()
+    stale: list[dict] = []
+    for p in data:
+        if p.get("status") != "active":
+            continue
+        v = p.get("verified_at")
+        if not v:
+            stale.append({"id": p.get("id"), "name": p.get("name"), "reason": "无 verified_at"})
+            continue
+        try:
+            d = date.fromisoformat(str(v)[:10])
+        except ValueError:
+            stale.append({"id": p.get("id"), "name": p.get("name"),
+                          "reason": f"verified_at 格式异常: {v}"})
+            continue
+        days = (today - d).days
+        if days > STALE_DAYS:
+            stale.append({"id": p.get("id"), "name": p.get("name"),
+                          "reason": f"verified_at {v}（{days} 天前）"})
+    return stale
 
 
 _v1.check_deadline = _check_deadline_v2
@@ -78,12 +124,17 @@ def main() -> None:
     issues = _v1.scan_all()
 
     data = json.loads(DATA_FILE.read_text(encoding="utf-8"))
+    stale = _stale_entries(data)
     report = {
         "version": "v2",
         "scan_date": date.today().isoformat(),
         "total_platforms": len(data),
         "issues_found": len(issues),
         "issues": issues,
+        # 陈旧核验只进报告（CI 出 ::warning::），不建 Issue、不影响退出码：
+        # 否则 22 条里有 17 条 verified_at 过期，会天天刷同一条单。
+        "stale_found": len(stale),
+        "stale": stale,
     }
     REPORT_FILE.write_text(
         json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -92,6 +143,12 @@ def main() -> None:
     print(f"Report saved to {REPORT_FILE}")
     for issue in issues:
         print(f"  ! {issue['name']}: {issue['issue']} ({issue['detail']})")
+
+    if stale:
+        names = "、".join(f"{s['name']}（{s['reason']}）" for s in stale[:6])
+        more = f" 等 {len(stale)} 条" if len(stale) > 6 else ""
+        print(f"::warning::{len(stale)} 条 active 条目超过 {STALE_DAYS} 天未复核：{names}{more}",
+              file=sys.stderr)
 
     # 有问题时退出码 1，便于 CI 判断是否建 Issue
     sys.exit(1 if issues else 0)

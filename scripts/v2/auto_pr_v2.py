@@ -143,6 +143,10 @@ def to_platform_entry(item: dict) -> dict:
         "url": url,
         "tags": item.get("tags") or [],
         "deadline": item.get("deadline") or None,
+        "deadline_iso": item.get("deadline_iso") or None,
+        # 新条目必须带 kind，否则过期检测会把它当 unknown 漏掉
+        "deadline_kind": item.get("deadline_kind")
+        or ("date" if item.get("deadline_iso") else "unknown"),
         "referral": {"type": "none"},
         "status": "active",
         "note": f"v2 自动收录 ({datetime.now(timezone.utc).strftime('%Y-%m-%d')})，"

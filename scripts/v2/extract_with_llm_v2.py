@@ -89,7 +89,9 @@ SYSTEM_PROMPT = """你是一个 AI 平台「新用户福利」信息抽取助手
   "provider": "厂商/背景（一句话，可留空字符串）",
   "benefit": "福利描述（一句话，含具体数额）",
   "url": "官网或活动页链接（如无则空字符串）",
-  "deadline": "截止日期 YYYY-MM-DD（如无则 null）",
+  "deadline": "截止日期的人类可读说明（如「2026-11-15（限免已延期）」，无则 null）",
+  "deadline_iso": "绝对截止日 YYYY-MM-DD（仅当原文给出确切日期才填，否则 null）",
+  "deadline_kind": "date | rolling | long_term | unknown（date=有绝对日期；rolling=按开通/首次使用起算或活动限时无固定日期；long_term=政策型长期福利；unknown=无法判断）",
   "has_new_user_benefit": true/false,
   "confidence": 0.0-1.0,
   "tags": ["标签1", "标签2"]

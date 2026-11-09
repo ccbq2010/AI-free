@@ -78,11 +78,16 @@
      "benefit_highlight": ["需要高亮的关键词数组"],
      "url": "https://注册链接",
      "tags": ["GLM-5.3"],
-     "deadline": "2026-12-31",
+     "deadline": "2026-12-31（说明文字可选）",
+     "deadline_iso": "2026-12-31",
+     "deadline_kind": "date",
      "referral": { "type": "invite_code", "code": "xxx" },
      "status": "active"
    }
    ```
+   `deadline` 是展示用文本；`deadline_iso` + `deadline_kind` 是机器字段，过期检测只认这两个：
+   `date`（有绝对截止日，必须填 `deadline_iso`）/ `rolling`（按开通或首次使用起算、活动限时无固定日期）/
+   `long_term`（政策型长期福利）/ `unknown`（无法判断，应尽量避免）。
 2. 运行 `python build.py --source v2` 重新生成 HTML
 3. 推送 / 提 PR（如需保留 v1，请同步修改 `data/platforms.json`）
 
