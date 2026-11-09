@@ -8,7 +8,7 @@
   - 内容变化：更新快照 + 创建 Issue（配置了 GITHUB_TOKEN 时）
 
 快照：data/promo_snapshots.json（提交进仓库持久化，workflow 负责 commit）
-退出码：0 = 无变化/建基线；1 = 有变化；2 = 运行错误
+退出码：0 = 无变化/建基线；1 = 有变化；2 = 运行错误（仅当全部页面抓取失败）
 """
 
 from __future__ import annotations
@@ -18,6 +18,7 @@ import json
 import os
 import re
 import sys
+import time
 import urllib.error
 import urllib.request
 from datetime import datetime, timezone
@@ -56,6 +57,24 @@ def _extract_text(html: str) -> str:
 
 def _sha(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
+def _fetch_page(url: str, retries: int = 3, backoff: float = 2.0) -> str | None:
+    """抓单页，失败退避重试。
+
+    单源抖动（read timeout）在 GitHub runner 上偶发：2026-11-09 那次
+    zcode.z.ai/changelog 15s 读超时，一次失败就让整个每日任务变红，
+    而其余 5 个页面其实都正常。这里补一层重试，仍失败才计入 errors。
+    """
+    for i in range(retries):
+        html = fetch_text(url)
+        if html is not None:
+            return html
+        if i < retries - 1:
+            delay = backoff * (i + 1)
+            print(f"  [RETRY] {url} 第 {i + 1} 次失败，{delay:g}s 后重试", file=sys.stderr)
+            time.sleep(delay)
+    return None
 
 
 def _load_snapshots() -> dict:
@@ -134,13 +153,15 @@ def main() -> None:
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     changed: list[tuple[dict, dict, str, str]] = []
     errors = 0
+    failed: list[str] = []
 
     for page in PROMO_PAGES:
         name, url = page["name"], page["url"]
-        html = fetch_text(url)
+        html = _fetch_page(url)
         if html is None:
-            print(f"  [ERROR] {name} fetch failed")
+            print(f"  [ERROR] {name} fetch failed（已重试 3 次）", file=sys.stderr)
             errors += 1
+            failed.append(name)
             continue
         text = _extract_text(html)
         if len(text) < 50:
@@ -165,8 +186,17 @@ def main() -> None:
     for page, old, new_hash, new_excerpt in changed:
         _create_issue(page, old, new_hash, new_excerpt)
 
-    if errors and not changed:
-        sys.exit(2)
+    # 退出码分级（原判据是 errors and not changed -> 2，任一页面抖动就红，
+    # 6 个源任一失败等于整个每日任务失败，噪音远大于信号）：
+    #   全部页面失败  -> 2（监控实质停摆，必须红）
+    #   部分页面失败  -> 0/1 + ::warning:: 注解（保留可见性，不染红）
+    if errors:
+        summary = f"{errors}/{len(PROMO_PAGES)} 个页面抓取失败（已重试 3 次）：{'、'.join(failed)}"
+        if errors == len(PROMO_PAGES):
+            print(f"::error::{summary}，监控实质停摆，快照未更新")
+            sys.exit(2)
+        print(f"::warning::{summary}，本轮按剩余页面继续", file=sys.stderr)
+
     if changed:
         print(f"\n{len(changed)} 个官方页面有变更。")
         sys.exit(1)
