@@ -4,7 +4,8 @@
     "catpaw.meituan.com",
     "mimo.xiaomi.com",
     "cerebras.ai",
-    "api.cerebras.ai"
+    "api.cerebras.ai",
+    "midalo.ai"
   ],
   "names": [
     "反共政治宣传库",
@@ -15,7 +16,8 @@
     "ai api",
     "catpaw",
     "mimo code",
-    "cerebras"
+    "cerebras",
+    "midalo"
   ],
-  "description": "已拒绝的候选平台。domains 匹配 URL 域名，names 匹配归一化后的名称。"
+  "description": "已拒绝的候选平台。domains 匹配 URL 域名（含子域，midalo.ai 覆盖 agent.midalo.ai）；names 匹配归一化后的名称（≥4 字符按包含匹配，可命中带活动后缀的候选名）。"
 }

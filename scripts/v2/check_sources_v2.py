@@ -174,6 +174,28 @@ def deduplicate(candidates: list[RawCandidate]) -> list[RawCandidate]:
     return unique
 
 
+def _hits_blacklist(norm: str, domain: str,
+                    black_domains: set[str], black_names: set[str]) -> bool:
+    """黑名单命中判定。
+
+    原先只做精确相等（`domain in black_domains or norm in black_names`），
+    后果是同一家要逐个子域登记（cerebras.ai 与 api.cerebras.ai 各写一条），
+    且候选名带活动后缀时永远匹配不上（「Midalo 满血中转站双 11 新用户活动」
+    归一化后是「midalo满血中转站双11新用户活动」，与登记名「midalo」不等）。
+    改为：域名按父域后缀匹配，名称在 ≥4 字符时按包含匹配。
+    """
+    if domain:
+        for bd in black_domains:
+            if bd and (domain == bd or domain.endswith("." + bd)):
+                return True
+    for bn in black_names:
+        if not bn:
+            continue
+        if norm == bn or (len(bn) >= 4 and bn in norm):
+            return True
+    return False
+
+
 def filter_known(candidates: list[RawCandidate]) -> list[RawCandidate]:
     known_ids, known_domains = known_ids_and_domains()
     blacklist = get_blacklist()
@@ -188,7 +210,7 @@ def filter_known(candidates: list[RawCandidate]) -> list[RawCandidate]:
             continue
         if domain and domain in known_domains:
             continue
-        if domain in black_domains or norm in black_names:
+        if _hits_blacklist(norm, domain, black_domains, black_names):
             continue
         new.append(c)
     return new
