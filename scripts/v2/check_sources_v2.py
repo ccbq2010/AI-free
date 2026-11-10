@@ -196,6 +196,26 @@ def _hits_blacklist(norm: str, domain: str,
     return False
 
 
+def _domain_matches(domain: str, known_domains: set[str]) -> bool:
+    """候选域名是否已收录平台的域名（含 www./子域/父域三种等价形态）。
+
+    原先只做精确相等，于是 PR #74 把「智谱开放平台 bigmodel.cn」当成新平台提交，
+    而数据里早有 zhipu-glm（www.bigmodel.cn）——同一站点、名字不同，精确匹配两头落空。
+    """
+    if not domain:
+        return False
+    if domain in known_domains:
+        return True
+    host = domain[4:] if domain.startswith("www.") else domain
+    for kd in known_domains:
+        k = kd[4:] if kd.startswith("www.") else kd
+        if not k:
+            continue
+        if host == k or host.endswith("." + k) or k.endswith("." + host):
+            return True
+    return False
+
+
 def filter_known(candidates: list[RawCandidate]) -> list[RawCandidate]:
     known_ids, known_domains = known_ids_and_domains()
     blacklist = get_blacklist()
@@ -208,7 +228,7 @@ def filter_known(candidates: list[RawCandidate]) -> list[RawCandidate]:
         domain = urlparse(c.url).netloc.lower() if c.url else ""
         if norm and norm in known_ids:
             continue
-        if domain and domain in known_domains:
+        if _domain_matches(domain, known_domains):
             continue
         if _hits_blacklist(norm, domain, black_domains, black_names):
             continue

@@ -1,7 +1,7 @@
 {
   "site": "https://ccbq2010.github.io/AI-free",
   "updated_at": "2026-11-10",
-  "count": 18,
+  "count": 19,
   "platforms": [
     {
       "id": "workbuddy",
@@ -195,6 +195,20 @@
         "Muse Spark 1.3",
         "10 亿 Token",
         "AI Agent"
+      ],
+      "tier": "hidden_gem"
+    },
+    {
+      "id": "tokenhub",
+      "name": "腾讯云 TokenHub（大模型服务平台）",
+      "provider": "腾讯云 · 大模型服务平台（多模型聚合 API）",
+      "benefit": "新用户每个主账号一次性领取免费体验包：**所有语言模型各赠 100 万 Tokens，有效期 1 年**（覆盖混元 Hy4、DeepSeek-V4.1-Flash-1017、Kimi K3.1 Pro、GLM-5.3-Flash、MiniMax-M3.1-Flash、MiMo-V2.6-Pro 等）；视觉理解与 3D 生成模型另有独立额度。在模型广场「新用户福利免费体验」手动领取，或首次调用时自动领取",
+      "url": "https://www.tencentcloud.com/zh/document/product/1300/80423",
+      "tags": [
+        "100万 Tokens",
+        "腾讯云",
+        "多模型聚合",
+        "Hy4"
       ],
       "tier": "hidden_gem"
     }
