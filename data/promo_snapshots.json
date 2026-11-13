@@ -5,23 +5,23 @@
     "excerpt": "> ## Documentation Index > Fetch the complete documentation index at: https://docs.bigmodel.cn/llms.txt > Use this file to discover all available pages before exploring further. # 上新活动 尊敬的 智谱开放平台 用户： 您好！我们荣幸地宣布，平台正式发布全新一代基座大模型—— **GLM-4.6 与 GLM-4.5 系列模型**。为了回馈广大用户的长期支持与信赖，我们特别推出专属优惠活动，邀您体验智谱最新最强大的模型。 ## **活动一：GLM Coding Plan 编码畅享计划** 为庆祝 GLM Coding Plan 正式上线，我们为全平台用户提供限时优惠，让更多用户以合理成本使用高质量的代码生成能力。["
   },
   "https://zcode.z.ai/changelog": {
-    "hash": "f89bf273489b3fa9db1fa8a2ec3c57bfa4330d934a328f9c1a2429cd59113c4f",
-    "updated": "2026-11-04",
-    "excerpt": "文档 更新日志 提交漏洞 社区 EN 登录 版本发布与更新 ZCode 各版本的更新说明与桌面端下载。 3.17.2 发布于 2026年11月3日 下载 Release v3.17.2 [系统要求] macOS平台本版本及以后版本基于 Electron 44（Chromium 152），最低系统要求为 macOS 13 (Ventura)。macOS 12 (Monterey) 及更早版本不再支持。 新功能 新增 ZCode Sites 官方插件，支持一键部署网站 插件管理支持一键全部更新 新增 Kimi K3.1 Pro、MiniMax M3.1 Flash 等模型配置项 文档查看器按会话隔离，多个文档插件共用进程降低占用 图片预览支持标注编辑并作为附件发送 新增未读任务筛选 设置页可批量管理项目，删除时可同时清理数据 设置页统一远程数据同步功能 远程设备改为紧凑的可搜索列表 远程设备菜"
+    "hash": "70b206ceb97385b0207db9cdcba3b51468aca59c15b210de7cea2c60d6075c23",
+    "updated": "2026-11-13",
+    "excerpt": "文档 更新日志 提交漏洞 社区 EN 登录 版本发布与更新 ZCode 各版本的更新说明与桌面端下载。 3.18.2 发布于 2026年11月13日 下载 Release v3.18.2 新功能 输入框支持语音输入，语音内容实时转成文字。 支持 Worktree，并行任务开发。 新增 Design 能力，支持设计系统检查。 新增日语、俄语、韩语三种界面语言。 新增 Session 管理 Tool，增强自管理能力。 统一登录授权入口。 增加插件推荐开关。 内置浏览器支持点选页面元素，本地网页可直接修改并保存。 内置浏览器新增设备尺寸预设，页面可导出为 PNG 或 PDF。 可在输入框编辑最近发送或排队中的消息。 分享支持设置有效期，并新增分享管理页面。 本地网页改动后自动刷新，可设置单击 HTML 直接打开。 归档的会话支持永久删除。 连续的工具执行自动分组汇总，阅读更专注。 选中回复文字可"
   },
   "https://www.siliconflow.cn/news": {
-    "hash": "759ec10f815a7bf0e8eb7adfab9f982715aac88348895ac38498bb3683c4382f",
-    "updated": "2026-11-12",
-    "excerpt": "产品 模型 价格 文档 生态合作 关于 登录 登录 产品 模型 价格 文档 生态合作 关于 公司介绍 品牌理念 企业动态 开发者说 企业动态 硅基流动上线高速版 Kimi K2.7 Code “想得更少、写得更好”：能看会做，既能理解录屏中的操作流程，也能一口气完成跨文件的项目开发。 模型上新 2026-06-18 查看更多 关于 Token 服务数据安全的常见问题解答 数据留存情况相关问题的一些解答 企业AI实践 2026-11-12 硅基流动上线 MiniMax H3 硅基流动上线了MiniMax H3，支持生成带立体声音的视频，开发者可上传首帧、尾帧或首尾双帧，并通过文字描述生成创意视频。该模型采用高效架构，实现声画同步生成，调用价格为0.5元/秒，生成5至15秒、480P或768P的带音轨视频。 模型上新 2026-11-11 硅基流动亮相 2026 移动网络大会，中国移动董事长、"
+    "hash": "abc22526406bb86cd6c000ae25ac09b9bebafc40b48443233f5db2794a3ef474",
+    "updated": "2026-11-13",
+    "excerpt": "硅基流动产品上新：TokenPlus 词元优选，一站式 Token 智能调度与管理平台。主流模型 4.2 折起，调用稳定，企业级管理更省心， 了解详情 www.tokenplus.cn 产品 模型 价格 文档 生态合作 关于 登录 登录 产品 模型 价格 文档 生态合作 关于 公司介绍 品牌理念 企业动态 开发者说 企业动态 硅基流动上线高速版 Kimi K2.7 Code “想得更少、写得更好”：能看会做，既能理解录屏中的操作流程，也能一口气完成跨文件的项目开发。 模型上新 2026-06-18 查看更多 数据只经过，不落脚：拆解硅基流动 API 的数据流转链路 硅基流动是中立 Token 供应平台，同时也是保护企业数据资产安全的解决方案提供者。我们与普通“中转站”有根本区别：零留存协议+技术、无利用数据的商业用途、品牌背书。 企业AI实践 2026-11-13 关于 Token 服务数"
   },
   "https://www.trae.cn/pricing": {
-    "hash": "88fba173410b9681b66814445da92a2903032372f4ba4f81c87bc18a6eddbbc9",
-    "updated": "2026-11-03",
+    "hash": "540e956e9992d38b3d1e8b9b6a14e1cbcea3c4edeb8d036a66b8c63ea689ae99",
+    "updated": "2026-11-13",
     "excerpt": "产品 企业版 定价 文档 更新日志 社区 知识库 登录 下载中心 个人方案与定价 企业版选型与咨询， 前往火山引擎 ↗ 免费 Free ¥ 0 每月 500 积分 所有功能均可免费使用 支持 2 个云端任务同时执行 免费使用 会员 Lite 首月优惠 低至 ¥ 34 /月 ¥49 包含免费版功能与积分，以及 2,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed 2.1模型 2.5 折，GLM5.3、Deepseek-V4.1-Flash模型 7.5折 高峰期优先响应 2个云端任务同时执行 立即升级 会员 Pro 首月优惠 低至 ¥ 69 /月 ¥99 包含免费版功能与积分，以及 4,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed 2.1模型 2.5 折，GLM5.3、Deepseek-V4.1-Flash模型 7.5折 高峰期优先响应 10个云端任务同"
   },
   "https://kiro.dev/pricing/": {
-    "hash": "33aaf2bfde814d3376224a8fc26dc002422a4ba2b49c7bb9af07ec9c96f174d7",
-    "updated": "2026-11-11",
-    "excerpt": "Skip to main content Pricing Free trial: when you first upgrade to Pro, you’ll get the rest of the month free, plus 500 trial credits to use within 12 months. KIRO FREE $0 per month 50 credits Access to open weight models and Claude Sonnet 4.5 Download now KIRO PRO $20 per user / month 1,000 credits Access to premium models Add-on credits ($0.04/credit) Download now KIRO PRO+ $40 per user / month "
+    "hash": "7df6ac76b83bfbae1dcbd82a9b51ceebbc0abdef3082df4f87cb1b080456e52f",
+    "updated": "2026-11-13",
+    "excerpt": "Skip to main content Pricing Free trial: when you first upgrade to Pro, you’ll get the rest of the month free, plus 500 trial credits to use within 12 months. KIRO FREE $0 per month 50 credits Open-weight models and Claude Sonnet 4.5 Download now KIRO PRO $20 per user / month 1,000 credits Premium models Add-on credits ($0.04/credit) Sign up / upgrade KIRO PRO+ $40 per user / month 2,000 credits P"
   }
 }
