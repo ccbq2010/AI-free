@@ -5,9 +5,9 @@
     "excerpt": "> ## Documentation Index > Fetch the complete documentation index at: https://docs.bigmodel.cn/llms.txt > Use this file to discover all available pages before exploring further. # 上新活动 尊敬的 智谱开放平台 用户： 您好！我们荣幸地宣布，平台正式发布全新一代基座大模型—— **GLM-4.6 与 GLM-4.5 系列模型**。为了回馈广大用户的长期支持与信赖，我们特别推出专属优惠活动，邀您体验智谱最新最强大的模型。 ## **活动一：GLM Coding Plan 编码畅享计划** 为庆祝 GLM Coding Plan 正式上线，我们为全平台用户提供限时优惠，让更多用户以合理成本使用高质量的代码生成能力。["
   },
   "https://zcode.z.ai/changelog": {
-    "hash": "70b206ceb97385b0207db9cdcba3b51468aca59c15b210de7cea2c60d6075c23",
-    "updated": "2026-11-13",
-    "excerpt": "文档 更新日志 提交漏洞 社区 EN 登录 版本发布与更新 ZCode 各版本的更新说明与桌面端下载。 3.18.2 发布于 2026年11月13日 下载 Release v3.18.2 新功能 输入框支持语音输入，语音内容实时转成文字。 支持 Worktree，并行任务开发。 新增 Design 能力，支持设计系统检查。 新增日语、俄语、韩语三种界面语言。 新增 Session 管理 Tool，增强自管理能力。 统一登录授权入口。 增加插件推荐开关。 内置浏览器支持点选页面元素，本地网页可直接修改并保存。 内置浏览器新增设备尺寸预设，页面可导出为 PNG 或 PDF。 可在输入框编辑最近发送或排队中的消息。 分享支持设置有效期，并新增分享管理页面。 本地网页改动后自动刷新，可设置单击 HTML 直接打开。 归档的会话支持永久删除。 连续的工具执行自动分组汇总，阅读更专注。 选中回复文字可"
+    "hash": "bcd98301e5bba92fc3b81fd30c17e5c55cdf6515591a6538dd003bc99b274526",
+    "updated": "2026-11-22",
+    "excerpt": "文档 更新日志 提交漏洞 社区 EN 登录 版本发布与更新 ZCode 各版本的更新说明与桌面端下载。 3.19.1 发布于 2026年11月22日 下载 Release v3.19.1 新功能 工具升级期间旧版本继续可用，不中断使用 新增回复语言设置，可指定回复使用的语言 语音输入支持快捷键开关 内置 LibreOffice、Python、Poppler 等常用工具，方便文档插件的使用 模型选择菜单支持搜索，快速定位模型 分叉会话标题自动编号，便于区分 应用崩溃后可一键重启 「立即发送」时前台 Agent 自动转入后台继续运行 会话中新增或删除的技能实时生效，无需重开会话 分享被拒时指明问题文件、对话轮次和下一步 MCP 服务改为异步启动，应用打开更快 输入框状态区重新设计，各类运行状态统一展示 Git 状态卡支持一键查看全部变更 已结束的活动保留展示，输入新内容后再收起 内置 desi"
   },
   "https://www.siliconflow.cn/news": {
     "hash": "be94f8b027056b5d1cb1e59bc67a63dd17c70e246236b3948f4cbe19daae73c2",
