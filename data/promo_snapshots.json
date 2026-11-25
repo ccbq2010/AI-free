@@ -10,9 +10,9 @@
     "excerpt": "文档 更新日志 提交漏洞 社区 EN 登录 版本发布与更新 ZCode 各版本的更新说明与桌面端下载。 4.0.0 发布于 2026年11月23日 下载 Release v4.0.0 新功能 GLM-5.4 已上线 Coding Plan 并预置，新增视觉能力与更强的泛 Coding 能力 插件商店会按登录地区展示对应的插件 配置服务不可用时，工作流功能默认仍可按需启用 文档、表格、演示等插件不再执行额外的视觉验收步骤 问题修复 修复某些情况下会话启动长时间卡住无响应的问题 修复切换模型或服务商后对话上下文偶发丢失的问题 归档永久删除前的检查改为按批进行，更快并兼容旧版本 按需加载工作流技能时，会提示发送 /workflow 启用相关工具 自动化“立即运行”出错时给出更具体的提示 报错详情不再把普通文本误识别为服务商错误码 修复旧 shell 模式下 adb 命令解析出错的问题 3.19."
   },
   "https://www.siliconflow.cn/news": {
-    "hash": "dbb0aedbe810aad7184184f3e0024157067f60f30712522b9a82d6d2a7d4a543",
-    "updated": "2026-11-23",
-    "excerpt": "硅基流动产品上新：TokenPlus 词元优选，一站式 Token 智能调度与管理平台。主流模型 4.2 折起，调用稳定，企业级管理更省心， 了解详情 www.tokenplus.cn 产品 模型 价格 文档 生态合作 关于 登录 登录 产品 模型 价格 文档 生态合作 关于 公司介绍 品牌理念 企业动态 开发者说 企业动态 硅基流动上线高速版 Kimi K2.7 Code “想得更少、写得更好”：能看会做，既能理解录屏中的操作流程，也能一口气完成跨文件的项目开发。 模型上新 2026-06-19 查看更多 推理算力是奔涌不息的河流 硅基流动创始人袁进辉：AI 基础设施迎来“生逢其时”窗口 袁进辉认为，推理算力需求如同奔涌的河流，持续不断，而训练算力需求则像泳池，有明确边界。硅基流动专注于提供AI基础设施，将分散的算力标准化，适配模型推理需求。硅基流动已服务千万用户和上万家企业，其平台日均"
+    "hash": "554e3b114e0f645c59bcde562d72a8707c5b1711c60f6c767205d1d1f58f17ee",
+    "updated": "2026-11-25",
+    "excerpt": "硅基流动产品上新：TokenPlus 词元优选，一站式 Token 智能调度与管理平台。主流模型 4.2 折起，调用稳定，企业级管理更省心， 了解详情 www.tokenplus.cn 产品 模型 价格 文档 客户案例 生态合作 关于 登录 登录 产品 模型 价格 文档 客户案例 生态合作 关于 公司介绍 品牌理念 企业动态 开发者说 企业动态 硅基流动上线高速版 Kimi K2.7 Code “想得更少、写得更好”：能看会做，既能理解录屏中的操作流程，也能一口气完成跨文件的项目开发。 模型上新 2026-06-19 查看更多 写给 2027 届同学的一封信｜硅基流动校园招聘 这封信面向 2027 届同学介绍硅基流动的AI基础设施定位与校招方向，说明公司专注大模型推理层，以自研推理加速引擎与异构算力编排连接算力、模型和应用，并用量化、芯片适配、分布式系统等例子解释 AI Infra 的具体"
   },
   "https://www.trae.cn/pricing": {
     "hash": "17d810826bfa2f08c1a8a8bf21d23c9321cde9ff63c521d36b99db6e16df01f2",
@@ -20,8 +20,8 @@
     "excerpt": "产品 企业版 定价 文档 更新日志 社区 高校大赛 Hot 登录 下载中心 个人方案与定价 企业版选型与咨询， 前往火山引擎 ↗ 免费 Free ¥ 0 每月 500 积分 所有功能均可免费使用 支持 2 个云端任务同时执行 免费使用 会员 Lite 首月优惠 低至 ¥ 39 /月 ¥49 包含免费版功能与积分，以及 2,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed 2.1 模型 2.5 折、Deepseek-V4.1模型闲时5折 高峰期优先响应 2个云端任务同时执行 立即升级 会员 Pro 首月优惠 低至 ¥ 69 /月 ¥99 包含免费版功能与积分，以及 4,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed 2.1 模型 2.5 折、Deepseek-V4.1模型闲时5折 高峰期优先响应 10个云端任务同时执行 立即升级 会员 Pro+ 低至 ¥"
   },
   "https://kiro.dev/pricing/": {
-    "hash": "1c4006f2270eb0096cd6d362ac1a850014a4befe37e1a4045acf342f2da63882",
-    "updated": "2026-11-20",
+    "hash": "317f96127d47f4a706d81c3fb2e4703403deb08f306bb696f3b5ee69a2ba3a84",
+    "updated": "2026-11-25",
     "excerpt": "Skip to main content Pricing Free trial: when you first upgrade to Pro, you’ll get the rest of the month free, plus 500 trial credits to use within 12 months. KIRO FREE $0 per month 50 credits Open-weight models and Claude Sonnet 4.5 Download now KIRO PRO $20 per user / month 1,000 credits Premium models Add-on credits ($0.04/credit) Sign up / upgrade KIRO PRO+ $40 per user / month 2,000 credits P"
   }
 }
