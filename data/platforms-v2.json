@@ -552,5 +552,33 @@
     "status": "active",
     "note": "2026-11-10 人工核验收录（源自 PR #72 自动候选，已按官方文档重写）。官方依据：腾讯云文档《新人免费体验包》（tencentcloud.com/zh/document/product/1300/80423）原文「TokenHub 当前为每个主账号提供一次免费体验额度……所有语言模型均提供 100 万 Tokens 的免费体验额度，有效期 1 年」「本期活动时间截至 2026 年 12 月 31 日」。⚠️ 两个必须提醒的坑：① **每个模型要预冻结 10 美元**——「每领取一个模型的免费资源包或开启一个模型的后付费服务，将自动冻结您账户中 10 美金」，余额/授信不足会领取失败；解冻需在「在线推理」页删除该模型的所有 endpoint（默认 endpoint 要联系客服），删除后该模型服务即不可用，别乱删。② 额度按主账号维度、全模型共享，每个账号每个模型只能领一次，未用部分到期自动失效，建议只领近期真要用的模型。计费顺序：先扣免费额度，额度用尽且未开按量付费则服务直接停止（不会自动扣费）。地域差异：国际站文档明确覆盖上述模型清单，中国站（cloud.tencent.com）模型清单与「100 万/模型」口径基本一致，具体以控制台展示为准。",
     "verified_at": "2026-11-10"
+  },
+  {
+    "id": "niceai",
+    "name": "NiceAI 邀请码注册福利",
+    "tier": "hidden_gem",
+    "provider": "NiceAI（支持 Claude Code / Codex 的 API 中转服务）",
+    "benefit": "注册时填写邀请码 V2EX 可额外获得 $1 额度；另有回帖抽 5 个 $10 额度的随机活动",
+    "benefit_highlight": [
+      "V2EX",
+      "$1 额度",
+      "5",
+      "$10 额度"
+    ],
+    "url": "https://niceai.dev",
+    "tags": [
+      "邀请码",
+      "注册福利",
+      "API中转",
+      "refund抽奖"
+    ],
+    "deadline": null,
+    "deadline_iso": null,
+    "deadline_kind": "long_term",
+    "referral": {
+      "type": "none"
+    },
+    "status": "active",
+    "note": "v2 自动收录 (2026-11-20)，来源 community:v2ex，confidence=0.8。请人工核对后 Merge。"
   }
 ]
